@@ -15,6 +15,22 @@ const menuItems = {
         }
       ]
     },
+
+    {
+      id: 'ui-element',
+      title: 'Usulan',
+      type: 'group',
+      icon: 'icon-ui',
+      children: [
+        {
+          id: 'table',
+          title: 'Daftar Usulan',
+          type: 'item',
+          icon: 'feather icon-server',
+          url: '/usulanku'
+        }
+      ]
+    },
     {
       id: 'ui-element',
       title: 'UI ELEMENT',

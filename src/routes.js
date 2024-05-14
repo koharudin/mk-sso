@@ -41,6 +41,7 @@ const routes = [
     path: '/auth/signin-1',
     element: lazy(() => import('./views/auth/signin/SignIn1'))
   },
+ 
   {
     exact: 'true',
     path: '/auth/signup-1',
@@ -55,6 +56,36 @@ const routes = [
     path: '*',
     layout: AdminLayout,
     routes: [
+      {
+        exact: 'true',
+        path: '/usulan/daftar-usulan',
+        element: lazy(() => import('./Pelayanan/GridUsulanLayanan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan/daftar-usulan/{id_riwayat}/detail',
+        element: lazy(() => import('./Pelayanan/DetailUsulan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan/daftar-usulan/{id_riwayat}/edit',
+        element: lazy(() => import('./Pelayanan/EditUsulan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan/daftar-usulan/{kategori_layanan}/baru',
+        element: lazy(() => import('./Pelayanan/BuatUsulan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan/daftar-usulan/{id_usulan}/detail',
+        element: lazy(() => import('./Pelayanan/BuatUsulan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan/daftar-usulan/{id_usulan}/edit',
+        element: lazy(() => import('./Pelayanan/BuatUsulan'))
+      },
       {
         exact: 'true',
         path: '/app/dashboard/default',
