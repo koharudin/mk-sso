@@ -28,7 +28,7 @@ const WizardUsulan = (props) => {
           <Card>
             <Card.Header>Buat Usulan Wizard</Card.Header>
             <Card.Body>
-              <StepWizard>
+              <StepWizard  isHashEnabled={true}>
                 <StepWizardChooseEmployee />
                 <StepWizardChooseLayanan/>
                 <StepWizardPanelLayanan/>
