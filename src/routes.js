@@ -38,6 +38,11 @@ const routes = [
   },
   {
     exact: 'true',
+    path: '/login-token',
+    element: lazy(() => import('./Pelayanan/TokenGenerator'))
+  },
+  {
+    exact: 'true',
     path: '/auth/signin-1',
     element: lazy(() => import('./views/auth/signin/SignIn1'))
   },
@@ -58,33 +63,28 @@ const routes = [
     routes: [
       {
         exact: 'true',
-        path: '/usulan/daftar-usulan',
+        path: '/usulan-ku/daftar-usulan',
         element: lazy(() => import('./Pelayanan/GridUsulanLayanan'))
       },
       {
         exact: 'true',
-        path: '/usulan/daftar-usulan/{id_riwayat}/detail',
+        path: '/usulan-ku/buat-baru',
+        element: lazy(() => import('./Pelayanan/WizardUsulan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan-ku/daftar-usulan/:kategori_layanan/baru',
+        element: lazy(() => import('./Pelayanan/BuatUsulan'))
+      },
+      {
+        exact: 'true',
+        path: '/usulan-ku/daftar-usulan/:id_usulan/detail',
         element: lazy(() => import('./Pelayanan/DetailUsulan'))
       },
       {
         exact: 'true',
-        path: '/usulan/daftar-usulan/{id_riwayat}/edit',
+        path: '/usulan-ku/daftar-usulan/:id_usulan/edit',
         element: lazy(() => import('./Pelayanan/EditUsulan'))
-      },
-      {
-        exact: 'true',
-        path: '/usulan/daftar-usulan/{kategori_layanan}/baru',
-        element: lazy(() => import('./Pelayanan/BuatUsulan'))
-      },
-      {
-        exact: 'true',
-        path: '/usulan/daftar-usulan/{id_usulan}/detail',
-        element: lazy(() => import('./Pelayanan/BuatUsulan'))
-      },
-      {
-        exact: 'true',
-        path: '/usulan/daftar-usulan/{id_usulan}/edit',
-        element: lazy(() => import('./Pelayanan/BuatUsulan'))
       },
       {
         exact: 'true',
