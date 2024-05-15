@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import ButtonWizard from './ButtonWizard';
-import PanelRiwayatAnak from './PanelRiwayatAnak';
+import PanelRiwayatAnak from '../panels/PanelRiwayatAnak';
 
 const StepWizardPanelLayanan = (props) => {
   return (
