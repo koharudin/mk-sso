@@ -10,16 +10,16 @@ const Option = (props) => {
   return (
     <>
       <components.Option {...props}>
-        <b>{props.data?.o.name}</b>
+        <b>{props.data?.o.nama} / {props.data?.o.nip}</b>
         <br></br>
-        {props.data?.o.keterangan}
+        {props.data?.o.pangkat} / {props.data?.o.golongan}
       </components.Option>
     </>
   );
 };
 
-const SelectJenisKenaikanGaji = (props) => {
-  const { onChange, jenis_diklat, ...otherProps } = props;
+const SelectPejabatPenetap = (props) => {
+  const { onChange, ...otherProps } = props;
   const [options, setOptions] = useState();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState();
@@ -29,7 +29,7 @@ const SelectJenisKenaikanGaji = (props) => {
       let o = data?.map((v, i) => {
         return {
           value: v.id,
-          label: v.name + ' - ' + v.id, // `${v.name} - [${v.keterangan}]`,
+          label: v.nama + ' - ' + v.id, // `${v.name} - [${v.keterangan}]`,
           o: v
         };
       });
@@ -38,9 +38,7 @@ const SelectJenisKenaikanGaji = (props) => {
   }, [data]);
   useEffect(() => {
     setIsLoading(true);
-    let url = '/master-jenis-kenaikan-gaji';
-
-    ApiCall.post(url)
+    ApiCall.post('/master-pejabat-penetap')
       .then((res) => {
         setData(res?.data?.data);
       })
@@ -54,13 +52,12 @@ const SelectJenisKenaikanGaji = (props) => {
       onChange(vals?.value);
     }
   };
+
+ 
   return (
     <>
-      
-      <Select
-
+      <Select 
         {...otherProps}
-        value={{value:2,label:"Gaji Berkala"}}
         components={{ Option }}
         isSearchable
         onChange={onChangeSelection}
@@ -71,4 +68,4 @@ const SelectJenisKenaikanGaji = (props) => {
     </>
   );
 };
-export default SelectJenisKenaikanGaji;
+export default SelectPejabatPenetap;

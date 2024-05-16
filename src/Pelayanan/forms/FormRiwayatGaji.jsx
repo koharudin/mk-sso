@@ -6,6 +6,7 @@ import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 import SelectJenisKenaikanGaji from '../components/SelectJenisKenaikanGaji';
 import { NumericFormat } from 'react-number-format';
+import SelectPejabatPenetap from '../components/SelectPejabatPenetap';
 
 const FormRiwayatGaji = (props) => {
   const [fields, setFields] = useState({
@@ -18,7 +19,7 @@ const FormRiwayatGaji = (props) => {
     pejabat_penetap_nip: '',
     masakerja_tahun: '',
     masakerja_bulan: '',
-    jenis_kenaikan: '',
+    jenis_kenaikan: '2',
     pangkat_id: '',
     gaji_pokok: ''
   });
@@ -79,7 +80,7 @@ const FormRiwayatGaji = (props) => {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>JENIS KENAIKAN</Form.Label>
+        <Form.Label>JENIS KENAIKAN {fields?.jenis_kenaikan}</Form.Label>
         <SelectJenisKenaikanGaji
           type="date"
           placeholder="JENIS KENAIKAN"
@@ -114,6 +115,17 @@ const FormRiwayatGaji = (props) => {
           value={fields?.gaji_pokok}
           onValueChange={(e) => {
             onChangeField(e, 'gaji_pokok');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>PEJABAT PENETAP</Form.Label>
+        <SelectPejabatPenetap
+          placeholder="PEJABAT PENETAP"
+          value={fields?.pejabat_penetap_id}
+          onChange={(e) => {
+            onChangeField(e, 'pejabat_penetap_id');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
