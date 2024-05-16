@@ -51,7 +51,7 @@ const FormRiwayatAngkaKredit = (props) => {
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>TGL SK</Form.Label>
+        <Form.Label>TGL AWAL PENILAIAN</Form.Label>
         <Form.Control
           type="date"
           placeholder="TGL AWAL PENILAIAN"
@@ -63,7 +63,7 @@ const FormRiwayatAngkaKredit = (props) => {
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>TGL SK</Form.Label>
+        <Form.Label>TGL AKHIR PENILAIAN</Form.Label>
         <Form.Control
           type="date"
           placeholder="TGL AKHIR PENILAIAN"
