@@ -1,13 +1,13 @@
 import { Button } from 'react-bootstrap';
 import ButtonWizard from './ButtonWizard';
 import PanelRiwayatDiklatStruktural from '../panels/PanelRiwayatDiklatStruktural';
+import PanelRiwayatDiklatTeknis from '../panels/PanelRiwayatDiklatTeknis';
 
 const StepWizardPanelLayanan = (props) => {
   return (
     <>
       Panel Layanan <hr></hr>
-      <PanelRiwayatDiklatStruktural/>
-      
+      <PanelRiwayatDiklatTeknis />
       <div>
         <hr></hr>
         <ButtonWizard {...props}></ButtonWizard>

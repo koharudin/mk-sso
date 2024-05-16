@@ -9,7 +9,7 @@ import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 import SelectJenisDiklat from '../components/SelectJenisDiklat';
 
-const FormRiwayatDiklatStruktural = (props) => {
+const FormRiwayatDiklatTeknis = (props) => {
   const [fields, setFields] = useState({
     jenis_diklat : "",
     nama_diklat :"",
@@ -32,8 +32,7 @@ const FormRiwayatDiklatStruktural = (props) => {
     <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS DIKLAT</Form.Label>
         <SelectJenisDiklat
-          type="date"
-          jenis_diklat="struktural"
+          jenis_diklat = "teknis"
           placeholder="JENIS DIKLAT"
           value={fields?.jenis_diklat}
           onChange={(e) => {
@@ -153,4 +152,4 @@ const FormRiwayatDiklatStruktural = (props) => {
     </>
   );
 };
-export default FormRiwayatDiklatStruktural;
+export default FormRiwayatDiklatTeknis;

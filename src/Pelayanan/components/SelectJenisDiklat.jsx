@@ -18,8 +18,8 @@ const Option = (props) => {
   );
 };
 
-const SelectJenisDiklatStruktural = (props) => {
-  const { onChange, ...otherProps } = props;
+const SelectJenisDiklat = (props) => {
+  const { onChange, jenis_diklat, ...otherProps } = props;
   const [options, setOptions] = useState();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState();
@@ -38,7 +38,14 @@ const SelectJenisDiklatStruktural = (props) => {
   }, [data]);
   useEffect(() => {
     setIsLoading(true);
-    ApiCall.post('/master-jenis-diklat-struktural')
+    let url = '/master-jenis-diklat-struktural';
+    if (props?.jenis_diklat == 'struktural') {
+      url = '/master-jenis-diklat-struktural';
+    }
+    if (props?.jenis_diklat == 'teknis') {
+      url = '/master-jenis-diklat-teknis';
+    }
+    ApiCall.post(url)
       .then((res) => {
         setData(res?.data?.data);
       })
@@ -67,4 +74,4 @@ const SelectJenisDiklatStruktural = (props) => {
     </>
   );
 };
-export default SelectJenisDiklatStruktural;
+export default SelectJenisDiklat;
