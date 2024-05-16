@@ -17,7 +17,7 @@ const FormRiwayatAnak = () => {
     bln_akhir_dibayar: ''
   });
   const onChangeField = (e, key) => {
-    fields[key] = e.target.value;
+    fields[key] = e.target?.value;
     setFields({ ...fields });
   };
   return (
