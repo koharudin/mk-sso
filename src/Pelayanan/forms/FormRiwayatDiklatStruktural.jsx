@@ -7,9 +7,11 @@ import SelectJabatan from '../components/SelectJabatan';
 import SelectUnitKerja from '../components/SelectUnitKerja';
 import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
+import SelectJenisDiklatStruktural from '../components/SelectJenisDiklatStruktural';
 
-const FormRiwayatDiklatFungsional = (props) => {
+const FormRiwayatDiklatStruktural = (props) => {
   const [fields, setFields] = useState({
+    jenis_diklat : "",
     nama_diklat :"",
     penyelenggara : "",
     tempat :"",
@@ -27,6 +29,18 @@ const FormRiwayatDiklatFungsional = (props) => {
   useEffect(() => {}, []);
   return (
     <>
+    <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>JENIS DIKLAT</Form.Label>
+        <SelectJenisDiklatStruktural
+          type="date"
+          placeholder="JENIS DIKLAT"
+          value={fields?.jenis_diklat}
+          onChange={(e) => {
+            onChangeField(e, 'jenis_diklat');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA DIKLAT</Form.Label>
         <Form.Control
@@ -138,4 +152,4 @@ const FormRiwayatDiklatFungsional = (props) => {
     </>
   );
 };
-export default FormRiwayatDiklatFungsional;
+export default FormRiwayatDiklatStruktural;
