@@ -7,6 +7,12 @@ import { useState } from 'react';
 
 export default (props) => {
   const [cols, setCols] = useState();
+  const indexCols = [
+    {
+      label: '#',
+      field: '__rowIndex__',
+    }
+  ];
   const buttonCols = [
     {
       label: '#',
@@ -31,12 +37,12 @@ export default (props) => {
     }
   ];
   useEffect(() => {
-    setCols([...props?.cols, ...buttonCols]);
+    setCols([...indexCols, ...props?.cols, ...buttonCols]);
   }, []);
   return (
     <Card>
       <Card.Header>
-        Daftar Riwayat Anak{' '}
+        {props?.title}
         <Button onClick={props?.onCreateNew} className="btn-rounded text-capitalize" variant={'primary'} style={{ float: 'right' }}>
           Tambah Usulan
         </Button>

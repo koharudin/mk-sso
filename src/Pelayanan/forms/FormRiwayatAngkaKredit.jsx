@@ -3,123 +3,161 @@ import { Form } from 'react-bootstrap';
 import SelectSex from '../components/SelectSex';
 import SelectStatusKeluarga from '../components/SelectDapatTunjangan';
 import SelectDapatTunjangan from '../components/SelectStatusKeluarga';
+import SelectJabatan from '../components/SelectJabatan';
+import SelectUnitKerja from '../components/SelectUnitKerja';
+import SelectPangkat from '../components/SelectPangkat';
+import { useEffect } from 'react';
 
-const FormRiwayatAngkaKredit = () => {
+const FormRiwayatAngkaKredit = (props) => {
   const [fields, setFields] = useState({
-    name: '',
-    birth_place: '',
-    birth_date: '',
-    sex: 'L',
-    pekerjaan: '',
-    status_keluarga: '',
-    status_tunjangan: '',
-    bln_dibayar: '',
-    bln_akhir_dibayar: ''
+    no_sk: '',
+    tgl_sk: '',
+    dt_awal_penilaian: '',
+    dt_akhir_penilaian: '',
+    jabatan: '',
+    unit_kerja_id: '',
+    pangkat_id: '21',
+    ak_lama: '',
+    ak_baru: '',
+    keterangan: '',
+    tmt_pak: '21'
   });
   const onChangeField = (e, key) => {
-    fields[key] = e.target.value;
+    fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
+  useEffect(() => {}, []);
   return (
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>NAMA</Form.Label>
+        <Form.Label>NO SK</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Nama"
-          value={fields?.name}
+          placeholder="NO SK"
+          value={fields?.no_sk}
           onChange={(e) => {
-            onChangeField(e, 'name');
+            onChangeField(e, 'no_sk');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>TEMPAT LAHIR</Form.Label>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>TGL SK</Form.Label>
         <Form.Control
           type="text"
-          placeholder="..."
-          value={fields?.birth_place}
+          placeholder="TGL SK"
+          value={fields?.tgl_sk}
           onChange={(e) => {
-            onChangeField(e, 'birth_place');
+            onChangeField(e, 'tgl_sk');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>TANGGAL LAHIR</Form.Label>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>TGL SK</Form.Label>
         <Form.Control
           type="date"
-          placeholder="..."
-          value={fields?.birth_date}
+          placeholder="TGL AWAL PENILAIAN"
+          value={fields?.dt_awal_penilaian}
           onChange={(e) => {
-            onChangeField(e, 'birth_date');
+            onChangeField(e, 'dt_awal_penilaian');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>JENIS KELAMIN</Form.Label>
-        <SelectSex
-          value={fields?.sex}
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>TGL SK</Form.Label>
+        <Form.Control
+          type="date"
+          placeholder="TGL AKHIR PENILAIAN"
+          value={fields?.dt_akhir_penilaian}
           onChange={(e) => {
-            onChangeField(e, 'sex');
+            onChangeField(e, 'dt_akhir_penilaian');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>PEKERJAAN</Form.Label>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>JABATAN</Form.Label>
+        <SelectJabatan
+          type="date"
+          placeholder="JABATAN"
+          value={fields?.dt_akhir_penilaian}
+          onChange={(e) => {
+            onChangeField(e, 'dt_akhir_penilaian');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>UNIT KERJA</Form.Label>
+        <SelectUnitKerja
+          type="date"
+          placeholder="UNIT KERJA"
+          value={fields?.unit_kerja_id}
+          onChange={(e) => {
+            onChangeField(e, 'unit_kerja_id');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>PANGKAT</Form.Label>
+        <SelectPangkat
+          type="date"
+          placeholder="PANGKAT"
+          value={fields?.pangkat_id}
+          onChange={(e) => {
+            onChangeField(e, 'pangkat_id');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>AK LAMA</Form.Label>
         <Form.Control
           type="text"
-          placeholder="..."
-          value={fields?.pekerjaan}
+          placeholder="AK LAMA"
+          value={fields?.ak_lama}
           onChange={(e) => {
-            onChangeField(e, 'pekerjaan');
+            onChangeField(e, 'ak_lama');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>STATUS KELUARGA</Form.Label>
-        <SelectStatusKeluarga
-          value={fields?.status_keluarga}
-          onChange={(e) => {
-            onChangeField(e, 'status_keluarga');
-          }}
-        />
-        <Form.Text className="text-muted"></Form.Text>
-      </Form.Group>{' '}
-      <Form.Group className="mb-3">
-        <Form.Label>STATUS TUNJANGAN</Form.Label>
-        <SelectDapatTunjangan
-          value={fields?.status_tunjangan}
-          onChange={(e) => {
-            onChangeField(e, 'status_tunjangan');
-          }}
-        />
-        <Form.Text className="text-muted"></Form.Text>
-      </Form.Group>{' '}
-      <Form.Group className="mb-3">
-        <Form.Label>BLN DIBAYAR</Form.Label>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>AK BARU</Form.Label>
         <Form.Control
-          type="date"
-          placeholder="..."
-          value={fields?.bln_dibayar}
+          type="text"
+          placeholder="AK BARU"
+          value={fields?.ak_baru}
           onChange={(e) => {
-            onChangeField(e, 'bln_dibayar');
+            onChangeField(e, 'ak_baru');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3">
-        <Form.Label>BLN AKHIR DIBAYAR</Form.Label>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>KETERANGAN</Form.Label>
+        <Form.Control
+          type="textarea"
+          placeholder="KETERANGAN"
+          value={fields?.keterangan}
+          onChange={(e) => {
+            onChangeField(e, 'keterangan');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>TMT PAK</Form.Label>
         <Form.Control
           type="date"
-          placeholder="..."
-          value={fields?.bln_akhir_dibayar}
+          placeholder="TMT PAK"
+          value={fields?.tmt_pak}
           onChange={(e) => {
-            onChangeField(e, 'bln_akhir_dibayar');
+            onChangeField(e, 'tmt_pak');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
