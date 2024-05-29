@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
 
-import FormRiwayatHukuman from '../forms/FormRiwayatHukuman';
+import FormRiwayatMutasi from '../forms/FormRiwayatMutasi';
 
 const FormInput = (props) => {
   const onBatal = () => {
@@ -15,10 +15,10 @@ const FormInput = (props) => {
   return (
     <Card>
       <Card.Header>
-        <Card.Title as="h5">Form Riwayat Hukuman</Card.Title>
+        <Card.Title as="h5">Form Riwayat Mutasi</Card.Title>
       </Card.Header>
       <Card.Body>
-        <FormRiwayatHukuman {...props} />
+        <FormRiwayatMutasi {...props} />
       </Card.Body>
     </Card>
   );
@@ -31,9 +31,18 @@ const DaftarRiwayat = (props) => {
   return (
     <GridUsulanRiwayat
       onCreateNew={onCreateNew}
-      title={'Daftar Riwayat Hukuman'}
-      grid_url={'/riwayat-hukuman'}
+      title={'Daftar Riwayat Mutasi'}
+      grid_url={'/riwayat-mutasi'}
       cols={[
+        {
+          label: 'SATKER LAMA',
+          field: 'satker_lama'
+        },
+        {
+          label: 'SATKER BARU',
+          field: 'satker_baru'
+        },
+       
         {
           label: 'NO SK',
           field: 'no_sk'
@@ -52,46 +61,20 @@ const DaftarRiwayat = (props) => {
             return <Moment date={value} format="DD/MMM/YYYY" />;
           }
         },
-        
         {
-          label: 'MASA KERJA TAHUN',
-          field: 'masakerja_tahun'
+          label: 'LAMA BEKERJA',
+          field: 'lama_kerja_diunit'
         },
         {
-          label: 'MASA KERJA BULAN',
-          field: 'masakerja_bulan'
-        },
-        {
-          label: 'JENIS KENAIKAN',
-          field: 'jenis_kenaikan',
-          formatter : function (value,row,index){
-            return row?.obj_jenis_kenaikan_gaji?.name
-          }
-        },
-        {
-          label: 'GAJI POKOK',
-          field: 'gaji_pokok',
-          formatter: function (value, row, index) {
-            return (
-              <>
-                {numericFormatter(value, {
-                  decimalSeparator: ',',
-                  prefix:"Rp.",
-                  suffix:",-",
-                  thousandSeparator: '.',
-                  decimalScale: 2
-                })}
-              </>
-            );
-          }
-        },
-        
+          label: 'PEJABAT PENETAP',
+          field: 'pejabat_penetap_jabatan'
+        }
       ]}
     />
   );
 };
-const PanelRiwayatHukuman = (props) => {
-  const [activePanel, setActivePanel] = useState('form');
+export default (props) => {
+  const [activePanel, setActivePanel] = useState('grid');
   return (
     <>
       {activePanel == 'grid' && <DaftarRiwayat setActivePanel={setActivePanel}></DaftarRiwayat>}
@@ -99,4 +82,3 @@ const PanelRiwayatHukuman = (props) => {
     </>
   );
 };
-export default PanelRiwayatHukuman;
