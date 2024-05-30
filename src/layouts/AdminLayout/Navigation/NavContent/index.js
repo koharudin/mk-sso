@@ -24,7 +24,6 @@ const NavContent = ({ navigation }) => {
         <ListGroup variant="flush" as="ul" bsPrefix=" " className="nav pcoded-inner-navbar" id="nav-ps-next">
           {navItems}
         </ListGroup>
-        <NavCard />
       </PerfectScrollbar>
     </div>
   );
