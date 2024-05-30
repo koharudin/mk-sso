@@ -32,7 +32,7 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>STATUS</Form.Label>
-        <SelectOrangTua type="orangtua"
+        <SelectOrangTua type="mertua"
           placeholder="STATUS"
           value={fields?.status}
           onChange={(e) => {
