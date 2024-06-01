@@ -78,7 +78,7 @@ const routes = [
       },
       {
         exact: 'true',
-        path: '/usulan-ku/daftar-usulan/:id_usulan/detail',
+        path: '/daftar-usulan/:uuid_usulan/detail',
         element: lazy(() => import('./Pelayanan/DetailUsulan'))
       },
       {

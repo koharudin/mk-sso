@@ -21,6 +21,7 @@ const WizardUsulan = (props) => {
     alert('Save...');
   };
   const onReload = () => {};
+
   return (
     <React.Fragment>
       <Row>
@@ -29,10 +30,10 @@ const WizardUsulan = (props) => {
             <Card.Header>Buat Usulan Wizard</Card.Header>
             <Card.Body>
               <StepWizard  isHashEnabled={true}>
-                <StepWizardChooseEmployee />
-                <StepWizardChooseLayanan/>
-                <StepWizardPanelLayanan/>
-                <StepWizardKonfirmasiSubmit/>
+                <StepWizardChooseEmployee data={data} setData={setData} />
+                <StepWizardChooseLayanan data={data} setData={setData}/>
+                <StepWizardPanelLayanan data={data} setData={setData}/>
+                <StepWizardKonfirmasiSubmit data={data} setData={setData}/>
               </StepWizard>
             </Card.Body>
           </Card>

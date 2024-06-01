@@ -4,17 +4,17 @@ const ButtonWizard = (props) => {
   return (
     <>
       <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
-        Previous Step
+        Langkah sebelumnya
       </Button>
       <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.nextStep}>
-        Next Step
+        Langkah setelahnya
       </Button>
 
       <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.firstStep}>
-        First Step
+        Langkah pertama
       </Button>
       <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.lastStep}>
-        Last Step
+        Langkah terakhir
       </Button>
     </>
   );

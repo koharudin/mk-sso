@@ -1,17 +1,18 @@
-import ButtonWizard from "./ButtonWizard";
+import SelectJenisLayanan from '../components/SelectJenisLayanan';
+import ButtonWizard from './ButtonWizard';
 
-const StepWizardChooseLayanan = (props) => {
-    return (
-      <>
-        Pilih Layanan <hr></hr>
-        <div>
-          <h2>Step {props.currentStep}</h2>
-          <p>Total Steps: {props.totalSteps}</p>
-          <p>Is Active: {props.isActive}</p>
-          <ButtonWizard {...props}></ButtonWizard>
-        </div>
-      </>
-    );
-  };
-  export default StepWizardChooseLayanan;
-  
+export default (props) => {
+  return(
+    <>
+      Pilih Layanan <hr></hr>
+      <div>
+        <SelectJenisLayanan onChange={(val,o)=>{
+          props?.setData({...props?.data,...{selectedLayanan:o}})
+          props.nextStep()
+        }}></SelectJenisLayanan>
+        <br></br>
+        <ButtonWizard {...props}></ButtonWizard>
+      </div>
+    </>
+  );
+};

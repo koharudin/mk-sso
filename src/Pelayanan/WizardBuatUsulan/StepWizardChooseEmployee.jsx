@@ -1,13 +1,24 @@
-import ButtonWizard from "./ButtonWizard";
+import { useEffect, useState } from 'react';
+import DetailPegawai from '../forms/DetailPegawai';
+import ButtonWizard from './ButtonWizard';
+import { ApiCall } from '../../Api/api';
 
 const StepWizardChooseEmployee = (props) => {
+  const [employee, setEmployee] = useState();
+  useEffect(() => {
+    ApiCall.get('/me')
+      .then((res) => {
+        setEmployee(res?.data);
+      })
+      .catch((err) => {})
+      .finally(() => {});
+  }, employee);
   return (
     <>
-      Pilihan Pegawai <hr></hr>
+      Pegawai yang mengusulkan <hr></hr>
       <div>
-        <h2>Step {props.currentStep}</h2>
-        <p>Total Steps: {props.totalSteps}</p>
-        <p>Is Active: {props.isActive}</p>
+        <DetailPegawai employee={employee} />
+        <br></br>
         <ButtonWizard {...props}></ButtonWizard>
       </div>
     </>
