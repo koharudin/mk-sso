@@ -4,15 +4,20 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { FiDelete } from 'react-icons/fi';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { AppKonfirmasi } from './App';
 
 export default (props) => {
   const [cols, setCols] = useState();
   const indexCols = [
     {
       label: '#',
-      field: '__rowIndex__',
+      field: '__rowIndex__'
     }
   ];
+  const onDelete = (row, index) => {
+    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: "delete",selectedData: row } });
+    props.propsWizard.lastStep();
+  };
   const buttonCols = [
     {
       label: '#',
@@ -28,7 +33,19 @@ export default (props) => {
             >
               <BsFillPencilFill /> Ubah
             </Button>
-            <Button bg="danger" className="btn-rounded text-capitalize">
+            <Button
+              bg="danger"
+              className="btn-rounded text-capitalize"
+              onClick={() => {
+                AppKonfirmasi({
+                  title: 'Konfirmasi',
+                  html: 'Apakah anda yakin akan mengajukan usulan menghapus data ini?',
+                  onConfirmed: () => {
+                    onDelete(row, index);
+                  }
+                });
+              }}
+            >
               <FiDelete /> Hapus
             </Button>
           </>
@@ -37,7 +54,7 @@ export default (props) => {
     }
   ];
   useEffect(() => {
-    setCols([...indexCols, ...props?.cols, ...buttonCols]);
+    setCols([...buttonCols,...indexCols, ...props?.cols ]);
   }, []);
   return (
     <Card>

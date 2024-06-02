@@ -50,7 +50,10 @@ export default (props) => {
 
   const onChangeSelection = (vals) => {
     if (onChange) {
-      onChange(vals?.value,vals.o);
+      if(vals){
+        onChange(vals?.value,vals.o);
+      }
+      else onChange(null,null);
     }
   };
   return (

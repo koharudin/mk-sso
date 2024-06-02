@@ -22,14 +22,14 @@ const menuItems = {
       icon: 'icon-ui',
       children: [
         {
-          id: 'table',
+          id: 'menu-generate-token',
           title: 'Generate Token',
           type: 'item',
           icon: 'feather icon-server',
           url: '/login-token'
         },
         {
-          id: 'table',
+          id: 'menu-daftar-usulan',
           title: 'Daftar Usulan',
           type: 'item',
           icon: 'feather icon-server',
@@ -37,7 +37,7 @@ const menuItems = {
         },
         
         {
-          id: 'table',
+          id: 'menu-usulan-baru',
           title: 'Usulan Baru',
           type: 'item',
           icon: 'feather icon-server',
@@ -45,14 +45,14 @@ const menuItems = {
         }
         ,
         {
-          id: 'table',
+          id: 'menu-detail-usulan',
           title: 'Detail Usulan',
           type: 'item',
           icon: 'feather icon-server',
           url: '/usulan-ku/daftar-usulan/1/detail'
         },
         {
-          id: 'table',
+          id: 'menu-edit-usulan',
           title: 'Edit Usulan',
           type: 'item',
           icon: 'feather icon-server',

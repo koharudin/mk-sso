@@ -29,7 +29,7 @@ const DaftarRiwayat = (props) => {
   };
 
   return (
-    <GridUsulanRiwayat
+    <GridUsulanRiwayat propsWizard={props.propsWizard} 
       onCreateNew={onCreateNew}
       title={'Daftar Riwayat Penghargaan'}
       grid_url={'/riwayat-penghargaan'}
@@ -70,8 +70,8 @@ export default (props) => {
   const [activePanel, setActivePanel] = useState('grid');
   return (
     <>
-      {activePanel == 'grid' && <DaftarRiwayat setActivePanel={setActivePanel}></DaftarRiwayat>}
-      {activePanel == 'form' && <FormInput setActivePanel={setActivePanel}></FormInput>}
+      {activePanel == 'grid' && <DaftarRiwayat propsWizard={props?.propsWizard} setActivePanel={setActivePanel}></DaftarRiwayat>}
+      {activePanel == 'form' && <FormInput propsWizard={props?.propsWizard} setActivePanel={setActivePanel}></FormInput>}
     </>
   );
 };

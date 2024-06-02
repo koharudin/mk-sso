@@ -3,19 +3,26 @@ import { Button } from 'react-bootstrap';
 const ButtonWizard = (props) => {
   return (
     <>
-      <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
-        Langkah sebelumnya
-      </Button>
-      <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.nextStep}>
-        Langkah setelahnya
-      </Button>
-
-      <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.firstStep}>
-        Langkah pertama
-      </Button>
-      <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.lastStep}>
-        Langkah terakhir
-      </Button>
+      {props.showPrevButton && (
+        <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
+          {props?.showPrevTitle??"Langkah sebelumnya"}
+        </Button>
+      )}
+      {props.showNextButton && (
+        <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.nextStep}>
+          {props?.showNextTitle??"Langkah selanjutnya"}
+        </Button>
+      )}
+      {props.showFirstButton && (
+        <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.firstStep}>
+          {props?.showFirstTitle??"Langkah pertama"}
+        </Button>
+      )}
+      {props.showLastButton && (
+        <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.lastStep}>
+          {props?.showLastTitle??"Langkah terakhir"}
+        </Button>
+      )}
     </>
   );
 };

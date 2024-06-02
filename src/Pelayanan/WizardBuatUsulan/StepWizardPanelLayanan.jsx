@@ -1,31 +1,47 @@
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import ButtonWizard from './ButtonWizard';
 import PanelRiwayatJabatan from '../panels/PanelRiwayatJabatan';
 import { lazy, useEffect } from 'react';
 import { useState } from 'react';
-const Panels = {
-  'Riwayat Anak': lazy(() => import('../panels/PanelRiwayatAnak')),
-  'Identitas Pegawai': lazy(() => import('../forms/FormInformasiPegawai'))
+import { ApiCall } from '../../Api/api';
+import NotFoundModule from '../components/NotFoundModule';
+import { FaArrowLeft } from 'react-icons/fa';
+
+const NOTFOUNDMODULE = () => {
+  return <>NOT FOUND MODULE</>;
 };
-const Pzy = lazy(() => import('../panels/PanelRiwayatAnak'));
 const StepWizardPanelLayanan = (props) => {
-  const [Component, setComponent] = useState();
+  const [Component, setComponent] = useState(props?.data?.selectedLayanan);
+
   useEffect(() => {
     if (props?.data?.selectedLayanan) {
-      if (Panels[props?.data?.selectedLayanan?.name]) {
-        setComponent(Panels[props?.data?.selectedLayanan?.name]);
+      if (props?.data?.selectedLayanan?.panelclass) {
+        const component = lazy(() => import('../' + props?.data?.selectedLayanan?.panelclass));
+        setComponent(component);
+      } else {
+        const component = lazy(() => import('../components/NotFoundModule'));
+        setComponent(component);
       }
+    }
+    else {
+      props.previousStep()
     }
   }, [props?.data?.selectedLayanan]);
 
+  
   return (
     <>
-      Panel Layanan <hr></hr>
-      <div>
-        {Component && <Component />}
-        <hr></hr>
-        <ButtonWizard {...props}></ButtonWizard>
-      </div>
+      <Card>
+        <Card.Header>
+          <Card.Title as={'h5'}> Panel Layanan : {props?.data?.selectedLayanan?.name}</Card.Title>
+        </Card.Header>
+        <Card.Body>{Component && <Component propsWizard={props} />}</Card.Body>
+        <Card.Footer>
+          <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
+            <FaArrowLeft /> Pilih Kategori Layanan
+          </Button>
+        </Card.Footer>
+      </Card>
     </>
   );
 };

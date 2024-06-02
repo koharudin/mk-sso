@@ -10,7 +10,7 @@ const BuildPagination = (props) => {
   useEffect(() => {
     let arr = [];
     for (let i = current_page - 2; i <= current_page + 2; i++) {
-      if (i > 0 && i < last_page) {
+      if (i >= 1 && i <= last_page) {
         arr.push(i);
       }
     }
@@ -22,16 +22,21 @@ const BuildPagination = (props) => {
   return (
     <>
       <Pagination>
-        {props?.current_page == 1 && <Pagination.First active />}
+        {props?.current_page != props?.last_page && props?.current_page == 1 && <Pagination.First active />}
         {props?.current_page > 1 && <Pagination.First />}
-        {props?.current_page > 1 && <Pagination.Prev />}
+        {props?.current_page > 1 && <Pagination.Prev onClick={() => {
+                onClickPage(v--);
+              }}/>}
 
         {listI.map((v, i) => {
           return (
-            <Pagination.Item
+            <Pagination.Item key={i}
               active={v == current_page}
               onClick={() => {
-                onClickPage(v);
+                if(v != current_page){
+                  onClickPage(v);
+                }
+                
               }}
             >
               {v}
@@ -47,7 +52,7 @@ const BuildPagination = (props) => {
           />
         )}
 
-        {props?.current_page == props?.last_page && <Pagination.Last active />}
+        {props?.last_page != 1 && props?.current_page == props?.last_page && <Pagination.Last active />}
         {props?.current_page != props?.last_page && (
           <Pagination.Last
             onClick={() => {
@@ -95,7 +100,7 @@ export default (props) => {
 
   return (
     <>
-      <Table responsive fluid>
+      <Table responsive >
         <thead>
           <tr>
             {props?.cols?.map((v, i) => {

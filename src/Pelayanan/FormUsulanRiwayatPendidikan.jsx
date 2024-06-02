@@ -42,7 +42,7 @@ const FormUsulanRiwayatPendidikan = (props) => {
           </Button>
         </Card.Header>
         <Card.Body>
-          <Table responsive>
+          <Table responsive >
             <thead>
               <tr>
                 <th>#</th>

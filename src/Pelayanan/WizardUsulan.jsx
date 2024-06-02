@@ -26,17 +26,12 @@ const WizardUsulan = (props) => {
     <React.Fragment>
       <Row>
         <Col>
-          <Card>
-            <Card.Header>Buat Usulan Wizard</Card.Header>
-            <Card.Body>
-              <StepWizard  isHashEnabled={true}>
-                <StepWizardChooseEmployee data={data} setData={setData} />
-                <StepWizardChooseLayanan data={data} setData={setData}/>
-                <StepWizardPanelLayanan data={data} setData={setData}/>
-                <StepWizardKonfirmasiSubmit data={data} setData={setData}/>
-              </StepWizard>
-            </Card.Body>
-          </Card>
+          <StepWizard isHashEnabled={true}>
+            <StepWizardChooseEmployee data={data} setData={setData} />
+            <StepWizardChooseLayanan data={data} setData={setData} />
+            <StepWizardPanelLayanan data={data} setData={setData} />
+            <StepWizardKonfirmasiSubmit data={data} setData={setData} />
+          </StepWizard>
         </Col>
       </Row>
     </React.Fragment>
