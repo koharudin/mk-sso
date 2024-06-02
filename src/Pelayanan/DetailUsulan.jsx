@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Row, Col, Card, Table, Alert, Button, Form } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
-import FormUsulanRiwayatPendidikan from './FormUsulanRiwayatPendidikan';
 import { ApiCall } from '../Api/api';
 import Moment from 'react-moment';
 import DetailPegawai from './forms/DetailPegawai';

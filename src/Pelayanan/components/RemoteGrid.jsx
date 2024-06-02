@@ -24,19 +24,23 @@ const BuildPagination = (props) => {
       <Pagination>
         {props?.current_page != props?.last_page && props?.current_page == 1 && <Pagination.First active />}
         {props?.current_page > 1 && <Pagination.First />}
-        {props?.current_page > 1 && <Pagination.Prev onClick={() => {
-                onClickPage(v--);
-              }}/>}
+        {props?.current_page > 1 && (
+          <Pagination.Prev
+            onClick={() => {
+              onClickPage(v--);
+            }}
+          />
+        )}
 
         {listI.map((v, i) => {
           return (
-            <Pagination.Item key={i}
+            <Pagination.Item
+              key={i}
               active={v == current_page}
               onClick={() => {
-                if(v != current_page){
+                if (v != current_page) {
                   onClickPage(v);
                 }
-                
               }}
             >
               {v}
@@ -73,7 +77,7 @@ export default (props) => {
   const onPaging = (page) => {
     setData([]);
     setLoading(true);
-    ApiCall.get(props?.grid_url, {
+    ApiCall.post(props?.grid_url, {
       params: {
         page: page
       }
@@ -98,9 +102,15 @@ export default (props) => {
     onPaging(1);
   }, []);
 
+  useEffect(()=>{
+    if(props?.triggerReload) { 
+      onPaging(1)
+    }
+  },[props?.triggerReload])
+
   return (
     <>
-      <Table responsive >
+      <Table responsive>
         <thead>
           <tr>
             {props?.cols?.map((v, i) => {
@@ -112,7 +122,7 @@ export default (props) => {
           <>
             <tbody>
               <tr>
-                <td colSpan={props?.cols?.length} style={{textAlign:"center"}}>
+                <td colSpan={props?.cols?.length} style={{ textAlign: 'center' }}>
                   <b>
                     <BeatLoader color="#36d7b7" />
                   </b>

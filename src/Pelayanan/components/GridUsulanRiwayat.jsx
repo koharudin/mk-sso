@@ -5,6 +5,7 @@ import { FiDelete } from 'react-icons/fi';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { AppKonfirmasi } from './App';
+import { MdAddToPhotos } from 'react-icons/md';
 
 export default (props) => {
   const [cols, setCols] = useState();
@@ -61,7 +62,7 @@ export default (props) => {
       <Card.Header>
         {props?.title}
         <Button onClick={props?.onCreateNew} className="btn-rounded text-capitalize" variant={'primary'} style={{ float: 'right' }}>
-          Tambah Usulan
+        <MdAddToPhotos /> Tambah Usulan
         </Button>
       </Card.Header>
       <Card.Body>

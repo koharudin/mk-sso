@@ -8,24 +8,17 @@ import RemoteGrid from './components/RemoteGrid';
 import Moment from 'react-moment';
 import { BsZoomIn } from 'react-icons/bs';
 import { FaEdit, FaPlus, FaRemoveFormat } from 'react-icons/fa';
+import { AppInformasi, AppInformasiError, AppKonfirmasi } from './components/App';
+import { MdAddToPhotos } from 'react-icons/md';
 
 const GridUsulanLayanan = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [randomReload, setRandomReload] = useState();
   const onCreateNew = () => {
     navigate('/usulan-ku/buat-baru');
   };
-  const onReload = () => {
-    ApiCall.post('/usulan-saya')
-      .then((res) => {
-        setData(res.data.data);
-      })
-      .catch((err) => {})
-      .finally(() => {});
-  };
-  useEffect(() => {
-    onReload();
-  }, []);
+
   return (
     <React.Fragment>
       <Row>
@@ -35,12 +28,13 @@ const GridUsulanLayanan = () => {
               <Card.Title as="h5">Daftar Usulan </Card.Title>
 
               <Button size="sm" style={{ float: 'right' }} color="primary" onClick={onCreateNew}>
-                Buat Baru
+                <MdAddToPhotos /> Buat Baru
               </Button>
             </Card.Header>
 
             <Card.Body>
               <RemoteGrid
+                triggerReload={randomReload}
                 title={'Daftar Riwayat Usulan Saya'}
                 grid_url={'/usulan-saya'}
                 cols={[
@@ -84,7 +78,7 @@ const GridUsulanLayanan = () => {
                             variant="primary"
                             color="primary"
                             onClick={() => {
-                              navigate(`/daftar-usulan/`+row.uuid+`/detail` );
+                              navigate(`/daftar-usulan/` + row.uuid + `/detail`);
                             }}
                           >
                             {' '}
@@ -94,7 +88,27 @@ const GridUsulanLayanan = () => {
                             variant="danger"
                             color="danger"
                             onClick={() => {
-                              alert('hapus ' + row.uuid);
+                              AppKonfirmasi({
+                                title: 'Perhatian',
+                                html: 'Apakah Usulan ini akan di hapus ?',
+                                onConfirmed: function () {
+                                  ApiCall.post('/usulan/' + row.uuid + '/hapus')
+                                    .then((res) => {
+                                      AppInformasi({
+                                        options: { text: 'Data Usulan ' + row.uuid + ' berhasil dihapus' },
+                                        onConfirmed: () => {
+                                          setRandomReload(Math.random());
+                                        }
+                                      });
+                                    })
+                                    .catch((err) => {
+                                      if (err.response.status === 404) {
+                                        AppInformasiError({ options: { text: 'Terjadi kesalahan pada sistem. ' + err.response.status } });
+                                      } else AppInformasiError('Terjadi kesalahan pada sistem. ' + err.response.status);
+                                    })
+                                    .finally(() => {});
+                                }
+                              });
                             }}
                           >
                             <FaRemoveFormat /> HAPUS
