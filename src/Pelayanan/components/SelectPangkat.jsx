@@ -34,6 +34,16 @@ const SelectPangkat = (props) => {
         };
       });
       setOptions(o);
+      const valuex = data?.filter((option) => {
+        return option.id == props.value;
+      });
+      if (valuex.length == 1) {
+        const dx = {
+          value: valuex[0]?.id,
+          label: valuex[0]?.name
+        };
+        setSelectedOption(dx);
+      }
     }
   }, [data]);
   useEffect(() => {
@@ -53,12 +63,11 @@ const SelectPangkat = (props) => {
     }
   };
 
- 
   return (
     <>
-      {selectedOption}
-      <Select 
+      <Select
         {...otherProps}
+        value={selectedOption}
         components={{ Option }}
         isSearchable
         onChange={onChangeSelection}

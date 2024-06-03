@@ -77,12 +77,9 @@ export default (props) => {
   const onPaging = (page) => {
     setData([]);
     setLoading(true);
-    ApiCall.post(props?.grid_url, {
-      params: {
-        page: page
-      }
-    })
-
+    const formData = new FormData();
+    formData.append('page', page);
+    ApiCall.get(props?.grid_url, formData)
       .then((res) => {
         setData(res?.data?.data);
         setCurrentPage(res?.data?.current_page);
@@ -102,11 +99,11 @@ export default (props) => {
     onPaging(1);
   }, []);
 
-  useEffect(()=>{
-    if(props?.triggerReload) { 
-      onPaging(1)
+  useEffect(() => {
+    if (props?.triggerReload) {
+      onPaging(1);
     }
-  },[props?.triggerReload])
+  }, [props?.triggerReload]);
 
   return (
     <>

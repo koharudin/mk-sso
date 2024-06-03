@@ -28,7 +28,8 @@ const DaftarRiwayat = (props) => {
   };
 
   return (
-    <GridUsulanRiwayat propsWizard={props.propsWizard} 
+    <GridUsulanRiwayat
+      propsWizard={props.propsWizard}
       onCreateNew={onCreateNew}
       title={'Daftar Riwayat Angka Kredit'}
       grid_url={'/riwayat-angka-kredit'}
@@ -117,11 +118,13 @@ const DaftarRiwayat = (props) => {
   );
 };
 const PanelRiwayatAngkaKredit = (props) => {
-  const [activePanel, setActivePanel] = useState('grid');
+  const [activePanel, setActivePanel] = useState(props?.activePanel || 'grid');
   return (
     <>
-      {activePanel == 'grid' && <DaftarRiwayat propsWizard={props?.propsWizard} setActivePanel={setActivePanel}></DaftarRiwayat>}
-      {activePanel == 'form' && <FormInput propsWizard={props?.propsWizard} setActivePanel={setActivePanel}></FormInput>}
+      {activePanel == 'grid' && <DaftarRiwayat {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
+      {activePanel == 'form' && <FormInput {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
+      {activePanel == 'detail' && <FormRiwayatAngkaKredit disabledAll {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
+      {activePanel == 'konfirmasiSubmit' && <FormRiwayatAngkaKredit disabledAll {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
     </>
   );
 };

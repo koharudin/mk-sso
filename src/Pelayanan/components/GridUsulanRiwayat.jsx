@@ -16,7 +16,7 @@ export default (props) => {
     }
   ];
   const onDelete = (row, index) => {
-    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: "delete",selectedData: row } });
+    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 3,selectedData: row } });
     props.propsWizard.lastStep();
   };
   const buttonCols = [

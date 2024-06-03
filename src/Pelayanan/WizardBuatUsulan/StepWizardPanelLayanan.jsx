@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ApiCall } from '../../Api/api';
 import NotFoundModule from '../components/NotFoundModule';
 import { FaArrowLeft } from 'react-icons/fa';
+import SelectUnitKerja from '../components/SelectUnitKerja';
 
 const NOTFOUNDMODULE = () => {
   return <>NOT FOUND MODULE</>;
@@ -37,6 +38,7 @@ const StepWizardPanelLayanan = (props) => {
         </Card.Header>
         <Card.Body>{Component && <Component propsWizard={props} />}</Card.Body>
         <Card.Footer>
+          
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
             <FaArrowLeft /> Pilih Kategori Layanan
           </Button>

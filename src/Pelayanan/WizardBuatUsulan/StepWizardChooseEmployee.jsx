@@ -4,6 +4,8 @@ import ButtonWizard from './ButtonWizard';
 import { ApiCall } from '../../Api/api';
 import { Button, Card } from 'react-bootstrap';
 import { FaArrowRight } from 'react-icons/fa';
+import SelectUnitKerja from '../components/SelectUnitKerja';
+import SelectTingkatHukuman from '../components/SelectTingkatHukuman';
 
 const StepWizardChooseEmployee = (props) => {
   const [employee, setEmployee] = useState();
@@ -25,6 +27,7 @@ const StepWizardChooseEmployee = (props) => {
           <DetailPegawai employee={employee} />
         </Card.Body>
         <Card.Footer>
+        <SelectUnitKerja value={{value:79}} />
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.nextStep}>
             Pilih Kategori Layanan
              {" "}<FaArrowRight />
