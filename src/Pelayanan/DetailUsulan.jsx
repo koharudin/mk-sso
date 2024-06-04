@@ -5,6 +5,7 @@ import { ApiCall } from '../Api/api';
 import Moment from 'react-moment';
 import DetailPegawai from './forms/DetailPegawai';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const DetailUsulan = (props) => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const DetailUsulan = (props) => {
     ApiCall.get('/usulan/' + params.uuid_usulan + '/detail')
       .then((res) => {
         setData(res?.data);
+        
         const comp = lazy(() => import('./' + res?.data?.data?.obj_kategori?.panelclass));
         setComponent(comp);
       })
@@ -78,9 +80,9 @@ const DetailUsulan = (props) => {
                 <Col lg={8}>
                   <Card>
                     <Card.Header>
-                      <Card.Title as="h5">Form Usulan</Card.Title>
+                      <Card.Title as="h5">Form Usulan </Card.Title>
                     </Card.Header>
-                    <Card.Body>{Component && <Component activePanel="detail" showDetail={data?.data?.id} />}</Card.Body>
+                    <Card.Body>{Component && <Component activePanel="detail" refData={data?.data?.data?.ref_data}/>}</Card.Body>
                   </Card>
                   <Card>
                     <Card.Header>
@@ -102,6 +104,11 @@ const DetailUsulan = (props) => {
                 </Col>
               </Row>
             </Card.Body>
+            <Card.Footer>
+              <Button variant='primary' onClick={()=>{
+                navigate("/usulan-ku/daftar-usulan")
+              }}><FaArrowLeft></FaArrowLeft> Ke Daftar Usulan</Button>
+            </Card.Footer>
           </Card>
         </Col>
       </Row>

@@ -24,7 +24,10 @@ export default (props) => {
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
             <FaArrowLeft /> Pilih Pegawai
           </Button>
-          <Button disabled={selectedData?false:true} className="btn-rounded text-capitalize" variant={'primary'} onClick={props.nextStep}>
+          <Button disabled={selectedData?false:true} className="btn-rounded text-capitalize" variant={'primary'} onClick={()=>{
+            props.setData({...props?.data,...{activePanel:"grid"}})
+            props.nextStep()
+          }}>
             <FaArrowRight /> Buat Form Usulan
           </Button>
         </Card.Footer>

@@ -3,14 +3,38 @@ import ButtonWizard from './ButtonWizard';
 import { lazy, useEffect, useState } from 'react';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { ApiCall } from '../../Api/api';
+import { useNavigate } from 'react-router-dom';
+import { AppInformasiError } from '../components/App';
 const StepWizardKonfirmasiSubmit = (props) => {
   const [Component, setComponent] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     if (props.data?.selectedData?.id) {
       const comp = lazy(() => import('../' + props?.data?.selectedLayanan?.panelclass));
       setComponent(comp);
     }
   }, [props.data]);
+
+  const onCreateUsulan = () => {
+    const formData = new FormData();
+    formData.append('action', props.data?.action);
+    formData.append('id', props.data?.selectedData?.id);
+    formData.append("layanan_id",props?.data?.selectedLayanan?.id);
+    formData.append('ref_data', JSON.stringify(props?.data?.selectedData));
+    formData.append('new_data', JSON.stringify(props?.data?.data));
+    ApiCall.post('/usulan', formData)
+      .then((res) => {
+        if (res?.status == 200) {
+          props.setData({ ...props?.data, ...{ uuid:res?.data?.uuid } });
+          props.lastStep()
+        }
+      })
+      .catch((err) => {
+        AppInformasiError({ options: { text: 'Tidak dapat memproses usulan ini.' } });
+      })
+      .finally(() => {});
+  };
   return (
     <>
       <Card>
@@ -44,7 +68,7 @@ const StepWizardKonfirmasiSubmit = (props) => {
                   <Button className="btn-rounded text-capitalize" variant={'danger'} onClick={props.previousStep}>
                     <AiOutlineCloseCircle /> Batal
                   </Button>
-                  <Button style={{ float: 'right' }} className="btn-rounded text-capitalize" variant={'info'}>
+                  <Button onClick={onCreateUsulan} style={{ float: 'right' }} className="btn-rounded text-capitalize" variant={'info'}>
                     <FaSave /> Ya, Buat Usulan
                   </Button>
                 </td>

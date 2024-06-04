@@ -29,14 +29,18 @@ const StepWizardPanelLayanan = (props) => {
     }
   }, [props?.data?.selectedLayanan]);
 
-  
+  useEffect(() => {
+    if(props?.activePanel){
+
+    }
+  },[props?.activePanel]);
   return (
     <>
       <Card>
         <Card.Header>
           <Card.Title as={'h5'}> Panel Layanan : {props?.data?.selectedLayanan?.name}</Card.Title>
         </Card.Header>
-        <Card.Body>{Component && <Component propsWizard={props} />}</Card.Body>
+        <Card.Body>{props?.data?.activePanel}{Component && <Component activePanel={props?.data?.activePanel} propsWizard={props} />}</Card.Body>
         <Card.Footer>
           
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>

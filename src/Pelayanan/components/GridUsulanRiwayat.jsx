@@ -1,4 +1,4 @@
-import { Button, Card } from 'react-bootstrap';
+import { Card, OverlayTrigger } from 'react-bootstrap';
 import RemoteGrid from './RemoteGrid';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { FiDelete } from 'react-icons/fi';
@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { AppKonfirmasi } from './App';
 import { MdAddToPhotos } from 'react-icons/md';
+import Button from './Button';
 
 export default (props) => {
   const [cols, setCols] = useState();
@@ -15,9 +16,13 @@ export default (props) => {
       field: '__rowIndex__'
     }
   ];
+  const onEdit = (row, index) => {
+    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 2, selectedData: row,activePanel:"form" } });
+    
+  };
   const onDelete = (row, index) => {
-    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 3,selectedData: row } });
-    props.propsWizard.lastStep();
+    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 3, selectedData: row } });
+    props.propsWizard.nextStep();
   };
   const buttonCols = [
     {
@@ -26,25 +31,23 @@ export default (props) => {
         return (
           <>
             <Button
+              useTooltip
+              tooltipText="Membuat Usulan untuk Perubahan data ini"
               bg="primary"
               className="btn-rounded text-capitalize"
               onClick={() => {
-                alert(index);
+                onEdit(row, index);
               }}
             >
               <BsFillPencilFill /> Ubah
             </Button>
             <Button
+              useTooltip
+              tooltipText="Membuat Usulan untuk Penghapusan  data ini"
               bg="danger"
               className="btn-rounded text-capitalize"
               onClick={() => {
-                AppKonfirmasi({
-                  title: 'Konfirmasi',
-                  html: 'Apakah anda yakin akan mengajukan usulan menghapus data ini?',
-                  onConfirmed: () => {
-                    onDelete(row, index);
-                  }
-                });
+                onDelete(row, index);
               }}
             >
               <FiDelete /> Hapus
@@ -55,14 +58,21 @@ export default (props) => {
     }
   ];
   useEffect(() => {
-    setCols([...buttonCols,...indexCols, ...props?.cols ]);
+    setCols([...buttonCols, ...indexCols, ...props?.cols]);
   }, []);
   return (
     <Card>
       <Card.Header>
         {props?.title}
-        <Button onClick={props?.onCreateNew} className="btn-rounded text-capitalize" variant={'primary'} style={{ float: 'right' }}>
-        <MdAddToPhotos /> Tambah Usulan
+        <Button
+          useTooltip
+          tooltipText="Membuat Usulan untuk menambah data baru"
+          onClick={props?.onCreateNew}
+          className="btn-rounded text-capitalize"
+          variant={'primary'}
+          style={{ float: 'right' }}
+        >
+          <MdAddToPhotos /> Tambah Usulan
         </Button>
       </Card.Header>
       <Card.Body>

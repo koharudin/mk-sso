@@ -12,15 +12,15 @@ const Option = (props) => {
   return (
     <>
       <components.Option {...props}>
-        <b>{props.data?.o.name}</b>
+        <b>{props.data?.o?.name}xxx</b>
         <br></br>
-        {props.data?.o.keterangan}
+        {props.data?.o?.keterangan}
       </components.Option>
     </>
   );
 };
 
-const SelectUnitKerja = (props) => {
+export default (props) => {
   const { onChange, ...otherProps } = props;
   const [options, setOptions] = useState();
   const [data, setData] = useState();
@@ -30,7 +30,7 @@ const SelectUnitKerja = (props) => {
   const [q, setQ] = useState();
 
   useEffect(() => {
-    if (props?.value) {
+    if (props?.value && props?.value != '') {
       ApiCall.get('/master-unitkerja/' + props?.value?.value + '/detail')
         .then((res) => {
           if (res?.data) {
@@ -54,7 +54,8 @@ const SelectUnitKerja = (props) => {
       options: res?.data?.data?.map((v, i) => {
         return {
           value: v.id,
-          label: v.name
+          label: v.name,
+          o: v
         };
       }),
       hasMore: res?.data?.current_page < res?.data?.last_page && res?.data?.last_page > 1
@@ -79,15 +80,21 @@ const SelectUnitKerja = (props) => {
   };
 
   const onChangeSelection = (vals) => {
-    setSelectedOption(vals)
+    setSelectedOption(vals);
     if (onChange) {
       onChange(vals?.value);
     }
   };
   return (
     <>
-      <AsyncPaginate debounceTimeout={3} onChange={onChangeSelection} {...otherProps} value={selectedOption} loadOptions={loadOptions} />
+      <AsyncPaginate
+        debounceTimeout={3}
+        components={{ Option }}
+        onChange={onChangeSelection}
+        {...otherProps}
+        value={selectedOption}
+        loadOptions={loadOptions}
+      />
     </>
   );
 };
-export default SelectUnitKerja;

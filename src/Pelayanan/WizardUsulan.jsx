@@ -9,6 +9,7 @@ import StepWizardChooseEmployee from './WizardBuatUsulan/StepWizardChooseEmploye
 import StepWizardChooseLayanan from './WizardBuatUsulan/StepWizardChooseLayanan';
 import StepWizardPanelLayanan from './WizardBuatUsulan/StepWizardPanelLayanan';
 import StepWizardKonfirmasiSubmit from './WizardBuatUsulan/StepWizardKonfirmasiSubmit';
+import StepWizardHasil from './WizardBuatUsulan/StepWizardHasil';
 
 const GridRecord = () => {};
 const Init = () => {};
@@ -31,6 +32,7 @@ const WizardUsulan = (props) => {
             <StepWizardChooseLayanan data={data} setData={setData} />
             <StepWizardPanelLayanan data={data} setData={setData} />
             <StepWizardKonfirmasiSubmit data={data} setData={setData} />
+            <StepWizardHasil data={data} setData={setData} />
           </StepWizard>
         </Col>
       </Row>

@@ -27,10 +27,8 @@ const StepWizardChooseEmployee = (props) => {
           <DetailPegawai employee={employee} />
         </Card.Body>
         <Card.Footer>
-        <SelectUnitKerja value={{value:79}} />
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.nextStep}>
             Pilih Kategori Layanan
-             {" "}<FaArrowRight />
           </Button>
         </Card.Footer>
       </Card>

@@ -119,6 +119,11 @@ const DaftarRiwayat = (props) => {
 };
 const PanelRiwayatAngkaKredit = (props) => {
   const [activePanel, setActivePanel] = useState(props?.activePanel || 'grid');
+  useEffect(()=>{
+    if(props?.activePanel){
+      setActivePanel(props?.activePanel)
+    }
+  },[props?.activePanel])
   return (
     <>
       {activePanel == 'grid' && <DaftarRiwayat {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
