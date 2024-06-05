@@ -12,7 +12,7 @@ const Option = (props) => {
   return (
     <>
       <components.Option {...props}>
-        <b>{props.data?.o?.name}xxx</b>
+        <b>{props.data?.o?.name} - [{props.data?.o?.id}]</b>
         <br></br>
         {props.data?.o?.keterangan}
       </components.Option>
@@ -30,13 +30,13 @@ export default (props) => {
   const [q, setQ] = useState();
 
   useEffect(() => {
-    if (props?.value && props?.value != '') {
+    if (props?.value && props?.value != null && props?.value != '') {
       ApiCall.get('/master-unitkerja/' + props?.value?.value + '/detail')
         .then((res) => {
           if (res?.data) {
             setSelectedOption({
               value: res?.data?.id,
-              label: res?.data?.name
+              label: res?.data?.name +" - "+"["+res?.data?.id+"]"
             });
           }
         })
@@ -54,7 +54,7 @@ export default (props) => {
       options: res?.data?.data?.map((v, i) => {
         return {
           value: v.id,
-          label: v.name,
+          label: v.name+" - "+"["+v.id+"]",
           o: v
         };
       }),

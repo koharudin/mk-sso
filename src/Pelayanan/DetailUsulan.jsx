@@ -81,7 +81,17 @@ const DetailUsulan = (props) => {
                     <Card.Header>
                       <Card.Title as="h5">Form Usulan </Card.Title>
                     </Card.Header>
-                    <Card.Body>{Component && <Component activePanel="detail" refData={data?.data?.data?.ref_data}/>}</Card.Body>
+                    <Card.Body>
+                      {Component && data?.data?.data?.action == 1 && (
+                        <Component activePanel="detail" refData={data?.data?.data?.new_data} />
+                      )}
+                      {Component && data?.data?.data?.action == 2 && (
+                        <Component activePanel="detail" refData={data?.data?.data?.new_data} />
+                      )}
+                      {Component && data?.data?.data?.action == 3 && (
+                        <Component activePanel="detail" refData={data?.data?.data?.ref_data} />
+                      )}
+                    </Card.Body>
                   </Card>
                   <Card>
                     <Card.Header>
@@ -98,24 +108,20 @@ const DetailUsulan = (props) => {
                           </tr>
                         </thead>
                         <tbody>
-                          {
-                            data?.data?.obj_logs.map((v,i)=>{
-                              return <tr key={i}>
-                                <td>
-                                    {i+1}
-                                </td>
+                          {data?.data?.obj_logs.map((v, i) => {
+                            return (
+                              <tr key={i}>
+                                <td>{i + 1}</td>
                                 <td>
                                   <Moment date={v?.created_at} format="DD/MM/YYYY hh:mm:ss" />
                                 </td>
-                                <td>
-                                  {v?.values?.keterangan}
-                                </td>
+                                <td>{v?.values?.keterangan}</td>
                                 <td>
                                   {v?.obj_user?.name} - [{v?.obj_user?.id}]
                                 </td>
                               </tr>
-                            })
-                          }
+                            );
+                          })}
                         </tbody>
                       </Table>
                     </Card.Body>
@@ -124,9 +130,14 @@ const DetailUsulan = (props) => {
               </Row>
             </Card.Body>
             <Card.Footer>
-              <Button variant='primary' onClick={()=>{
-                navigate("/usulan-ku/daftar-usulan")
-              }}><FaArrowLeft></FaArrowLeft> Ke Daftar Usulan</Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate('/usulan-ku/daftar-usulan');
+                }}
+              >
+                <FaArrowLeft></FaArrowLeft> Ke Daftar Usulan
+              </Button>
             </Card.Footer>
           </Card>
         </Col>

@@ -6,6 +6,7 @@ import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 
 const FormRiwayatAngkaKredit = (props) => {
+  
   const [fields, setFields] = useState({
     no_sk: '',
     tgl_sk: '',
@@ -19,26 +20,29 @@ const FormRiwayatAngkaKredit = (props) => {
     keterangan: '',
     tmt_pak: '21'
   });
-  useState(() => {
-    if (props?.recordData) {
-      setFields({ ...props?.recordData });
-    }
-  }, [props?.recordData]);
-  useState(() => {
+  useEffect(() => {
     if (props?.refData) {
       setFields({ ...props?.refData });
     }
   }, [props?.refData]);
 
-  const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
-    setFields({ ...fields });
-  };
   useEffect(() => {
     if (props?.recordData) {
       setFields({ ...props?.recordData });
     }
   }, [props?.recordData]);
+
+
+  useEffect(()=>{
+    if(props?.setEditedData){
+      props?.setEditedData({...fields})
+    }
+    
+  },[fields])
+  const onChangeField = (e, key) => {
+    fields[key] = e?.target?.value;
+    setFields({ ...fields });
+  };
   return (
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
@@ -58,7 +62,7 @@ const FormRiwayatAngkaKredit = (props) => {
         <Form.Label>TGL SK</Form.Label>
         <Form.Control
           disabled={props?.disabledAll}
-          type="text"
+          type="date"
           placeholder="TGL SK"
           value={fields?.tgl_sk}
           onChange={(e) => {

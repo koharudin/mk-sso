@@ -16,6 +16,9 @@ export default (props) => {
       field: '__rowIndex__'
     }
   ];
+  const onCreateNew = ()=>{
+    props?.onCreateNew()
+  }
   const onEdit = (row, index) => {
     props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 2, selectedData: row} });
     props.setActiveForm("form")
@@ -67,7 +70,7 @@ export default (props) => {
         <Button
           useTooltip
           tooltipText="Membuat Usulan untuk menambah data baru"
-          onClick={props?.onCreateNew}
+          onClick={onCreateNew}
           className="btn-rounded text-capitalize"
           variant={'primary'}
           style={{ float: 'right' }}
