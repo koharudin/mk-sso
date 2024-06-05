@@ -26,7 +26,6 @@ const FormRiwayatAngkaKredit = (props) => {
   }, [props?.recordData]);
   useState(() => {
     if (props?.refData) {
-      debugger;
       setFields({ ...props?.refData });
     }
   }, [props?.refData]);

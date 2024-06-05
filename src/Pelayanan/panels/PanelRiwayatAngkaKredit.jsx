@@ -5,10 +5,11 @@ import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
 import FormRiwayatAngkaKredit from '../forms/FormRiwayatAngkaKredit';
+import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 
 const FormInput = (props) => {
   const onBatal = () => {
-    props.setActivePanel('grid');
+    props.setInnerForm('grid');
   };
 
   return (
@@ -24,11 +25,12 @@ const FormInput = (props) => {
 };
 const DaftarRiwayat = (props) => {
   const onCreateNew = () => {
-    props.setActivePanel('form');
+    props.setActiveForm('form');
   };
 
   return (
     <GridUsulanRiwayat
+      {...props}
       propsWizard={props.propsWizard}
       onCreateNew={onCreateNew}
       title={'Daftar Riwayat Angka Kredit'}
@@ -117,19 +119,20 @@ const DaftarRiwayat = (props) => {
     />
   );
 };
+const onPanelKonfirmasiUsulan = (props) => {};
 const PanelRiwayatAngkaKredit = (props) => {
-  const [activePanel, setActivePanel] = useState(props?.activePanel || 'grid');
-  useEffect(()=>{
-    if(props?.activePanel){
-      setActivePanel(props?.activePanel)
-    }
-  },[props?.activePanel])
   return (
     <>
-      {activePanel == 'grid' && <DaftarRiwayat {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
-      {activePanel == 'form' && <FormInput {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
-      {activePanel == 'detail' && <FormRiwayatAngkaKredit disabledAll {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
-      {activePanel == 'konfirmasiSubmit' && <FormRiwayatAngkaKredit disabledAll {...props} propsWizard={props?.propsWizard} setActivePanel={setActivePanel} />}
+      {props?.activePanel == 'init' && (
+        <>
+          {!props?.activeForm && <DaftarRiwayat {...props} propsWizard={props?.propsWizard} />}
+          {props?.activeForm == 'grid' && <DaftarRiwayat {...props} propsWizard={props?.propsWizard} />}
+          {props?.activeForm == 'form' && <FormInput {...props} propsWizard={props?.propsWizard} />}
+          {props?.activeForm == 'konfirmasiUsulan' && <PanelKonfirmasiUsulan {...props} propsWizard={props?.propsWizard} />}
+        </>
+      )}
+
+      {props?.activePanel == 'detail' && <FormRiwayatAngkaKredit disabledAll {...props} propsWizard={props?.propsWizard} />}
     </>
   );
 };

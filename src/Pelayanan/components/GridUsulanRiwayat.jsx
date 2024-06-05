@@ -17,12 +17,12 @@ export default (props) => {
     }
   ];
   const onEdit = (row, index) => {
-    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 2, selectedData: row,activePanel:"form" } });
-    
+    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 2, selectedData: row} });
+    props.setActiveForm("form")
   };
   const onDelete = (row, index) => {
     props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 3, selectedData: row } });
-    props.propsWizard.nextStep();
+    props.setActiveForm("konfirmasiUsulan")
   };
   const buttonCols = [
     {

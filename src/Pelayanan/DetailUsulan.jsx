@@ -20,7 +20,6 @@ const DetailUsulan = (props) => {
     ApiCall.get('/usulan/' + params.uuid_usulan + '/detail')
       .then((res) => {
         setData(res?.data);
-        
         const comp = lazy(() => import('./' + res?.data?.data?.obj_kategori?.panelclass));
         setComponent(comp);
       })
@@ -95,9 +94,29 @@ const DetailUsulan = (props) => {
                             <th>#</th>
                             <th>Waktu</th>
                             <th>Keterangan</th>
+                            <th>Oleh</th>
                           </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                          {
+                            data?.data?.obj_logs.map((v,i)=>{
+                              return <tr key={i}>
+                                <td>
+                                    {i+1}
+                                </td>
+                                <td>
+                                  <Moment date={v?.created_at} format="DD/MM/YYYY hh:mm:ss" />
+                                </td>
+                                <td>
+                                  {v?.values?.keterangan}
+                                </td>
+                                <td>
+                                  {v?.obj_user?.name} - [{v?.obj_user?.id}]
+                                </td>
+                              </tr>
+                            })
+                          }
+                        </tbody>
                       </Table>
                     </Card.Body>
                   </Card>

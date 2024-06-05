@@ -34,7 +34,6 @@ const SelectTingkatHukuman = (props) => {
         };
       });
       setOptions(o);
-      debugger
     }
   }, [data]);
   useEffect(() => {

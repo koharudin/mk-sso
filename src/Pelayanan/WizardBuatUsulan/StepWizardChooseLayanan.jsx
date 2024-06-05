@@ -15,7 +15,7 @@ export default (props) => {
         <Card.Body>
           <SelectJenisLayanan
             onChange={(val, o) => {
-              props?.setData({ ...props?.data, ...{ selectedLayanan: o } });
+              props?.setData({ ...props?.data, ...{ selectedLayanan: o,activePanel:"init" } });
               setSelectedData(o)
             }}
           ></SelectJenisLayanan>
@@ -25,7 +25,7 @@ export default (props) => {
             <FaArrowLeft /> Pilih Pegawai
           </Button>
           <Button disabled={selectedData?false:true} className="btn-rounded text-capitalize" variant={'primary'} onClick={()=>{
-            props.setData({...props?.data,...{activePanel:"grid"}})
+            props.setData({...props?.data,...{activePanel:"init",activeForm:null}})
             props.nextStep()
           }}>
             <FaArrowRight /> Buat Form Usulan

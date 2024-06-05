@@ -10,15 +10,14 @@ import SelectUnitKerja from '../components/SelectUnitKerja';
 import { useNavigate } from 'react-router-dom';
 
 export default (props) => {
-  const [uuid,setUuid] = useState()
-  const navigate = useNavigate()
+  const [uuid, setUuid] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     if (props?.data?.uuid) {
-      setUuid(props?.data?.uuid)
+      setUuid(props?.data?.uuid);
     }
   }, [props?.data?.uuid]);
 
-  
   return (
     <>
       <Card>
@@ -26,12 +25,19 @@ export default (props) => {
           <Card.Title as={'h5'}> Notifikasi Layanan</Card.Title>
         </Card.Header>
         <Card.Body>
-            <Alert variant='warning'>Usulan Anda berhasil di buat {uuid}. Klik <Button variant='primary' onClick={()=>{
-              navigate("/daftar-usulan/"+uuid+"/detail")
-            }}><FaSearch></FaSearch> Detail</Button></Alert>
+          <Alert variant="warning">
+            Usulan Anda berhasil di buat. Klik{' '}
+            <Button size='sm'
+              variant="primary"
+              onClick={() => {
+                navigate('/daftar-usulan/' + uuid + '/detail');
+              }}
+            >
+              <FaSearch></FaSearch> Detail
+            </Button> untuk melihat detail usulan Anda.
+          </Alert>
         </Card.Body>
         <Card.Footer>
-          
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
             <FaArrowLeft /> Pilih Kategori Layanan
           </Button>

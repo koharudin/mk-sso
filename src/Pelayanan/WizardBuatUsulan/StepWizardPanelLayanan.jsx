@@ -13,7 +13,13 @@ const NOTFOUNDMODULE = () => {
 };
 const StepWizardPanelLayanan = (props) => {
   const [Component, setComponent] = useState(props?.data?.selectedLayanan);
+  const [activeForm,setActiveForm] = useState(props?.data?.activeForm)
 
+  useEffect(()=>{
+    if(props?.currentStep != 3){
+      setActiveForm(null)
+    }
+  },[props?.currentStep])
   useEffect(() => {
     if (props?.data?.selectedLayanan) {
       if (props?.data?.selectedLayanan?.panelclass) {
@@ -24,25 +30,22 @@ const StepWizardPanelLayanan = (props) => {
         setComponent(component);
       }
     }
-    else {
-      props.previousStep()
-    }
   }, [props?.data?.selectedLayanan]);
 
   useEffect(() => {
-    if(props?.activePanel){
-
+    if (props?.activePanel) {
     }
-  },[props?.activePanel]);
+  }, [props?.activePanel]);
   return (
     <>
       <Card>
         <Card.Header>
-          <Card.Title as={'h5'}> Panel Layanan : {props?.data?.selectedLayanan?.name}</Card.Title>
+          <Card.Title as={'h5'}> Panel Layanan {props?.data?.selectedLayanan?.name}</Card.Title>
         </Card.Header>
-        <Card.Body>{props?.data?.activePanel}{Component && <Component activePanel={props?.data?.activePanel} propsWizard={props} />}</Card.Body>
+        <Card.Body>
+          {Component && <Component onSubmit={props?.onSubmit} activePanel={"init"} activeForm={activeForm} setActiveForm={setActiveForm} propsWizard={props} />}
+        </Card.Body>
         <Card.Footer>
-          
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>
             <FaArrowLeft /> Pilih Kategori Layanan
           </Button>

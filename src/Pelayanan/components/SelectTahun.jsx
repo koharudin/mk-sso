@@ -51,7 +51,6 @@ const SelectTahun = (props) => {
 
   const onChangeSelection = (vals) => {
     if (onChange) {
-      debugger;
       onChange(vals?.value);
     }
   };
