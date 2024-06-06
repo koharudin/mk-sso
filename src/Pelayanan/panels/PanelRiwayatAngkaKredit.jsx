@@ -9,38 +9,54 @@ import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 
 const FormInput = (props) => {
-  const [editedData,setEditedData] = useState()
-  useEffect(()=>{
-    if(props?.propsWizard?.data?.selectedData){
-      setEditedData({...props?.propsWizard?.data?.selectedData})
+  const [editedData, setEditedData] = useState();
+
+  const onListenFields = (fields) => {
+    setEditedData({ ...fields });
+  };
+  const onSubmit = () => {
+    if (props?.fwdToConfirmationRequestForm) {
+      props.fwdToConfirmationRequestForm(props.layanan_id, props.action, props?.refData, editedData);
+    } else {
+      AppInformasiError({ options: { text: 'function fwdToConfirmationRequestForm tidak ditemukan' } });
     }
-  },[props?.propsWizard?.data?.selectedData])
-  const onSubmit = ()=>{
-    if(props?.onSubmit){
-      props?.onSubmit(props?.propsWizard?.data?.selectedLayanan?.id,props?.propsWizard?.data?.action,props?.propsWizard?.data?.selectedData?.id,JSON.stringify(props?.propsWizard?.data?.selectedData),JSON.stringify(editedData),props?.propsWizard?.lastStep);
-      
-   }
-   else {
-     AppInformasiError({options:{text:"function onSubmit tidak ditemukan"}});
-   }
-  }
+  };
   return (
     <Card>
       <Card.Header>
         <Card.Title as="h5">Form Riwayat Angka Kredit</Card.Title>
       </Card.Header>
       <Card.Body>
-        {props?.propsWizard?.data?.action ==1&& <><FormRiwayatAngkaKredit {...props}  /></>}
-        {props?.propsWizard?.data?.action ==2 && <><Row></Row><Row><Col lg="6"><FormRiwayatAngkaKredit disabledAll {...props} recordData={props?.propsWizard?.data?.selectedData} /></Col><Col lg="6"><FormRiwayatAngkaKredit  {...props} recordData={props?.propsWizard?.data?.selectedData} setEditedData={setEditedData} /></Col></Row></>}
+        {props?.action == 1 && (
+          <>
+            <FormRiwayatAngkaKredit {...props} changeListener={onListenFields} />
+          </>
+        )}
+        {props?.action == 2 && (
+          <>
+            <Row></Row>
+            <Row>
+              <Col lg="6">
+                <FormRiwayatAngkaKredit disabledAll {...props}  />
+              </Col>
+              <Col lg="6">
+                <FormRiwayatAngkaKredit {...props}  changeListener={onListenFields}/>
+              </Col>
+            </Row>
+          </>
+        )}
       </Card.Body>
       <Card.Footer>
-        <Button style={{float:"right"}} size='sm' variant='primary' onClick={onSubmit}><FaSave/> Simpan</Button>
+        <Button style={{ float: 'right' }} size="sm" variant="primary" onClick={onSubmit}>
+          <FaSave /> Simpan
+        </Button>
       </Card.Footer>
     </Card>
   );
 };
 const DaftarRiwayat = (props) => {
   const onCreateNew = () => {
+    props.setAction(1);
     props.setActiveForm('form');
   };
 
@@ -135,26 +151,56 @@ const DaftarRiwayat = (props) => {
   );
 };
 const PanelRiwayatAngkaKredit = (props) => {
-  const initActiveForm = "grid"
-  const [activeForm,setActiveForm] = useState(initActiveForm)
-  const [refData,setRefData] = useState()
-  const [recordData,setRecordData] = useState()
-  const [action,setAction] = useState()
-  
+  const initActiveForm = 'grid';
+  const [activeForm, setActiveForm] = useState(initActiveForm);
+  const [refData, setRefData] = useState();
+  const [recordData, setRecordData] = useState();
+  const [action, setAction] = useState();
 
-  useEffect(()=>{
-    if(props?.propsWizard?.currentStep!=3){
-      setActiveForm(initActiveForm)
-    }
-  },[props?.propsWizard?.currentStep])
   return (
     <>
       {props?.activePanel == 'init' && (
         <>
-          {!activeForm && <DaftarRiwayat refData={refData} recordData={recordData} setRefData={setRefData} setRecordData={setRecordData}  {...props} setActiveForm={setActiveForm} propsWizard={props?.propsWizard} />}
-          {activeForm == 'grid' && <DaftarRiwayat refData={refData} recordData={recordData}  {...props} setActiveForm={setActiveForm} propsWizard={props?.propsWizard} />}
-          {activeForm == 'form' && <FormInput {...props} refData={refData} recordData={recordData} setRefData={setRefData} setRecordData={setRecordData}  setActiveForm={setActiveForm} propsWizard={props?.propsWizard} />}
-          {activeForm == 'konfirmasiUsulan' && <PanelKonfirmasiUsulan {...props} setActiveForm={setActiveForm} propsWizard={props?.propsWizard} />}
+          {activeForm == 'grid' && (
+            <DaftarRiwayat
+              {...props}
+              action={action}
+              setAction={setAction}
+              refData={refData}
+              recordData={recordData}
+              setRefData={setRefData}
+              setRecordData={setRecordData}
+              setActiveForm={setActiveForm}
+            />
+          )}
+          {activeForm == 'form' && (
+            <>
+              {' '}
+              test {JSON.stringify(recordData)}
+              {}
+              <FormInput
+                {...props}
+                action={action}
+                refData={refData}
+                recordData={recordData}
+                setRefData={setRefData}
+                setRecordData={setRecordData}
+                setActiveForm={setActiveForm}
+                propsWizard={props?.propsWizard}
+              />
+            </>
+          )}
+          {activeForm == 'konfirmasiUsulan' && (
+            <PanelKonfirmasiUsulan
+              {...props}
+              refData={refData}
+              recordData={recordData}
+              setRefData={setRefData}
+              setRecordData={setRecordData}
+              setActiveForm={setActiveForm}
+              propsWizard={props?.propsWizard}
+            />
+          )}
         </>
       )}
 

@@ -13,9 +13,19 @@ const NOTFOUNDMODULE = () => {
 };
 const StepWizardPanelLayanan = (props) => {
   const [Component, setComponent] = useState(props?.data?.selectedLayanan);
-  const onConfirmationRequest =()=>{
-
-  }
+  const fwdToConfirmationRequestForm = (layanan_id, action_id, ref_data, customData) => {
+    console.log('fwdToConfirmationRequestForm');
+    const data = {
+      layanan_id: layanan_id,
+      action_id: action_id,
+      ref_data: ref_data,
+      custom_data: customData
+    };
+    console.log(data);
+    alert('fwd');
+    props.nextStep();
+  };
+  const fwdToInitForm = () => {};
   useEffect(() => {
     if (props?.data?.selectedLayanan) {
       if (props?.data?.selectedLayanan?.panelclass) {
@@ -39,7 +49,13 @@ const StepWizardPanelLayanan = (props) => {
           <Card.Title as={'h5'}> Panel Layanan {props?.data?.selectedLayanan?.name}</Card.Title>
         </Card.Header>
         <Card.Body>
-          {Component && <Component onSubmit={props?.onSubmit} activePanel={"init"} propsWizard={props} />}
+          {Component && (
+            <Component
+              layanan_id={props?.data?.selectedLayanan?.id}
+              activePanel={'init'}
+              fwdToConfirmationRequestForm={fwdToConfirmationRequestForm}
+            />
+          )}
         </Card.Body>
         <Card.Footer>
           <Button className="btn-rounded text-capitalize" variant={'primary'} onClick={props.previousStep}>

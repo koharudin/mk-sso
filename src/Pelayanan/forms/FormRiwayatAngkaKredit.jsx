@@ -14,11 +14,11 @@ const FormRiwayatAngkaKredit = (props) => {
     dt_akhir_penilaian: '',
     jabatan: '',
     unit_kerja_id: '',
-    pangkat_id: '21',
+    pangkat_id: '',
     ak_lama: '',
     ak_baru: '',
     keterangan: '',
-    tmt_pak: '21'
+    tmt_pak: ''
   });
   useEffect(() => {
     if (props?.refData) {
@@ -34,8 +34,10 @@ const FormRiwayatAngkaKredit = (props) => {
 
 
   useEffect(()=>{
-    if(props?.setEditedData){
-      props?.setEditedData({...fields})
+    console.log(fields)
+    if(props?.changeListener){
+      console.log("ccchange")
+      props?.changeListener({...fields})
     }
     
   },[fields])
@@ -45,6 +47,7 @@ const FormRiwayatAngkaKredit = (props) => {
   };
   return (
     <>
+      
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
         <Form.Control

@@ -20,12 +20,18 @@ export default (props) => {
     props?.onCreateNew()
   }
   const onEdit = (row, index) => {
-    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 2, selectedData: row} });
-    props.setActiveForm("form")
+    props.setAction("2")
+    props.setRefData(row)
+    props.setRecordData(row)
+    props.setActiveForm('form');
   };
   const onDelete = (row, index) => {
-    props.propsWizard.setData({ ...props?.propsWizard?.data, ...{ action: 3, selectedData: row } });
-    props.setActiveForm("konfirmasiUsulan")
+    props.setAction(3)
+    if (props?.fwdToConfirmationRequestForm) {
+      props.fwdToConfirmationRequestForm(props.layanan_id,3,props?.refData,editedData)
+    } else {
+      AppInformasiError({ options: { text: 'function fwdToConfirmationRequestForm tidak ditemukan' } });
+    }
   };
   const buttonCols = [
     {

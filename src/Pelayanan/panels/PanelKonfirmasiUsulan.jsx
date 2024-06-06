@@ -10,11 +10,16 @@ export default  (props) => {
   const [Component, setComponent] = useState();
   const navigate = useNavigate();
   useEffect(() => {
+    console.log("PANEL KONFIRMASI CONSTRUCT")
     if (props?.propsWizard?.data?.selectedData?.id) {
+      
       const comp = lazy(() => import("../"+ props?.propsWizard?.data?.selectedLayanan?.panelclass))
       setComponent(comp);
     }
-  }, [props?.propsWizard?.data]);
+    else {
+      console.log(props?.propsWizard)
+    }
+  }, [props?.propsWizard?.data?.selectedLayanan]);
 
   const onCreateUsulan = async () => {
     if(props?.onSubmit){
@@ -30,7 +35,7 @@ export default  (props) => {
     <>
       <Card>
         <Card.Header>
-          <Card.Title as="h5">Konfirmasi Usulan</Card.Title>
+          <Card.Title as="h5">Konfirmasi Usulan {JSON.stringify(props?.propsWizard?.data?.selectedLayanan?.panelclass)}</Card.Title>
         </Card.Header>
         <Card.Body>
           <Table striped responsive>
@@ -51,7 +56,7 @@ export default  (props) => {
               </tr>
               <tr>
                 <td colSpan={2}>
-                  {Component && <Component activePanel="detail" recordData={props?.propsWizard?.data?.selectedData} />}</td>
+                  {Component && <Component activePanel="init" recordData={props?.propsWizard?.data?.selectedData} />}</td>
               </tr>
             </tbody>
             <tfoot>
