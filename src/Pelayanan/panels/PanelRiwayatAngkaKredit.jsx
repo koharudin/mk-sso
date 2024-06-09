@@ -4,7 +4,7 @@ import { Badge, Button, Card, Col, Form, Row, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
-import FormRiwayatAngkaKredit from '../forms/FormRiwayatAngkaKredit';
+import FormUsulan from '../forms/FormRiwayatAngkaKredit';
 import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 
@@ -15,11 +15,9 @@ const FormInput = (props) => {
     setEditedData({ ...fields });
   };
   const onSubmit = () => {
-    if (props?.fwdToConfirmationRequestForm) {
-      props.fwdToConfirmationRequestForm(props.layanan_id, props.action, props?.refData, editedData);
-    } else {
-      AppInformasiError({ options: { text: 'function fwdToConfirmationRequestForm tidak ditemukan' } });
-    }
+    props.setRefData(props?.refData);
+    props.setRecordData(editedData);
+    props.setActiveForm('konfirmasiUsulan');
   };
   return (
     <Card>
@@ -29,7 +27,7 @@ const FormInput = (props) => {
       <Card.Body>
         {props?.action == 1 && (
           <>
-            <FormRiwayatAngkaKredit {...props} changeListener={onListenFields} />
+            <FormUsulan {...props} changeListener={onListenFields} />
           </>
         )}
         {props?.action == 2 && (
@@ -37,10 +35,10 @@ const FormInput = (props) => {
             <Row></Row>
             <Row>
               <Col lg="6">
-                <FormRiwayatAngkaKredit disabledAll {...props}  />
+                <FormUsulan disabledAll {...props} />
               </Col>
               <Col lg="6">
-                <FormRiwayatAngkaKredit {...props}  changeListener={onListenFields}/>
+                <FormUsulan {...props} changeListener={onListenFields} />
               </Col>
             </Row>
           </>
@@ -156,7 +154,8 @@ const PanelRiwayatAngkaKredit = (props) => {
   const [refData, setRefData] = useState();
   const [recordData, setRecordData] = useState();
   const [action, setAction] = useState();
-
+  const [recordId, setRecordId] = useState();
+  const recordIdName = 'id';
   return (
     <>
       {props?.activePanel == 'init' && (
@@ -165,19 +164,19 @@ const PanelRiwayatAngkaKredit = (props) => {
             <DaftarRiwayat
               {...props}
               action={action}
+              setRecordId={setRecordId}
+              recordIdName={recordIdName}
               setAction={setAction}
               refData={refData}
               recordData={recordData}
               setRefData={setRefData}
               setRecordData={setRecordData}
               setActiveForm={setActiveForm}
+              propsWizard={props?.propsWizard}
             />
           )}
           {activeForm == 'form' && (
             <>
-              {' '}
-              test {JSON.stringify(recordData)}
-              {}
               <FormInput
                 {...props}
                 action={action}
@@ -193,18 +192,20 @@ const PanelRiwayatAngkaKredit = (props) => {
           {activeForm == 'konfirmasiUsulan' && (
             <PanelKonfirmasiUsulan
               {...props}
-              refData={refData}
-              recordData={recordData}
-              setRefData={setRefData}
-              setRecordData={setRecordData}
               setActiveForm={setActiveForm}
+              action={action}
+              recordData={recordData}
+              refData={refData}
+              recordId={recordId}
               propsWizard={props?.propsWizard}
-            />
+            >
+              <FormUsulan disabledAll {...props} refData={refData} recordData={recordData} />
+            </PanelKonfirmasiUsulan>
           )}
         </>
       )}
 
-      {props?.activePanel == 'detail' && <FormRiwayatAngkaKredit disabledAll {...props} propsWizard={props?.propsWizard} />}
+      {props?.activePanel == 'detail' && <FormUsulan disabledAll {...props} propsWizard={props?.propsWizard} />}
     </>
   );
 };

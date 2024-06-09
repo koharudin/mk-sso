@@ -12,7 +12,7 @@ const Option = (props) => {
   return (
     <>
       <components.Option {...props}>
-        <b>{props.data?.o?.name}xxx</b>
+        <b>{props.data?.o?.name}</b>
         <br></br>
         {props.data?.o?.keterangan}
       </components.Option>

@@ -6,30 +6,14 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { ApiCall } from '../../Api/api';
 import { useNavigate } from 'react-router-dom';
 import { AppInformasiError } from '../components/App';
-export default  (props) => {
+export default (props) => {
   const [Component, setComponent] = useState();
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log("PANEL KONFIRMASI CONSTRUCT")
-    if (props?.propsWizard?.data?.selectedData?.id) {
-      
-      const comp = lazy(() => import("../"+ props?.propsWizard?.data?.selectedLayanan?.panelclass))
-      setComponent(comp);
-    }
-    else {
-      console.log(props?.propsWizard)
-    }
-  }, [props?.propsWizard?.data?.selectedLayanan]);
 
   const onCreateUsulan = async () => {
-    if(props?.onSubmit){
-       props?.onSubmit(props?.propsWizard?.data?.selectedLayanan?.id,props?.propsWizard?.data?.action,props?.propsWizard?.data?.selectedData?.id,JSON.stringify(props?.propsWizard?.data?.selectedData),JSON.stringify(props?.propsWizard?.data?.data),props?.propsWizard?.lastStep);
-       
-    }
-    else {
-      AppInformasiError({options:{text:"function onSubmit tidak ditemukan"}});
-    }
-    
+    props.onSubmitUsulan(props?.layanan_id,props?.action,props?.recordId,props?.refData,props?.recordData,()=>{
+      props.propsWizard.lastStep()
+    })
   };
   return (
     <>
@@ -49,20 +33,23 @@ export default  (props) => {
               <tr>
                 <td>Aksi</td>
                 <td>
-                  {props?.propsWizard?.data?.action == 1 && <Badge>Pembuatan Record Baru</Badge>}
-                  {props?.propsWizard?.data?.action == 2 && <Badge>Pengubahan Record</Badge>}
-                  {props?.propsWizard?.data?.action == 3 && <Badge>Penghapusan Record</Badge>}{' '}
+                  {props?.action == 1 && <Badge>Pembuatan Record Baru</Badge>}
+                  {props?.action == 2 && <Badge>Pengubahan Record</Badge>}
+                  {props?.action == 3 && <Badge>Penghapusan Record</Badge>}{' '}
                 </td>
               </tr>
               <tr>
                 <td colSpan={2}>
-                  {Component && <Component activePanel="init" recordData={props?.propsWizard?.data?.selectedData} />}</td>
+                  {props.children}
+                </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <td colSpan={'2'}>
-                  <Button className="btn-rounded text-capitalize" variant={'danger'} onClick={props?.propsWizard?.previousStep}>
+                  <Button className="btn-rounded text-capitalize" variant={'danger'} onClick={()=>{
+                    props.setActiveForm("grid")
+                  }}>
                     <AiOutlineCloseCircle /> Batal
                   </Button>
                   <Button onClick={onCreateUsulan} style={{ float: 'right' }} className="btn-rounded text-capitalize" variant={'info'}>
@@ -73,7 +60,6 @@ export default  (props) => {
             </tfoot>
           </Table>
         </Card.Body>
-       
       </Card>
     </>
   );

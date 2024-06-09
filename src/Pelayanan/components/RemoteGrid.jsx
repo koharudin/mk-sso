@@ -3,6 +3,7 @@ import { ApiCall } from '../../Api/api';
 import { Pagination, Table } from 'react-bootstrap';
 import { useState } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
+import { AppInformasiError } from './App';
 
 const BuildPagination = (props) => {
   const { current_page, last_page, ...otherProps } = props;
@@ -86,9 +87,12 @@ export default (props) => {
         setLastPage(res?.data?.last_page);
       })
       .catch((err) => {
-        if (err.response.status == 401) {
+        if(!err?.response){
+          AppInformasiError({options:{text:"Tidak dapat menghubungi backend"}})
         }
-        if (err.response.status == 500) {
+        if (err?.response?.status == 401) {
+        }
+        if (err?.response?.status == 500) {
         }
       })
       .finally(() => {

@@ -44,7 +44,7 @@ const WizardUsulan = (props) => {
           <StepWizard isHashEnabled={true}>
             <StepWizardChooseEmployee data={data} setData={setData} />
             <StepWizardChooseLayanan data={data} setData={setData} />
-            <StepWizardPanelLayanan data={data} setData={setData} onSubmit={onSubmitUsulan} />
+            <StepWizardPanelLayanan data={data} setData={setData} onSubmitUsulan={onSubmitUsulan} />
             <StepWizardHasil data={data} setData={setData} />
           </StepWizard>
         </Col>

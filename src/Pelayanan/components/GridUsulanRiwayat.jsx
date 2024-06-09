@@ -21,6 +21,7 @@ export default (props) => {
   }
   const onEdit = (row, index) => {
     props.setAction("2")
+    props.setRecordId(row[props?.recordIdName])
     props.setRefData(row)
     props.setRecordData(row)
     props.setActiveForm('form');
