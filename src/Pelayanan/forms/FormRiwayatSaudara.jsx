@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import SelectSex from '../components/SelectSex';
 import SelectStatusKeluarga from '../components/SelectDapatTunjangan';
@@ -11,13 +11,33 @@ export default (props) => {
     birth_date: '',
     sex: 'L',
     pekerjaan: '',
-    alamat:"",
-    telepon : "",
+    alamat: '',
+    telepon: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e.target?.value;
+    fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
+  useEffect(() => {}, []);
   return (
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
@@ -102,7 +122,6 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      
     </>
   );
 };

@@ -19,7 +19,7 @@ export default (props) => {
     <>
       <Card>
         <Card.Header>
-          <Card.Title as="h5">Konfirmasi Usulan {JSON.stringify(props?.propsWizard?.data?.selectedLayanan?.panelclass)}</Card.Title>
+          <Card.Title as="h5">Konfirmasi Usulan </Card.Title>
         </Card.Header>
         <Card.Body>
           <Table striped responsive>

@@ -4,32 +4,61 @@ import { Badge, Button, Card, Col, Form, Row, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
-import FormUsulan from '../forms/FormRiwayatOrangTua';
+import FormUsulan from '../forms/FormRiwayatPangkat';
 import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 
 const cols = [
   {
-    label: 'NAMA',
-    field: 'name'
-  },
-  {
-    label: 'NAMA STATUS',
-    field: 'status',
+    label: 'GOLONGAN',
+    field: 'obj_pangkat',
     formatter: function (value, row, index) {
-      if (value == 1) {
-        return 'Ayah';
-      } else if (value == 2) {
-        return 'Ibu';
-      }
-      return '-';
+      return (
+        <>
+          {value.kode}
+        </>
+      );
     }
   },
   {
-    label: 'TGL LAHIR',
-    field: 'birth_date',
+    label: 'PANGKAT',
+    field: 'obj_pangkat',
+    formatter: function (value, row, index) {
+      return (
+        <>
+          {value.name}
+        </>
+      );
+    }
+  },
+  {
+    label: 'NO SK',
+    field: 'no_sk'
+  },
+  {
+    label: 'TGL SK',
+    field: 'tgl_sl',
     formatter: function (value, row, index) {
       return <Moment date={value} format="DD/MMM/YYYY" />;
+    }
+  },
+  {
+    label: 'TMT PANGKAT',
+    field: 'tmt_pangkat',
+    formatter: function (value, row, index) {
+      return <Moment date={value} format="DD/MMM/YYYY" />;
+    }
+  },
+ 
+  {
+    label: 'JENIS KP',
+    field: 'obj_jenis_kenaikan_pangkat',
+    formatter: function (value, row, index) {
+      return (
+        <>
+          {value.name}
+        </>
+      );
     }
   }
 ];
@@ -106,8 +135,8 @@ export default (props) => {
   const [action, setAction] = useState();
   const [recordId, setRecordId] = useState();
   const recordIdName = 'id';
-  const title = 'Riwayat Orang Tua';
-  const grid_url = '/riwayat-orangtua';
+  const title = 'Riwayat Pangkat';
+  const grid_url='/riwayat-pangkat'
   return (
     <>
       {props?.activePanel == 'init' && (
@@ -116,7 +145,7 @@ export default (props) => {
             <DaftarRiwayat
               {...props}
               title={title}
-              grid_url={grid_url}
+              grid_url = {grid_url}
               action={action}
               setRecordId={setRecordId}
               recordIdName={recordIdName}
