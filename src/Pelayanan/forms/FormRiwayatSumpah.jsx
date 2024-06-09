@@ -18,6 +18,25 @@ export default (props) => {
     tgl_sumpah: '',
     keterangan: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });

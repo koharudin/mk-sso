@@ -8,18 +8,38 @@ import SelectUnitKerja from '../components/SelectUnitKerja';
 import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 
-const FormRiwayatDiklatFungsional = (props) => {
+export default (props) => {
   const [fields, setFields] = useState({
-    nama_diklat :"",
-    penyelenggara : "",
-    tempat :"",
-    angkatan : "",
-    no_sttpp: "",
-    tgl_sttpp : "",
-    tahun : "",
-    tgl_mulai : "",
-    tgl_selesai : ""
+    nama_diklat: '',
+    penyelenggara: '',
+    tempat: '',
+    angkatan: '',
+    no_sttpp: '',
+    tgl_sttpp: '',
+    tahun: '',
+    tgl_mulai: '',
+    tgl_selesai: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
+
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -138,4 +158,3 @@ const FormRiwayatDiklatFungsional = (props) => {
     </>
   );
 };
-export default FormRiwayatDiklatFungsional;

@@ -12,7 +12,7 @@ import SelectJenisHukuman from '../components/SelectJenisHukuman';
 import SelectPelanggaran from '../components/SelectPelanggaran';
 import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
 
-const FormRiwayatHukuman = (props) => {
+export default (props) => {
   const [fields, setFields] = useState({
     no_sk: '',
     tgl_sk: '',
@@ -28,6 +28,25 @@ const FormRiwayatHukuman = (props) => {
     nomor_pp: '',
     tingkat_hukuman: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -195,4 +214,3 @@ const FormRiwayatHukuman = (props) => {
     </>
   );
 };
-export default FormRiwayatHukuman;

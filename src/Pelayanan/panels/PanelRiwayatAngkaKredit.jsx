@@ -8,6 +8,88 @@ import FormUsulan from '../forms/FormRiwayatAngkaKredit';
 import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 
+const cols = [
+  {
+    label: 'NO SK',
+    field: 'no_sk'
+  },
+  {
+    label: 'TGL SK',
+    field: 'tgl_sk'
+  },
+  {
+    label: 'TGL AWAL PENILAIAN',
+    field: 'dt_awal_penilaian',
+    formatter: function (value, row, index) {
+      return <Moment date={value} format="DD/MMM/YYYY" />;
+    }
+  },
+  {
+    label: 'TGL AKHIR PENILAIAN',
+    field: 'dt_akhir_penilaian',
+    formatter: function (value, row, index) {
+      return <Moment date={value} format="DD/MMM/YYYY" />;
+    }
+  },
+  {
+    label: 'JABATAN',
+    field: 'jabatan'
+  },
+  {
+    label: 'UNIT KERJA',
+    field: 'unit_kerja'
+  },
+  {
+    label: 'PANGKAT',
+    field: 'obj_pangkat',
+    formatter: function (value, row, index) {
+      return (
+        <>
+          {' '}
+          {value.name} / {row['pangkat_id']}{' '}
+        </>
+      );
+    }
+  },
+  {
+    label: 'AK LAMA',
+    field: 'ak_lama',
+    formatter: function (value, row, index) {
+      return (
+        <>
+          {numericFormatter(value, {
+            decimalSeparator: ',',
+            thousandSeparator: '.',
+            decimalScale: 2
+          })}
+        </>
+      );
+    }
+  },
+  {
+    label: 'AK BARU',
+    field: 'ak_baru',
+    formatter: function (value, row, index) {
+      return (
+        <>
+          {numericFormatter(value, {
+            decimalSeparator: ',',
+            thousandSeparator: '.',
+            decimalScale: 2
+          })}
+        </>
+      );
+    }
+  },
+  {
+    label: 'TMT PAK',
+    field: 'tmt_pak',
+    formatter: function (value, row, index) {
+      return <Moment date={value} format="DD/MMM/YYYY" />;
+    }
+  }
+];
+
 const FormInput = (props) => {
   const [editedData, setEditedData] = useState();
 
@@ -22,7 +104,7 @@ const FormInput = (props) => {
   return (
     <Card>
       <Card.Header>
-        <Card.Title as="h5">Form Riwayat Angka Kredit</Card.Title>
+        <Card.Title as="h5">{props?.title}</Card.Title>
       </Card.Header>
       <Card.Body>
         {props?.action == 1 && (
@@ -57,97 +139,18 @@ const DaftarRiwayat = (props) => {
     props.setAction(1);
     props.setActiveForm('form');
   };
-  const onDelete = (id)=>{
-    props.setAction(3)
+  const onDelete = (id) => {
+    props.setAction(3);
     props.setActiveForm('konfirmasiUsulan');
-  }
+  };
   return (
     <GridUsulanRiwayat
-      {...props} onDelete={onDelete}
+      {...props}
+      onDelete={onDelete}
       onCreateNew={onCreateNew}
-      title={'Daftar Riwayat Angka Kredit'}
-      grid_url={'/riwayat-angka-kredit'}
-      cols={[
-        {
-          label: 'NO SK',
-          field: 'no_sk'
-        },
-        {
-          label: 'TGL SK',
-          field: 'tgl_sk'
-        },
-        {
-          label: 'TGL AWAL PENILAIAN',
-          field: 'dt_awal_penilaian',
-          formatter: function (value, row, index) {
-            return <Moment date={value} format="DD/MMM/YYYY" />;
-          }
-        },
-        {
-          label: 'TGL AKHIR PENILAIAN',
-          field: 'dt_akhir_penilaian',
-          formatter: function (value, row, index) {
-            return <Moment date={value} format="DD/MMM/YYYY" />;
-          }
-        },
-        {
-          label: 'JABATAN',
-          field: 'jabatan'
-        },
-        {
-          label: 'UNIT KERJA',
-          field: 'unit_kerja'
-        },
-        {
-          label: 'PANGKAT',
-          field: 'obj_pangkat',
-          formatter: function (value, row, index) {
-            return (
-              <>
-                {' '}
-                {value.name} / {row['pangkat_id']}{' '}
-              </>
-            );
-          }
-        },
-        {
-          label: 'AK LAMA',
-          field: 'ak_lama',
-          formatter: function (value, row, index) {
-            return (
-              <>
-                {numericFormatter(value, {
-                  decimalSeparator: ',',
-                  thousandSeparator: '.',
-                  decimalScale: 2
-                })}
-              </>
-            );
-          }
-        },
-        {
-          label: 'AK BARU',
-          field: 'ak_baru',
-          formatter: function (value, row, index) {
-            return (
-              <>
-                {numericFormatter(value, {
-                  decimalSeparator: ',',
-                  thousandSeparator: '.',
-                  decimalScale: 2
-                })}
-              </>
-            );
-          }
-        },
-        {
-          label: 'TMT PAK',
-          field: 'tmt_pak',
-          formatter: function (value, row, index) {
-            return <Moment date={value} format="DD/MMM/YYYY" />;
-          }
-        }
-      ]}
+      title={props?.title}
+      grid_url={props?.grid_url}
+      cols={cols}
     />
   );
 };
@@ -159,6 +162,8 @@ export default (props) => {
   const [action, setAction] = useState();
   const [recordId, setRecordId] = useState();
   const recordIdName = 'id';
+  const title = 'Riwayat Angka Kredit';
+  const grid_url='/riwayat-angka-kredit'
   return (
     <>
       {props?.activePanel == 'init' && (
@@ -166,6 +171,8 @@ export default (props) => {
           {activeForm == 'grid' && (
             <DaftarRiwayat
               {...props}
+              title={title}
+              grid_url = {grid_url}
               action={action}
               setRecordId={setRecordId}
               recordIdName={recordIdName}
@@ -182,6 +189,7 @@ export default (props) => {
             <>
               <FormInput
                 {...props}
+                title={title}
                 action={action}
                 refData={refData}
                 recordData={recordData}

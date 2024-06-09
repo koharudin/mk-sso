@@ -67,7 +67,7 @@ export default (props) => {
   return (
     <Card>
       <Card.Header>
-        {props?.title}
+        <Card.Title as={"h5"}> {props?.title}</Card.Title>
         <Button
           useTooltip
           tooltipText="Membuat Usulan untuk menambah data baru"

@@ -26,6 +26,25 @@ export default (props) => {
     pejabat_penetap_nama: '',
     jenis_penghargaan_id: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });

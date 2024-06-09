@@ -8,7 +8,7 @@ import SelectJenisKenaikanGaji from '../components/SelectJenisKenaikanGaji';
 import { NumericFormat } from 'react-number-format';
 import SelectPejabatPenetap from '../components/SelectPejabatPenetap';
 
-const FormRiwayatGaji = (props) => {
+export default (props) => {
   const [fields, setFields] = useState({
     no_sk: '',
     tgl_sk: '',
@@ -23,6 +23,25 @@ const FormRiwayatGaji = (props) => {
     pangkat_id: '',
     gaji_pokok: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -133,4 +152,3 @@ const FormRiwayatGaji = (props) => {
     </>
   );
 };
-export default FormRiwayatGaji;

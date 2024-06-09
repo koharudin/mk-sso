@@ -3,8 +3,9 @@ import { Form } from 'react-bootstrap';
 import SelectSex from '../components/SelectSex';
 import SelectStatusKeluarga from '../components/SelectDapatTunjangan';
 import SelectDapatTunjangan from '../components/SelectStatusKeluarga';
+import { useEffect } from 'react';
 
-const FormRiwayatAnak = () => {
+const FormRiwayatAnak = (props) => {
   const [fields, setFields] = useState({
     name: '',
     birth_place: '',
@@ -16,8 +17,29 @@ const FormRiwayatAnak = () => {
     bln_dibayar: '',
     bln_akhir_dibayar: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+
+  useEffect(()=>{
+    console.log(fields)
+    if(props?.changeListener){
+      console.log("ccchange")
+      props?.changeListener({...fields})
+    }
+    
+  },[fields])
   const onChangeField = (e, key) => {
-    fields[key] = e.target?.value;
+    fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   return (

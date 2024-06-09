@@ -28,6 +28,25 @@ export default (props) => {
     nomor_pp: '',
     tingkat_hukuman: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -57,7 +76,7 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      
+
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
         <Form.Control
@@ -94,7 +113,7 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      
+
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PEJABAT PENETAP</Form.Label>
         <SelectPejabatPenetap
@@ -106,7 +125,6 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      
     </>
   );
 };

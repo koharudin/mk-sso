@@ -5,7 +5,7 @@ import SelectUnitKerja from '../components/SelectUnitKerja';
 import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 
-const FormRiwayatAngkaKredit = (props) => {
+export default (props) => {
   
   const [fields, setFields] = useState({
     no_sk: '',
@@ -193,4 +193,3 @@ const FormRiwayatAngkaKredit = (props) => {
     </>
   );
 };
-export default FormRiwayatAngkaKredit;

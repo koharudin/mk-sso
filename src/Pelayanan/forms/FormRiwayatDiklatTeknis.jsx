@@ -8,20 +8,38 @@ import SelectUnitKerja from '../components/SelectUnitKerja';
 import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 import SelectJenisDiklat from '../components/SelectJenisDiklat';
-
-const FormRiwayatDiklatTeknis = (props) => {
+export default (props) => {
   const [fields, setFields] = useState({
-    jenis_diklat : "",
-    nama_diklat :"",
-    penyelenggara : "",
-    tempat :"",
-    angkatan : "",
-    no_sttpp: "",
-    tgl_sttpp : "",
-    tahun : "",
-    tgl_mulai : "",
-    tgl_selesai : ""
+    jenis_diklat: '',
+    nama_diklat: '',
+    penyelenggara: '',
+    tempat: '',
+    angkatan: '',
+    no_sttpp: '',
+    tgl_sttpp: '',
+    tahun: '',
+    tgl_mulai: '',
+    tgl_selesai: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -29,10 +47,10 @@ const FormRiwayatDiklatTeknis = (props) => {
   useEffect(() => {}, []);
   return (
     <>
-    <Form.Group className="mb-3" controlId="formBasicEmail1">
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS DIKLAT</Form.Label>
         <SelectJenisDiklat
-          jenis_diklat = "teknis"
+          jenis_diklat="teknis"
           placeholder="JENIS DIKLAT"
           value={fields?.jenis_diklat}
           onChange={(e) => {
@@ -152,4 +170,3 @@ const FormRiwayatDiklatTeknis = (props) => {
     </>
   );
 };
-export default FormRiwayatDiklatTeknis;

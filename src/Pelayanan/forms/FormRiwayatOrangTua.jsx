@@ -23,6 +23,25 @@ export default (props) => {
     alamat: '',
     telepon: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -32,7 +51,8 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>STATUS</Form.Label>
-        <SelectOrangTua type="orangtua"
+        <SelectOrangTua
+          type="orangtua"
           placeholder="STATUS"
           value={fields?.status}
           onChange={(e) => {

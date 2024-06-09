@@ -28,6 +28,25 @@ export default (props) => {
     status: '',
     peran: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -35,7 +54,6 @@ export default (props) => {
   useEffect(() => {}, []);
   return (
     <>
-      
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA SEMINAR</Form.Label>
         <Form.Control
@@ -96,7 +114,7 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      
+
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
         <Form.Control

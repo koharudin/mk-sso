@@ -16,15 +16,34 @@ import SelectJenisDiklatSIASN from '../components/SelectJenisDiklatSIASN';
 
 export default (props) => {
   const [fields, setFields] = useState({
-    tahun : "",
-    nilai : "",
-    tgl_penilaian : "",
-    satuan_kerja : "",
-    jabatan : "",
-    nilai_skp : "",
-    nilai_perilaku : "",
-    satuan_kerja_id : ""
+    tahun: '',
+    nilai: '',
+    tgl_penilaian: '',
+    satuan_kerja: '',
+    jabatan: '',
+    nilai_skp: '',
+    nilai_perilaku: '',
+    satuan_kerja_id: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    console.log(fields);
+    if (props?.changeListener) {
+      console.log('ccchange');
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
