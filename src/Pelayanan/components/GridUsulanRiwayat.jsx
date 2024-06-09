@@ -4,7 +4,7 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { FiDelete } from 'react-icons/fi';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { AppKonfirmasi } from './App';
+import { AppInformasiError, AppKonfirmasi } from './App';
 import { MdAddToPhotos } from 'react-icons/md';
 import Button from './Button';
 
@@ -26,14 +26,7 @@ export default (props) => {
     props.setRecordData(row)
     props.setActiveForm('form');
   };
-  const onDelete = (row, index) => {
-    props.setAction(3)
-    if (props?.fwdToConfirmationRequestForm) {
-      props.fwdToConfirmationRequestForm(props.layanan_id,3,props?.refData,editedData)
-    } else {
-      AppInformasiError({ options: { text: 'function fwdToConfirmationRequestForm tidak ditemukan' } });
-    }
-  };
+
   const buttonCols = [
     {
       label: '#',
@@ -57,7 +50,8 @@ export default (props) => {
               bg="danger"
               className="btn-rounded text-capitalize"
               onClick={() => {
-                onDelete(row, index);
+                props.setRefData(row)
+                props.onDelete( props.setRecordId(row[props?.recordIdName]))
               }}
             >
               <FiDelete /> Hapus

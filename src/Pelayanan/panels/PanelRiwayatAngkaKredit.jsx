@@ -57,10 +57,13 @@ const DaftarRiwayat = (props) => {
     props.setAction(1);
     props.setActiveForm('form');
   };
-
+  const onDelete = (id)=>{
+    props.setAction(3)
+    props.setActiveForm('konfirmasiUsulan');
+  }
   return (
     <GridUsulanRiwayat
-      {...props}
+      {...props} onDelete={onDelete}
       onCreateNew={onCreateNew}
       title={'Daftar Riwayat Angka Kredit'}
       grid_url={'/riwayat-angka-kredit'}
@@ -148,7 +151,7 @@ const DaftarRiwayat = (props) => {
     />
   );
 };
-const PanelRiwayatAngkaKredit = (props) => {
+export default (props) => {
   const initActiveForm = 'grid';
   const [activeForm, setActiveForm] = useState(initActiveForm);
   const [refData, setRefData] = useState();
@@ -209,4 +212,3 @@ const PanelRiwayatAngkaKredit = (props) => {
     </>
   );
 };
-export default PanelRiwayatAngkaKredit;
