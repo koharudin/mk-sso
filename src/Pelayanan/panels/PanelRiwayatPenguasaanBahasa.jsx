@@ -4,60 +4,46 @@ import { Badge, Button, Card, Col, Form, Row, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
-import FormUsulan from '../forms/FormRiwayatHukuman';
+import FormUsulan from '../forms/FormRiwayatBahasa';
 import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 
 const cols = [
   {
-    label: 'NO SK',
-    field: 'no_sk'
+    label: 'JENIS BAHASA',
+    field: 'obj_jenis_bahasa',
+    formatter: function (val) {
+      if (val) return val?.name;
+    }
   },
   {
-    label: 'TGL SK',
-    field: 'tgl_sk',
+    label: 'NAMA BAHASA',
+    field: 'nama_bahasa'
+  },
+  {
+    label: 'KEMAMPUAN BICARA',
+    field: 'obj_kemampuan_bicara',
+    formatter: function (val) {
+      if (val) return val?.name;
+    }
+  },
+  {
+    label: 'JENIS SERTIFIKASI',
+    field: 'jenis_sertifikasi'
+  },
+  {
+    label: 'LEMBAGA SERTIFIKASI',
+    field: 'lembaga_sertifikasi'
+  },
+  {
+    label: 'SKOR',
+    field: 'skor'
+  },
+  {
+    label: 'tTGL KADALUARSA',
+    field: 'tgl_expired',
     formatter: function (value, row, index) {
       return <Moment date={value} format="DD/MMM/YYYY" />;
-    }
-  },
-  {
-    label: 'TMT SK',
-    field: 'tmt_sk',
-    formatter: function (value, row, index) {
-      return <Moment date={value} format="DD/MMM/YYYY" />;
-    }
-  },
-
-  {
-    label: 'MASA KERJA TAHUN',
-    field: 'masakerja_tahun'
-  },
-  {
-    label: 'MASA KERJA BULAN',
-    field: 'masakerja_bulan'
-  },
-  {
-    label: 'JENIS KENAIKAN',
-    field: 'jenis_kenaikan',
-    formatter: function (value, row, index) {
-      return row?.obj_jenis_kenaikan_gaji?.name;
-    }
-  },
-  {
-    label: 'GAJI POKOK',
-    field: 'gaji_pokok',
-    formatter: function (value, row, index) {
-      return (
-        <>
-          {numericFormatter(value, {
-            decimalSeparator: ',',
-            prefix: 'Rp.',
-            suffix: ',-',
-            thousandSeparator: '.',
-            decimalScale: 2
-          })}
-        </>
-      );
     }
   }
 ];
@@ -134,8 +120,8 @@ export default (props) => {
   const [action, setAction] = useState();
   const [recordId, setRecordId] = useState();
   const recordIdName = 'id';
-  const title = 'Riwayat Hukuman';
-  const grid_url = '/riwayat-hukuman';
+  const title = 'Riwayat Penguasaan Bahasa';
+  const grid_url = '/riwayat-penguasaanbahasa';
   return (
     <>
       {props?.activePanel == 'init' && (
