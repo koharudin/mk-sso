@@ -68,6 +68,16 @@ const routes = [
       },
       {
         exact: 'true',
+        path: '/verifikasi-usulan',
+        element: lazy(() => import('./Pelayanan/VerifikasiUsulanLayanan'))
+      },
+      {
+        exact: 'true',
+        path: '/verifikasi-usulan/:uuid_usulan/detail',
+        element: lazy(() => import('./Pelayanan/DetailVerifikasiUsulan'))
+      },
+      {
+        exact: 'true',
         path: '/usulan-ku/buat-baru',
         element: lazy(() => import('./Pelayanan/WizardUsulan'))
       },

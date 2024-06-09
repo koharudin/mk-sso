@@ -37,27 +37,13 @@ const menuItems = {
         },
         
         {
-          id: 'menu-usulan-baru',
-          title: 'Usulan Baru',
+          id: 'verifikasi-usulan',
+          title: 'Verifikasi Usulan',
           type: 'item',
           icon: 'feather icon-server',
-          url: '/usulan-ku/daftar-usulan/1/baru'
+          url: '/verifikasi-usulan'
         }
-        ,
-        {
-          id: 'menu-detail-usulan',
-          title: 'Detail Usulan',
-          type: 'item',
-          icon: 'feather icon-server',
-          url: '/usulan-ku/daftar-usulan/1/detail'
-        },
-        {
-          id: 'menu-edit-usulan',
-          title: 'Edit Usulan',
-          type: 'item',
-          icon: 'feather icon-server',
-          url: '/usulan-ku/daftar-usulan/1/edit'
-        }
+       
       ]
     }
   ]
