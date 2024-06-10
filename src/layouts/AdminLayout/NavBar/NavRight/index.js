@@ -17,37 +17,17 @@ const NavRight = () => {
   }, []);
   const [listOpen, setListOpen] = useState(false);
   const navigate = useNavigate()
-  const notiData = [
-    {
-      name: 'Joseph William',
-      image: avatar2,
-      details: 'Purchase New Theme and make payment',
-      activity: '30 min'
-    },
-    {
-      name: 'Sara Soudein',
-      image: avatar3,
-      details: 'currently login',
-      activity: '30 min'
-    },
-    {
-      name: 'Suzen',
-      image: avatar4,
-      details: 'Purchase New Theme and make payment',
-      activity: 'yesterday'
-    }
-  ];
 
   return (
     <React.Fragment>
       <ListGroup as="ul" bsPrefix=" " className="navbar-nav ml-auto" id="navbar-right">
-        <ListGroup.Item as="li" bsPrefix=" ">
+        <ListGroup.Item as="li" bsPrefix=" " style={{display:"none"}}>
           <Dropdown align="start">
             <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
               <i className="feather icon-bell icon" />
             </Dropdown.Toggle>
             <Dropdown.Menu align="end" className="notification notification-scroll">
-              <div className="noti-head">
+              <div className="noti-head" style={{display:"none"}}>
                 <h6 className="d-inline-block m-b-0">Notifications</h6>
                 <div className="float-end">
                   <Link to="#" className="me-2">
@@ -56,7 +36,7 @@ const NavRight = () => {
                   <Link to="#">clear all</Link>
                 </div>
               </div>
-              <PerfectScrollbar>
+              <PerfectScrollbar >
                 <ListGroup as="ul" bsPrefix=" " variant="flush" className="noti-body">
                   <ListGroup.Item as="li" bsPrefix=" " className="n-title">
                     <p className="m-b-0">NEW</p>
@@ -82,28 +62,6 @@ const NavRight = () => {
                   <ListGroup.Item as="li" bsPrefix=" " className="n-title">
                     <p className="m-b-0">EARLIER</p>
                   </ListGroup.Item>
-                  {notiData.map((data, index) => {
-                    return (
-                      <ListGroup.Item key={index} as="li" bsPrefix=" " className="notification">
-                        <Card
-                          className="d-flex align-items-center shadow-none mb-0 p-0"
-                          style={{ flexDirection: 'row', backgroundColor: 'unset' }}
-                        >
-                          <img className="img-radius" src={data.image} alt="Generic placeholder" />
-                          <Card.Body className="p-0">
-                            <p>
-                              <strong>{data.name}</strong>
-                              <span className="n-time text-muted">
-                                <i className="icon feather icon-clock me-2" />
-                                {data.activity}
-                              </span>
-                            </p>
-                            <p>{data.details}</p>
-                          </Card.Body>
-                        </Card>
-                      </ListGroup.Item>
-                    );
-                  })}
                 </ListGroup>
               </PerfectScrollbar>
               <div className="noti-footer">
@@ -112,7 +70,7 @@ const NavRight = () => {
             </Dropdown.Menu>
           </Dropdown>
         </ListGroup.Item>
-        <ListGroup.Item as="li" bsPrefix=" ">
+        <ListGroup.Item as="li" bsPrefix=" " style={{display:"none"}}>
           <Dropdown>
             <Dropdown.Toggle as={Link} variant="link" to="#" className="displayChatbox" onClick={() => setListOpen(true)}>
               <i className="icon feather icon-mail" />
@@ -147,7 +105,7 @@ const NavRight = () => {
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item" onClick={()=>{
                     localStorage.clear()
-                    navigate("/login")
+                    window.location="/login"
                   }}>
                     <i className="feather icon-log-out" /> Logout
                   </Link>

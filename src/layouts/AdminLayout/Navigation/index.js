@@ -1,17 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ConfigContext } from '../../../contexts/ConfigContext';
 import useWindowSize from '../../../hooks/useWindowSize';
 
 import NavLogo from './NavLogo';
 import NavContent from './NavContent';
-import navigation from '../../../menu-items';
+import navigation2 from '../../../menu-items';
+import { ApiCall } from '../../../Api/api';
 
 const Navigation = () => {
   const configContext = useContext(ConfigContext);
   const { layoutType, collapseMenu } = configContext.state;
   const windowSize = useWindowSize();
-
+  useEffect(() => {
+    ApiCall.post('/menus')
+      .then((res) => {
+        setNavigation(res?.data)
+      })
+      .catch((err) => {})
+      .finally(() => {});
+  }, []);
+  const [navigation, setNavigation] = useState({
+    items: []
+  });
   let navClass = ['pcoded-navbar'];
 
   navClass = [...navClass, layoutType];
