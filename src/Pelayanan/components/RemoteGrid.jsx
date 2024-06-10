@@ -57,7 +57,14 @@ const BuildPagination = (props) => {
           />
         )}
 
-        {props?.last_page != 1 && props?.current_page == props?.last_page && <Pagination.Last active />}
+        {props?.last_page != 1 && props?.current_page == props?.last_page && (
+          <Pagination.Last
+            active
+            onClick={() => {
+              onClickPage(current_page);
+            }}
+          />
+        )}
         {props?.current_page != props?.last_page && (
           <Pagination.Last
             onClick={() => {
@@ -80,15 +87,16 @@ export default (props) => {
     setLoading(true);
     const formData = new FormData();
     formData.append('page', page);
-    ApiCall.get(props?.grid_url, formData)
+    //ApiCall.post(props?.grid_url, formData})
+    ApiCall.get(props?.grid_url, { params: { page: page } })
       .then((res) => {
         setData(res?.data?.data);
         setCurrentPage(res?.data?.current_page);
         setLastPage(res?.data?.last_page);
       })
       .catch((err) => {
-        if(!err?.response){
-          AppInformasiError({options:{text:"Tidak dapat menghubungi backend"}})
+        if (!err?.response) {
+          AppInformasiError({ options: { text: 'Tidak dapat menghubungi backend' } });
         }
         if (err?.response?.status == 401) {
         }
