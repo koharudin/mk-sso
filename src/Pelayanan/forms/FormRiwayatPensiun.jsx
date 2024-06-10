@@ -53,7 +53,7 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO BKN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NO BKN"
           value={fields?.no_bkn}
@@ -65,7 +65,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL BKN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL BKN"
           value={fields?.tgl_bkn}
@@ -77,7 +77,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK PENSIUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SK PENSIUN"
           value={fields?.no_sk}
@@ -89,7 +89,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGAL PENSIUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TANGGAL PENSIUN"
           value={fields?.tgl_pensiun}
@@ -101,7 +101,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT PENSIUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TMT PENSIUN"
           value={fields?.tmt_pensiun}
@@ -124,7 +124,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MASA KERJA TAHUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="MASA KERJA TAHUN"
           value={fields?.masa_kerja_tahun}
@@ -136,7 +136,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MASA KERJA BULAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="MASA KERJA BULAN"
           value={fields?.masa_kerja_bulan}

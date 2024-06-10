@@ -65,7 +65,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JURUSAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="JURUSAN"
           value={fields?.jurusan}
@@ -77,7 +77,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA SEKOLAH</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NAMA SEKOLAH"
           value={fields?.nama_sekolah}
@@ -89,7 +89,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TEMPAT SEKOLAH</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TEMPAT SEKOLAH"
           value={fields?.tempat_sekolah}
@@ -101,7 +101,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO STTB</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NO STTB"
           value={fields?.no_sttb}
@@ -113,7 +113,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL STTB</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL STTB"
           value={fields?.tgl_sttb}
@@ -125,7 +125,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TAHUN"
           value={fields?.tahun}
@@ -137,7 +137,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>AKREDITASI</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="AKREDITASI"
           value={fields?.akreditasi}
@@ -149,7 +149,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>IPK</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="IPK"
           value={fields?.ipk}

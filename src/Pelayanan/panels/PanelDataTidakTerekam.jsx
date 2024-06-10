@@ -92,13 +92,13 @@ export default (props) => {
               recordId={recordId}
               propsWizard={props?.propsWizard}
             >
-              <FormUsulan disabledAll {...props} refData={refData} recordData={recordData} />
+              <FormUsulan  {...props} disabledAll refData={refData} recordData={recordData} />
             </PanelKonfirmasiUsulan>
           )}
         </>
       )}
 
-      {props?.activePanel == 'detail' && <FormUsulan disabledAll {...props} propsWizard={props?.propsWizard} />}
+      {props?.activePanel == 'detail' && <FormUsulan  {...props} disabledAll propsWizard={props?.propsWizard} />}
     </>
   );
 };

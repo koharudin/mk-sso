@@ -65,7 +65,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA BAHASA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NAMA BAHASA"
           value={fields?.nama_bahasa}
@@ -89,7 +89,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS SERTIFIKASI</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="JENIS SERTIFIKASI"
           value={fields?.jenis_sertifikasi}
@@ -101,7 +101,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>LEMBAGA SERTIFIKASI</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="LEMBAGA SERTIFIKASI"
           value={fields?.lembaga_sertifikasi}
@@ -113,7 +113,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>SKOR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="SKOR"
           value={fields?.skor}
@@ -126,7 +126,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL KADALUARSA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL KADALUARSA"
           value={fields?.tgl_expired}

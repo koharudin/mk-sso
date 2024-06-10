@@ -31,7 +31,10 @@ export default (props) => {
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if(e?.target?.files){
+      fields[key] = e?.target?.files;
+    }
+    else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -39,7 +42,7 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGAL</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TANGGAL"
           value={fields?.tgl}
@@ -51,7 +54,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PENGAJUAN JAM ABSEN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="time"
           value={fields?.time}
           onChange={(e) => {
@@ -62,12 +65,23 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>ALASAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll} readOnly={props?.disabledAll}
           as={'textarea'}
           placeholder="..."
           value={fields?.alasan}
           onChange={(e) => {
             onChangeField(e, 'alasan');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>DOKUMEN PENDUKUNG</Form.Label>
+        <Form.Control readOnly={props?.disabledAll}
+          type='file'
+          placeholder="DOKUMEN PENDUKUNG"
+          onChange={(e) => {
+            onChangeField(e, 'file');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>

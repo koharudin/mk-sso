@@ -65,7 +65,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SK"
           value={fields?.no_sk}
@@ -77,7 +77,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL SK"
           value={fields?.tgl_sk}
@@ -89,7 +89,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TAHUN"
           value={fields?.tahun}

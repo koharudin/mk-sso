@@ -63,7 +63,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NAMA"
           value={fields?.name}
@@ -75,7 +75,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TEMPAT LAHIR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TEMPAT LAHIR"
           value={fields?.birth_place}
@@ -88,7 +88,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL LAHIR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL LAHIR"
           value={fields?.birth_date}
@@ -100,7 +100,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PEKERJAAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="PEKERJAAN"
           value={fields?.pekerjaan}
@@ -112,7 +112,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>ALAMAT</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           as="textarea"
           placeholder="ALAMAT"
           value={fields?.alamat}
@@ -124,7 +124,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TELEPON</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TELEPON"
           value={fields?.telepon}

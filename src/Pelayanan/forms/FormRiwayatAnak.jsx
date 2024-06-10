@@ -46,7 +46,7 @@ const FormRiwayatAnak = (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="Nama"
           value={fields?.name}
@@ -58,7 +58,7 @@ const FormRiwayatAnak = (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TEMPAT LAHIR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="..."
           value={fields?.birth_place}
@@ -70,7 +70,7 @@ const FormRiwayatAnak = (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TANGGAL LAHIR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="..."
           value={fields?.birth_date}
@@ -92,7 +92,7 @@ const FormRiwayatAnak = (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>PEKERJAAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="..."
           value={fields?.pekerjaan}
@@ -124,7 +124,7 @@ const FormRiwayatAnak = (props) => {
       </Form.Group>{' '}
       <Form.Group className="mb-3">
         <Form.Label>BLN DIBAYAR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="..."
           value={fields?.bln_dibayar}
@@ -136,7 +136,7 @@ const FormRiwayatAnak = (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>BLN AKHIR DIBAYAR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="..."
           value={fields?.bln_akhir_dibayar}

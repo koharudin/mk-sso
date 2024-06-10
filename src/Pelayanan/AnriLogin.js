@@ -26,7 +26,7 @@ export default ({ className, ...rest }) => {
             .then((res) => {
               if(res?.data){
                 localStorage.setItem("app_data",JSON.stringify({token:res.data.token,user:res.data.user}))
-                navigate("/dashboard")
+                window.location="/dashboard"
               }
             })
             .catch((err) => {

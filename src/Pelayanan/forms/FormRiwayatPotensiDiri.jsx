@@ -49,7 +49,7 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TAHUN"
           value={fields?.tahun}
@@ -61,7 +61,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGUNG JAWAB</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TANGGUNG JAWAB"
           value={fields?.tanggung_jawab}
@@ -73,7 +73,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MOTIVASI</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="MOTIVASI"
           value={fields?.motivasi}
@@ -86,7 +86,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MINAT</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="MINAT"
           value={fields?.minat}

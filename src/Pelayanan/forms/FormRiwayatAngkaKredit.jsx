@@ -50,7 +50,7 @@ export default (props) => {
       
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="NO SK"
@@ -63,7 +63,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TGL SK"
@@ -76,7 +76,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL AWAL PENILAIAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TGL AWAL PENILAIAN"
@@ -89,7 +89,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL AKHIR PENILAIAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TGL AKHIR PENILAIAN"
@@ -102,7 +102,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JABATAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="JABATAN"
@@ -139,7 +139,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>AK LAMA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="AK LAMA"
@@ -152,7 +152,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>AK BARU</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="AK BARU"
@@ -166,7 +166,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KETERANGAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="textarea"
           placeholder="KETERANGAN"
@@ -179,7 +179,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT PAK</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TMT PAK"

@@ -34,7 +34,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KESETIAAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="KESETIAAN"
           value={fields?.kesetiaan}
@@ -46,7 +46,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGUNG JAWAB</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TANGGUNG JAWAB"
           value={fields?.tanggung_jawab}
@@ -58,7 +58,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KETAATAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="KETAATAN"
           value={fields?.ketaatan}
@@ -70,7 +70,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KEJUJURAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="KEJUJURAN"
           value={fields?.kejujuran}
@@ -82,7 +82,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KERJASAMA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="KERJASAMA"
           value={fields?.kerjasama}
@@ -94,7 +94,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PRAKARSA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="PRAKARSA"
           value={fields?.prakarsa}
@@ -106,7 +106,7 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KEPEMIMPINAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="KEPEMIMPINAN"
           value={fields?.kepemimpinan}

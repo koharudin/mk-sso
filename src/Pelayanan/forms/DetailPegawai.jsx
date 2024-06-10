@@ -6,11 +6,11 @@ export default (props) => {
     <Form>
       <Form.Group>
         <Form.Label>NAMA </Form.Label>
-        <Form.Control readOnly type="text" value={employee?.first_name || ""}></Form.Control>
+        <Form.Control readOnly={props?.disabledAll} readOnly type="text" value={employee?.first_name || ""}></Form.Control>
       </Form.Group>
       <Form.Group>
         <Form.Label>NIP </Form.Label>
-        <Form.Control readOnly type="text" value={employee?.nip_baru || ""}></Form.Control>
+        <Form.Control readOnly={props?.disabledAll} readOnly type="text" value={employee?.nip_baru || ""}></Form.Control>
       </Form.Group>
     </Form>
   );

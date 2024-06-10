@@ -77,7 +77,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NIP</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NIP"
           value={fields?.nip}
@@ -89,7 +89,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA SUAMI/ISTRI</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="NAMA SUAMI/ISTRI"
           value={fields?.name}
@@ -101,7 +101,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TEMPAT LAHIR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TEMPAT LAHIR"
           value={fields?.birth_place}
@@ -114,7 +114,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL LAHIR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL LAHIR"
           value={fields?.birth_date}
@@ -138,7 +138,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PEKERJAAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="PEKERJAAN"
           value={fields?.pekerjaan}
@@ -150,7 +150,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TEMPAT PEKERJAAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="TEMPAT PEKERJAAN"
           value={fields?.tempat_pekerjaan}
@@ -184,7 +184,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>BLN DIBAYAR</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="BLN DIBAYAR"
           value={fields?.bulan_dibayar}
@@ -201,7 +201,7 @@ export default (props) => {
         <Card.Body>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>NO BUKU NIKAH</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="text"
               placeholder="NO BUKU NIKAH"
               value={fields?.buku_nikah}
@@ -213,7 +213,7 @@ export default (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>NO KARIS</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="text"
               placeholder="NO KARIS"
               value={fields?.no_karis}
@@ -225,7 +225,7 @@ export default (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>SUAMI/ISTRI KE-</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="number"
               placeholder="SUAMI/ISTRI KE"
               value={fields?.urutan_pasangan}
@@ -237,7 +237,7 @@ export default (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>TGL NIKAH</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="date"
               placeholder="TGL NIKAH"
               value={fields?.tgl_kawin}
@@ -249,7 +249,7 @@ export default (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>NIKAH KE</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="number"
               placeholder="NIKAH KE"
               value={fields?.urutan_nikah}
@@ -268,7 +268,7 @@ export default (props) => {
         <Card.Body>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>NO SK CERAI</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="text"
               placeholder="NO SK CERAI"
               value={fields?.no_sk_cerai}
@@ -280,7 +280,7 @@ export default (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>TMT SK CERAI</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="date"
               placeholder="TMT SK CERAI"
               value={fields?.tmt_sk_cerai}
@@ -292,7 +292,7 @@ export default (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail1">
             <Form.Label>TGL SK CERAI</Form.Label>
-            <Form.Control
+            <Form.Control readOnly={props?.disabledAll}
               type="date"
               placeholder="TGL SK CERAI"
               value={fields?.tgl_sk_cerai}

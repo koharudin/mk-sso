@@ -83,7 +83,7 @@ const DetailUsulan = (props) => {
                     </Card.Header>
                     <Card.Body>
                       {Component && data?.data?.data?.action == 1 && (
-                        <Component activePanel="detail" refData={data?.data?.data?.new_data} />
+                        <Component  activePanel="detail" refData={data?.data?.data?.new_data} />
                       )}
                       {Component && data?.data?.data?.action == 2 && (
                         <Component activePanel="detail" refData={data?.data?.data?.new_data} />

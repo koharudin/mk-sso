@@ -52,7 +52,7 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL PERIKSA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL PERIKSA"
           value={fields?.tgl_periksa}
@@ -64,7 +64,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KELUHAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           as="textarea"
           placeholder="KELUHAN"
           value={fields?.keluhan}
@@ -76,7 +76,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>DIAGNOSA</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           as="textarea"
           placeholder="DIAGNOSA"
           value={fields?.diagnosa}
@@ -89,7 +89,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS PEMERIKSAAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="JENIS PEMERIKSAAN"
           value={fields?.jenis_pemeriksaan}
@@ -101,7 +101,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TINDAKAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           as="textarea"
           placeholder="TINDAKAN"
           value={fields?.tindakan}
@@ -113,7 +113,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>DOKTER</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           type="text"
           placeholder="DOKTER"
           value={fields?.dokter}
@@ -125,7 +125,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KETERANGAN</Form.Label>
-        <Form.Control
+        <Form.Control readOnly={props?.disabledAll}
           as="textarea"
           placeholder="KETERANGAN"
           value={fields?.keterangan}
