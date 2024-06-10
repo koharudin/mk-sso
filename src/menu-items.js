@@ -22,13 +22,6 @@ const menuItems = {
       icon: 'icon-ui',
       children: [
         {
-          id: 'menu-generate-token',
-          title: 'Generate Token',
-          type: 'item',
-          icon: 'feather icon-server',
-          url: '/login-token'
-        },
-        {
           id: 'menu-daftar-usulan',
           title: 'Daftar Usulan',
           type: 'item',

@@ -5,37 +5,41 @@ import { Row, Col, Button, Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { ApiCall } from '../Api/api';
+import { isSubmitting } from 'redux-form';
+import { useNavigate } from 'react-router-dom';
 
 export default ({ className, ...rest }) => {
-  const onSignIn = () => {};
-  const handleSubmit = () => {
-    alert(1);
-  };
+  const navigate = useNavigate()
   return (
     <React.Fragment>
       <Formik
         initialValues={{
-          email: '',
+          username: '',
           password: '',
           submit: null
         }}
-        onSubmit={(values) => {
+        onSubmit={(values,{setSubmitting}) => {
           const formData = new FormData();
           formData.append('username', values.username);
           formData.append('password', values.password);
           ApiCall.post('/login-token', formData)
             .then((res) => {
-              debugger
+              if(res?.data){
+                localStorage.setItem("app_data",JSON.stringify({token:res.data.token,user:res.data.user}))
+                navigate("/")
+              }
             })
             .catch((err) => {
-              debugger
+              if(err?.response?.data){
+                alert(err.response.data)
+              }
             })
             .finally(() => {
-              debugger
+              setSubmitting(false)
             });
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+          username: Yup.string().max(255).required('Username is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
       >
@@ -44,12 +48,12 @@ export default ({ className, ...rest }) => {
             <div className="form-group mb-3">
               <input
                 className="form-control"
-                label="Email Address / Username"
-                name="email"
+                label="Username"
+                name="username"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                type="email"
-                value={values.email}
+                type="text"
+                value={values.username}
               />
               {touched.email && errors.email && <small className="text-danger form-text">{errors.email}</small>}
             </div>

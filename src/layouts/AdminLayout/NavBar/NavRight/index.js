@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, ListGroup, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import ChatList from './ChatList';
@@ -9,10 +9,14 @@ import avatar1 from '../../../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../../../assets/images/user/avatar-2.jpg';
 import avatar3 from '../../../../assets/images/user/avatar-3.jpg';
 import avatar4 from '../../../../assets/images/user/avatar-4.jpg';
-
+import AppApi from '../../../../Api/app_api';
 const NavRight = () => {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(AppApi.userLogin);
+  }, []);
   const [listOpen, setListOpen] = useState(false);
-
+  const navigate = useNavigate()
   const notiData = [
     {
       name: 'Joseph William',
@@ -123,7 +127,7 @@ const NavRight = () => {
             <Dropdown.Menu align="end" className="profile-notification">
               <div className="pro-head">
                 <img src={avatar1} className="img-radius" alt="User Profile" />
-                <span>John Doe</span>
+                <span>{user?.name}</span>
                 <Link to="#" className="dud-logout" title="Logout">
                   <i className="feather icon-log-out" />
                 </Link>
@@ -139,18 +143,12 @@ const NavRight = () => {
                     <i className="feather icon-user" /> Profile
                   </Link>
                 </ListGroup.Item>
+
                 <ListGroup.Item as="li" bsPrefix=" ">
-                  <Link to="#" className="dropdown-item">
-                    <i className="feather icon-mail" /> My Messages
-                  </Link>
-                </ListGroup.Item>
-                <ListGroup.Item as="li" bsPrefix=" ">
-                  <Link to="#" className="dropdown-item">
-                    <i className="feather icon-lock" /> Lock Screen
-                  </Link>
-                </ListGroup.Item>
-                <ListGroup.Item as="li" bsPrefix=" ">
-                  <Link to="#" className="dropdown-item">
+                  <Link to="#" className="dropdown-item" onClick={()=>{
+                    localStorage.clear()
+                    navigate("/login")
+                  }}>
                     <i className="feather icon-log-out" /> Logout
                   </Link>
                 </ListGroup.Item>
