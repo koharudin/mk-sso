@@ -11,7 +11,7 @@ import { AppInformasi, AppInformasiError, AppKonfirmasi } from './components/App
 export default (props) => {
   const navigate = useNavigate();
   const params = useParams();
-  const [alasan, setAlasan] = useState();
+  const [alasan, setAlasan] = useState('');
   const [data, setData] = useState([]);
   const [employee, setEmployee] = useState();
   const [Component, setComponent] = useState();
