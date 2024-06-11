@@ -75,6 +75,17 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>DOKUMEN PENDUKUNG</Form.Label>
+        <Form.Control readOnly={props?.disabledAll}
+          type='file'
+          placeholder="DOKUMEN PENDUKUNG"
+          onChange={(e) => {
+            onChangeField(e, 'file');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
     </>
   );
 };

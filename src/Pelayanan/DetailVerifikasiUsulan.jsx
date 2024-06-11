@@ -6,15 +6,70 @@ import Moment from 'react-moment';
 import DetailPegawai from './forms/DetailPegawai';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaCheck, FaCross, FaRemoveFormat } from 'react-icons/fa';
+import { AppInformasi, AppInformasiError, AppKonfirmasi } from './components/App';
 
 export default (props) => {
   const navigate = useNavigate();
   const params = useParams();
+  const [alasan, setAlasan] = useState();
   const [data, setData] = useState([]);
   const [employee, setEmployee] = useState();
   const [Component, setComponent] = useState();
-  const onOK = () => {};
-  const onTolak = () => {};
+  const onOK = () => {
+    AppKonfirmasi({
+      title: 'Perhatian',
+      cancelButtonText: 'Batal ',
+      html: 'Apakah anda yakin mau <b>MENERIMA</b> usulan ini ?',
+      onConfirmed: () => {
+        const formData = new FormData();
+        formData.append('uuid', params.uuid_usulan);
+        formData.append('alasan', alasan);
+        formData.append('action', 'terima');
+        ApiCall.post('/on-verify', formData)
+          .then((res) => {
+            AppInformasi({
+              onConfirmed: () => {
+                window.location.reload();
+              },
+              options: { text: 'Data berhasil di verifikasi' }
+            });
+          })
+          .catch((err) => {
+            if (err.response.status == 422) {
+              AppInformasiError({ options: { text: err?.response?.data?.message } });
+            }
+          })
+          .finally(() => {});
+      }
+    });
+  };
+  const onTolak = () => {
+    AppKonfirmasi({
+      title: 'Perhatian',
+      html: 'Apakah anda yakin mau menolak usulan ini ?',
+      onConfirmed: () => {
+        const formData = new FormData();
+        formData.append('uuid', params.uuid_usulan);
+        formData.append('alasan', alasan);
+        formData.append('action', 'tolak');
+        ApiCall.post('/on-verify', formData)
+          .then((res) => {
+            AppInformasi({
+              onConfirmed: () => {
+                window.location.reload();
+              },
+              options: { text: 'Data berhasil di verifikasi' }
+            });
+          })
+          .catch((err) => {
+            if (err.response.status == 422) {
+              AppInformasiError({ options: { text: err?.response?.data?.message } });
+            }
+          })
+          .finally(() => {});
+      }
+    });
+  };
 
   useEffect(() => {
     ApiCall.get('/usulan/' + params.uuid_usulan + '/detail')
@@ -23,7 +78,7 @@ export default (props) => {
         const comp = lazy(() => import('./' + res?.data?.data?.obj_kategori?.panelclass));
         setComponent(comp);
       })
-      .catch((resError) => {})
+      .catch((err) => {})
       .finally(() => {});
   }, []);
 
@@ -126,6 +181,36 @@ export default (props) => {
                       </Table>
                     </Card.Body>
                   </Card>
+                  {data?.data?.status_id <=2 && (
+                    <Card>
+                      <Card.Header>
+                        <Card.Title as="h5">Form Verifikasi</Card.Title>
+                      </Card.Header>
+
+                      <Card.Body>
+                        <Form.Group>
+                          <Form.Label>ALASAN </Form.Label>
+                          <Form.Control
+                            as="textarea"
+                            value={alasan}
+                            onChange={(e) => {
+                              setAlasan(e.target.value);
+                            }}
+                          ></Form.Control>
+                        </Form.Group>
+                      </Card.Body>
+                      <Card.Footer>
+                        <Button variant="primary" onClick={onOK} style={{ float: 'right' }}>
+                          <FaCheck />
+                          Terima
+                        </Button>
+                        <Button variant="danger" onClick={onTolak} style={{ float: 'right' }}>
+                          <FaRemoveFormat />
+                          Tolak
+                        </Button>
+                      </Card.Footer>
+                    </Card>
+                  )}
                 </Col>
               </Row>
             </Card.Body>
@@ -137,14 +222,6 @@ export default (props) => {
                 }}
               >
                 <FaArrowLeft></FaArrowLeft> Ke Daftar Verifikasi
-              </Button>
-              <Button variant="primary" onClick={onOK} style={{float:"right"}}>
-                <FaCheck />
-                Terima
-              </Button>
-              <Button variant="danger" onClick={onTolak} style={{float:"right"}}>
-                <FaRemoveFormat />
-                Tolak
               </Button>
             </Card.Footer>
           </Card>

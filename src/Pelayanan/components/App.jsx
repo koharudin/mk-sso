@@ -9,7 +9,8 @@ export const AppKonfirmasi = (props) => {
     html,
     icon: 'question',
     showCancelButton: true,
-    cancelButtonText,
+    cancelButtonText: props?.cancelButtonText ?? cancelButtonText,
+    confirmButtonText: props?.confirmButtonText ?? confirmButtonText,
     confirmButtonText,
     reverseButtons: true
   }).then((r) => {

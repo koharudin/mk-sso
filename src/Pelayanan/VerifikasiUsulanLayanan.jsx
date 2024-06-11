@@ -15,7 +15,9 @@ export default (props) => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [randomReload, setRandomReload] = useState();
-  const onVerifikasiUsulan = () => {};
+  const onVerifikasiUsulan = (action) => {
+    
+  };
 
   return (
     <React.Fragment>
@@ -36,7 +38,7 @@ export default (props) => {
                     label: 'DIAJUKAN OLEH',
                     field: 'obj_employee',
                     formatter: function (value) {
-                      return value?.first_name +" / "+ value?.nip_baru;
+                      return value?.first_name + ' / ' + value?.nip_baru;
                     }
                   },
                   {
