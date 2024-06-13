@@ -35,7 +35,7 @@ const numberWithCommas = (x) => {
 }
 const logout = () => {
   localStorage.clear()
-  window.location = "/admin/login"
+  window.location = "/login"
 }
 const uploadDokumen = async (formData) => {
   return await ApiCall.post(`/upload-dokumen`, formData).then((res) => {
