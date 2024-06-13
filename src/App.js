@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes,Switch } from 'react-router-dom';
 
 // auth provider
 
@@ -10,12 +10,15 @@ import Loader from './components/Loader/Loader';
 const App = () => {
   return (
     <React.Fragment>
-      <BrowserRouter basename={process.env.REACT_APP_BASE_NAME}>
-        <Suspense fallback={<Loader />}>
+      
+      <Suspense fallback={<Loader />}>
+      <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
+        <Switch>
           {renderRoutes(routes)}
           {renderAuthenticatedRoutes(authenticatedRoutes)}
-        </Suspense>
+          </Switch>
       </BrowserRouter>
+      </Suspense>
     </React.Fragment>
   );
 };
