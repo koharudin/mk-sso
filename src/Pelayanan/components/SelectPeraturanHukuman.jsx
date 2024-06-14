@@ -37,6 +37,21 @@ const SelectPeraturanHukuman = (props) => {
     }
   }, [data]);
   useEffect(() => {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
+      ApiCall.get('/master-peraturan-hukuman/' + props?.value?.value + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
+  useEffect(() => {
     setIsLoading(true);
     ApiCall.post('/master-peraturan-hukuman')
       .then((res) => {

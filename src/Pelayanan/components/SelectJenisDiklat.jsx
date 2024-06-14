@@ -37,6 +37,28 @@ const SelectJenisDiklat = (props) => {
     }
   }, [data]);
   useEffect(() => {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
+      let url = '/master-jenis-diklat-struktural';
+      if (props?.jenis_diklat == 'struktural') {
+        url = '/master-jenis-diklat-struktural';
+      }
+      if (props?.jenis_diklat == 'teknis') {
+        url = '/master-jenis-diklat-teknis';
+      }
+      ApiCall.get(url + props?.value?.value + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
+  useEffect(() => {
     setIsLoading(true);
     let url = '/master-jenis-diklat-struktural';
     if (props?.jenis_diklat == 'struktural') {

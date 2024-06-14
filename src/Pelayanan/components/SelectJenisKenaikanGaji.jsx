@@ -37,6 +37,21 @@ const SelectJenisKenaikanGaji = (props) => {
     }
   }, [data]);
   useEffect(() => {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
+      ApiCall.get('/master-jenis-kenaikan-gaji/' + props?.value?.value + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
+  useEffect(() => {
     setIsLoading(true);
     let url = '/master-jenis-kenaikan-gaji';
 

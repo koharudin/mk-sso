@@ -25,6 +25,21 @@ const SelectPelanggaran = (props) => {
   const [isLoading, setIsLoading] = useState();
   const [selectedOption, setSelectedOption] = useState();
   useEffect(() => {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
+      ApiCall.get('/master-pelanggaran/' + props?.value?.value + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name +" - "+"["+res?.data?.id+"]"
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
+  useEffect(() => {
     if (data) {
       let o = data?.map((v, i) => {
         return {

@@ -37,6 +37,21 @@ const SelectJenisDiklatSIASN = (props) => {
     }
   }, [data]);
   useEffect(() => {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
+      ApiCall.get('/master-jenis-diklat-siasn/' + props?.value?.value + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id_siasn,
+              label: res?.data?.jenis_diklat + ' - ' + '[' + res?.data?.id_siasn + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
+  useEffect(() => {
     setIsLoading(true);
     let url = '/master-jenis-diklat-siasn';
     ApiCall.post(url)

@@ -35,11 +35,26 @@ export default (props) => {
     }
   }, [data]);
   useEffect(() => {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
+      ApiCall.get('/master-jenis-layanan/' + props?.value?.value + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
+  useEffect(() => {
     setIsLoading(true);
     let url = '/master-jenis-layanan';
     var formData = new FormData();
-    formData.append("pagination",false);
-    ApiCall.post(url,formData)
+    formData.append('pagination', false);
+    ApiCall.post(url, formData)
       .then((res) => {
         setData(res?.data);
       })
@@ -50,10 +65,9 @@ export default (props) => {
 
   const onChangeSelection = (vals) => {
     if (onChange) {
-      if(vals){
-        onChange(vals?.value,vals.o);
-      }
-      else onChange(null,null);
+      if (vals) {
+        onChange(vals?.value, vals.o);
+      } else onChange(null, null);
     }
   };
   return (
