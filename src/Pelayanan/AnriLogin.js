@@ -52,21 +52,19 @@ export default ({ className, ...rest }) => {
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} className={className} {...rest}>
             <div className="form-group mb-3">
-              <input
-                className="form-control"
-                label="Username"
-                name="username"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                type="text"
-                value={values.username}
-              />
+              <FormControl
+                  type={inputTypePassword}
+                  name='username' placeholder='Username'
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.username}
+                />
               {touched.email && errors.email && <small className="text-danger form-text">{errors.email}</small>}
             </div>
             <div className="form-group mb-4">
               <InputGroup>
                 <FormControl
-                  type={inputTypePassword}
+                  type={inputTypePassword} placeholder='Kata Sandi'
                   name='password'
                   onBlur={handleBlur}
                   onChange={handleChange}

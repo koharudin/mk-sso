@@ -3,7 +3,6 @@ import Select, { components, ControlProps, Props, StylesConfig } from 'react-sel
 import { ApiCall } from '../../Api/api';
 import AsyncSelect from 'react-select/async';
 import { AsyncPaginate } from 'react-select-async-paginate';
-
 const Control = (children, ...props) => {
   return <components.Control {...props}>{children}</components.Control>;
 };
@@ -28,9 +27,8 @@ export default (props) => {
   const [isLoading, setIsLoading] = useState();
   const [selectedOption, setSelectedOption] = useState();
   const [q, setQ] = useState();
-
   useEffect(() => {
-    if (props?.value) {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
       ApiCall.get('/master-pangkat/' + props?.value?.value + '/detail')
         .then((res) => {
           if (res?.data) {
@@ -43,7 +41,7 @@ export default (props) => {
         .catch((err) => {})
         .finally(() => {});
     }
-  }, props.value);
+  }, [props]);
   const onLoad = async (pSearch, pPage) => {
     const formData = new FormData();
     formData.append('page', page);

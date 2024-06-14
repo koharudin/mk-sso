@@ -126,7 +126,7 @@ export default (props) => {
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>PANGKAT</Form.Label>
+        <Form.Label>PANGKAT {fields?.pangkat_id}</Form.Label>
         <SelectPangkat
           isDisabled={props?.disabledAll}
           placeholder="PANGKAT"

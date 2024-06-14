@@ -11,7 +11,7 @@ const App = () => {
   return (
     <React.Fragment>
       <Suspense fallback={<Loader />}>
-        <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
+        <BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL??false}>
           
             {renderRoutes(routes)}
             {renderAuthenticatedRoutes(authenticatedRoutes)}

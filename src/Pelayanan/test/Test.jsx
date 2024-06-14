@@ -1,5 +1,5 @@
 import { Button, Card, Image } from 'react-bootstrap';
-import FormDataTidakTerekam from './forms/FormDataTidakTerekam';
+import FormDataTidakTerekam from '../forms/FormDataTidakTerekam';
 import { useEffect, useRef, useState } from 'react';
 export default (props) => {
   const [editedData, setEditedData] = useState();

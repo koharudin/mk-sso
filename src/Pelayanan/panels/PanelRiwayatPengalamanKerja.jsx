@@ -107,7 +107,7 @@ export default (props) => {
   const [recordId, setRecordId] = useState();
   const recordIdName = 'id';
   const title = 'Riwayat Pengalaman Kerja';
-  const grid_url='/riwayat-pengalaman-kerja'
+  const grid_url='/riwayat-pengalamankerja'
   return (
     <>
       {props?.activePanel == 'init' && (

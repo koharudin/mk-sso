@@ -30,7 +30,7 @@ export default (props) => {
   const [q, setQ] = useState();
 
   useEffect(() => {
-    if (props?.value && props?.value != null && props?.value != '') {
+    if (props?.value && props?.value?.value && props?.value?.value != '') {
       ApiCall.get('/master-unitkerja/' + props?.value?.value + '/detail')
         .then((res) => {
           if (res?.data) {
@@ -43,7 +43,7 @@ export default (props) => {
         .catch((err) => {})
         .finally(() => {});
     }
-  }, props.value);
+  }, [props]);
   const onLoad = async (pSearch, pPage) => {
     const formData = new FormData();
     formData.append('page', page);
