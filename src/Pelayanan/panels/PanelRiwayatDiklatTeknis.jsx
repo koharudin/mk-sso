@@ -161,6 +161,7 @@ export default (props) => {
               recordId={recordId}
               propsWizard={props?.propsWizard}
             >
+             
               <FormUsulan disabledAll {...props} refData={refData} recordData={recordData} />
             </PanelKonfirmasiUsulan>
           )}

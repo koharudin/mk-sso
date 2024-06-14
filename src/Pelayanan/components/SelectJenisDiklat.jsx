@@ -34,7 +34,7 @@ export default (props) => {
       setUrl('/master-jenis-diklat-struktural/');
     }
     if (props?.jenis_diklat == 'teknis') {
-      seturl('/master-jenis-diklat-teknis/');
+      setUrl('/master-jenis-diklat-teknis/');
     }
   }, [props]);
   useEffect(() => {

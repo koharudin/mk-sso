@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import SelectJenisDiklat from '../components/SelectJenisDiklat';
 export default (props) => {
   const [fields, setFields] = useState({
-    jenis_diklat: '',
+    jenis_diklat_siasn: '',
     nama_diklat: '',
     penyelenggara: '',
     tempat: '',
@@ -34,27 +34,28 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'jenis_diklat_siasn') {
+      fields[key] = e;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
   return (
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>JENIS DIKLAT</Form.Label>
+        <Form.Label>JENIS DIKLAT </Form.Label>
         <SelectJenisDiklat
           jenis_diklat="teknis"
+          readOnly={props?.disabledAll}
           placeholder="JENIS DIKLAT"
-          value={fields?.jenis_diklat}
+          value={fields?.jenis_diklat_siasn}
           onChange={(e) => {
-            onChangeField(e, 'jenis_diklat');
+            onChangeField(e, 'jenis_diklat_siasn');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
