@@ -27,9 +27,9 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    console.log(fields);
+    
     if (props?.changeListener) {
-      console.log('ccchange');
+      
       props?.changeListener({ ...fields });
     }
   }, [fields]);

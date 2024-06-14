@@ -6,7 +6,6 @@ import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 
 export default (props) => {
-  
   const [fields, setFields] = useState({
     no_sk: '',
     tgl_sk: null,
@@ -32,25 +31,23 @@ export default (props) => {
     }
   }, [props?.recordData]);
 
-
-  useEffect(()=>{
-    console.log(fields)
-    if(props?.changeListener){
-      console.log("ccchange")
-      props?.changeListener({...fields})
-    }
+  useEffect(() => {
     
-  },[fields])
+    if (props?.changeListener) {
+      
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
     fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   return (
     <>
-      
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="NO SK"
@@ -63,7 +60,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TGL SK"
@@ -76,7 +74,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL AWAL PENILAIAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TGL AWAL PENILAIAN"
@@ -89,7 +88,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL AKHIR PENILAIAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TGL AKHIR PENILAIAN"
@@ -102,7 +102,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JABATAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="JABATAN"
@@ -139,7 +140,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>AK LAMA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="AK LAMA"
@@ -152,7 +154,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>AK BARU</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="text"
           placeholder="AK BARU"
@@ -166,7 +169,8 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KETERANGAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="textarea"
           placeholder="KETERANGAN"
@@ -179,7 +183,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT PAK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           disabled={props?.disabledAll}
           type="date"
           placeholder="TMT PAK"

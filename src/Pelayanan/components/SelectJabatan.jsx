@@ -63,6 +63,7 @@ const SelectJabatan = (props) => {
   }, []);
 
   const onChangeSelection = (vals) => {
+    
     if (onChange) {
       onChange(vals?.value);
     }

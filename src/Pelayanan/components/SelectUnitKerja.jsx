@@ -12,7 +12,9 @@ const Option = (props) => {
   return (
     <>
       <components.Option {...props}>
-        <b>{props.data?.o?.name} - [{props.data?.o?.id}]</b>
+        <b>
+          {props.data?.o?.name} - [{props.data?.o?.id}]
+        </b>
         <br></br>
         {props.data?.o?.keterangan}
       </components.Option>
@@ -28,15 +30,17 @@ export default (props) => {
   const [isLoading, setIsLoading] = useState();
   const [selectedOption, setSelectedOption] = useState();
   const [q, setQ] = useState();
+  const [url, setUrl] = useState('/master-unitkerja/');
+
 
   useEffect(() => {
     if (props?.value && props?.value?.value && props?.value?.value != '') {
-      ApiCall.get('/master-unitkerja/' + props?.value?.value + '/detail')
+      ApiCall.get(url + props?.value?.value + '/detail')
         .then((res) => {
           if (res?.data) {
             setSelectedOption({
               value: res?.data?.id,
-              label: res?.data?.name +" - "+"["+res?.data?.id+"]"
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
             });
           }
         })
@@ -49,12 +53,12 @@ export default (props) => {
     formData.append('page', page);
     formData.append('q', pSearch);
 
-    const res = await ApiCall.post('/master-unitkerja', formData);
+    const res = await ApiCall.post(get_url, formData);
     return {
       options: res?.data?.data?.map((v, i) => {
         return {
           value: v.id,
-          label: v.name+" - "+"["+v.id+"]",
+          label: v.name + ' - ' + '[' + v.id + ']',
           o: v
         };
       }),
@@ -87,14 +91,21 @@ export default (props) => {
   };
   return (
     <>
-      <AsyncPaginate
-        debounceTimeout={3}
-        components={{ Option }}
-        onChange={onChangeSelection}
-        {...otherProps}
-        value={selectedOption}
-        loadOptions={loadOptions}
-      />
+      {props?.isDisabled ?? (
+        <>
+          <Form.Control readOnly={props?.isDisabled} value={selectedOption?.label}></Form.Control>
+        </>
+      )}
+      {!props?.isDisabled ?? (
+        <AsyncPaginate
+          debounceTimeout={3}
+          components={{ Option }}
+          onChange={onChangeSelection}
+          {...otherProps}
+          value={selectedOption}
+          loadOptions={loadOptions}
+        />
+      )}
     </>
   );
 };

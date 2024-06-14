@@ -13,7 +13,6 @@ import SelectPelanggaran from '../components/SelectPelanggaran';
 import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
 import SelectPendidikan from '../components/SelectPendidikan';
 import SelectJenisDiklatSIASN from '../components/SelectJenisDiklatSIASN';
-
 export default (props) => {
   const [fields, setFields] = useState({
     nama: '',
@@ -41,15 +40,18 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    console.log(fields);
     if (props?.changeListener) {
-      console.log('ccchange');
       props?.changeListener({ ...fields });
     }
   }, [fields]);
 
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'jenis_diklat_siasn') {
+      fields[key] = e;
+    } else {
+      fields[key] = e?.target?.value;
+    }
+
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -58,6 +60,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS DIKLAT</Form.Label>
         <SelectJenisDiklatSIASN
+          name="jenis_diklat_siasn"
           placeholder="JENIS DIKLAT"
           value={fields?.jenis_diklat_siasn}
           onChange={(e) => {
@@ -68,7 +71,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA KURSUS</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NAMA KURSUS"
           value={fields?.nama}
@@ -80,7 +84,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PENYELENGGARA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="PENYELENGGARA"
           value={fields?.penyelenggara}
@@ -92,7 +97,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TEMPAT</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="TEMPAT"
           value={fields?.tempat}
@@ -104,7 +110,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>ANGKATAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="ANGKATAN"
           value={fields?.angkatan}
@@ -116,7 +123,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SERTIFIKAT</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SERTIFIKAT"
           value={fields?.no_sttpp}
@@ -128,7 +136,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SERTIFIKAT</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL SERTIFIKAT"
           value={fields?.tgl_sttpp}
@@ -140,7 +149,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="TAHUN"
           value={fields?.tahun}
@@ -152,7 +162,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL MULAI</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL MULAI"
           value={fields?.tgl_mulai}
@@ -164,7 +175,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SELESAI</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL SELESAI"
           value={fields?.tgl_selesai}
@@ -176,7 +188,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JUMLAH JAM</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="JUMLAH JAM"
           value={fields?.lama_jam}

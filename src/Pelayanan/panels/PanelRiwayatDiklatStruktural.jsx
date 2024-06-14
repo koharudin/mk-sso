@@ -72,7 +72,7 @@ const FormInput = (props) => {
             <Row></Row>
             <Row>
               <Col lg="6">
-                <FormUsulan disabledAll {...props} />
+                <FormUsulan disabledAll={true} {...props} />
               </Col>
               <Col lg="6">
                 <FormUsulan {...props} changeListener={onListenFields} />

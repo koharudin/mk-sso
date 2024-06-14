@@ -162,7 +162,7 @@ const routes = [
   {
     exact: 'true',
     path: '/test',
-    element: lazy(() => import('./Pelayanan/test/TestAnak'))
+    element: lazy(() => import('./Pelayanan/test/Test'))
   },
   {
     exact: 'true',
