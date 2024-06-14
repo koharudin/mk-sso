@@ -13,7 +13,7 @@ export default (props) => {
     gelar_depan: '',
     gelar_belakang: '',
     birth_place: '',
-    birth_date: '',
+    birth_date: null,
     sex: '',
     status_kawin: '',
     golongan_darah: '',

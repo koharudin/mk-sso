@@ -6,7 +6,7 @@ import SelectDapatTunjangan from '../components/SelectStatusKeluarga';
 
 export default (props) => {
   const [fields, setFields] = useState({
-    tgl: '',
+    tgl: null,
     waktu: '',
     alasan: '',
     file: ''

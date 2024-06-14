@@ -15,10 +15,10 @@ import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
 export default (props) => {
   const [fields, setFields] = useState({
     no_bkn: '',
-    tgl_bkn: '',
+    tgl_bkn: null,
     no_sk: '',
-    tgl_pensiun: '',
-    tmt_pensiun: '',
+    tgl_pensiun: null,
+    tmt_pensiun: null,
     pangkat_id: '',
     masa_kerja_tahun: '',
     masa_kerja_bulan: '',
@@ -90,7 +90,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGAL PENSIUN</Form.Label>
         <Form.Control readOnly={props?.disabledAll}
-          type="text"
+          type="date"
           placeholder="TANGGAL PENSIUN"
           value={fields?.tgl_pensiun}
           onChange={(e) => {
@@ -102,7 +102,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT PENSIUN</Form.Label>
         <Form.Control readOnly={props?.disabledAll}
-          type="text"
+          type="date"
           placeholder="TMT PENSIUN"
           value={fields?.tmt_pensiun}
           onChange={(e) => {

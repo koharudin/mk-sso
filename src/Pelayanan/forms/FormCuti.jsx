@@ -8,8 +8,8 @@ import SelectCuti from '../components/SelectCuti';
 
 export default (props) => {
   const [fields, setFields] = useState({
-    tgl_mulai: '',
-    tgl_selesai: '',
+    tgl_mulai: null,
+    tgl_selesai: null,
     jenis_cuti: '',
     alasan: '',
     file: ''

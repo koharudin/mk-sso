@@ -18,7 +18,7 @@ export default (props) => {
     name: '',
     status: '',
     birth_place: '',
-    birth_date: '',
+    birth_date: null,
     pekerjaan: '',
     alamat: '',
     telepon: ''

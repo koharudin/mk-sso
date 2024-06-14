@@ -17,7 +17,7 @@ export default (props) => {
   const [fields, setFields] = useState({
     nama_penghargaan: '',
     no_sk: '',
-    tgl_sk: '',
+    tgl_sk: null,
     pejabat_penetap_jabatan: '',
     tahun: '',
     jenis_penghargaan: '',

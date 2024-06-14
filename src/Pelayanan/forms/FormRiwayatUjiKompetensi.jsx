@@ -19,7 +19,7 @@ export default (props) => {
     jabatan: '',
     satker: '',
     keterangan: '',
-    tanggal: ''
+    tanggal: null
   });
   useEffect(() => {
     if (props?.refData) {
@@ -49,7 +49,8 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JABATAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="JABATAN"
           value={fields?.jabatan}
@@ -61,7 +62,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>SATUAN KERJA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="SATUAN KERJA"
           value={fields?.satker}
@@ -73,7 +75,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KETERANGAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="KETERANGAN"
           value={fields?.keterangan}
@@ -86,7 +89,8 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGAL</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="TANGGAL"
           value={fields?.tanggal}

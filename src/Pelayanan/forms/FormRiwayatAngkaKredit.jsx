@@ -9,16 +9,16 @@ export default (props) => {
   
   const [fields, setFields] = useState({
     no_sk: '',
-    tgl_sk: '',
-    dt_awal_penilaian: '',
-    dt_akhir_penilaian: '',
+    tgl_sk: null,
+    dt_awal_penilaian: null,
+    dt_akhir_penilaian: null,
     jabatan: '',
     unit_kerja_id: '',
     pangkat_id: '',
     ak_lama: '',
     ak_baru: '',
     keterangan: '',
-    tmt_pak: ''
+    tmt_pak: null
   });
   useEffect(() => {
     if (props?.refData) {

@@ -16,7 +16,7 @@ const BuildPagination = (props) => {
       }
     }
     setListI([...arr]);
-  }, current_page);
+  }, [current_page]);
   const onClickPage = (page) => {
     props?.onPaging(page);
   };

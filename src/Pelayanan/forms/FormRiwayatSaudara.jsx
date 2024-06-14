@@ -8,7 +8,7 @@ export default (props) => {
   const [fields, setFields] = useState({
     name: '',
     birth_place: '',
-    birth_date: '',
+    birth_date: null,
     sex: 'L',
     pekerjaan: '',
     alamat: '',

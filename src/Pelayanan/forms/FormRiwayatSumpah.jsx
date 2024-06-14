@@ -15,7 +15,7 @@ import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
 export default (props) => {
   const [fields, setFields] = useState({
     no_sumpah: '',
-    tgl_sumpah: '',
+    tgl_sumpah: null,
     keterangan: ''
   });
   useEffect(() => {

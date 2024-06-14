@@ -16,7 +16,7 @@ import SelectJenisDiklatSIASN from '../components/SelectJenisDiklatSIASN';
 
 export default (props) => {
   const [fields, setFields] = useState({
-    tgl_periksa: '',
+    tgl_periksa: null,
     keluhan: '',
     diagnosa: '',
     jenis_pemeriksaan: '',

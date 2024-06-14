@@ -24,7 +24,7 @@ export default (props) => {
     jenis_sertifikasi: '',
     lembaga_sertifikasi: '',
     skor: '',
-    tgl_expired: ''
+    tgl_expired: null
   });
   useEffect(() => {
     if (props?.refData) {

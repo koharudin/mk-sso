@@ -18,8 +18,8 @@ export default (props) => {
   const [fields, setFields] = useState({
     nama: '',
     jabatan: '',
-    awal: '',
-    akhir: '',
+    awal: null,
+    akhir: null,
     pimpinan: '',
     tempat: ''
   });

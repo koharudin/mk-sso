@@ -15,14 +15,14 @@ import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
 export default (props) => {
   const [fields, setFields] = useState({
     no_sk: '',
-    tgl_sk: '',
+    tgl_sk: null,
     pelanggaran: '',
-    tmt_sk: '',
+    tmt_sk: null,
     pejabat_penetap_id: '',
     pejabat_penetap_jabatan: '',
     pejabat_penetap_nip: '',
     pejabat_penetap_nama: '',
-    tmt_akhir: '',
+    tmt_akhir: null,
     masa_bulan: '',
     masa_tahun: '',
     nomor_pp: '',
@@ -57,7 +57,6 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TINGKAT HUKUMAN </Form.Label>
         <SelectTingkatHukuman
-          type="date"
           placeholder="TINGKAT HUKUMAN"
           value={fields?.tingkat_hukuman}
           onChange={(e) => {
@@ -69,7 +68,6 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS HUKUMAN </Form.Label>
         <SelectJenisHukuman
-          type="date"
           placeholder="JENIS HUKUMAN"
           value={fields?.jenis_hukuman}
           onChange={(e) => {
@@ -81,7 +79,6 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PELANGGARAN </Form.Label>
         <SelectPelanggaran
-          type="date"
           placeholder="PELANGGARAN"
           value={fields?.pelanggaran}
           onChange={(e) => {
@@ -93,7 +90,6 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO PERATURAN </Form.Label>
         <SelectPeraturanHukuman
-          type="date"
           placeholder="NO PERATURAN"
           value={fields?.nomor_pp}
           onChange={(e) => {

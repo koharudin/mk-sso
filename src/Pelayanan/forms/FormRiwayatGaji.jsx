@@ -11,7 +11,7 @@ import SelectPejabatPenetap from '../components/SelectPejabatPenetap';
 export default (props) => {
   const [fields, setFields] = useState({
     no_sk: '',
-    tgl_sk: '',
+    tgl_sk: null,
     tmt_sk: '',
     pejabat_penetap_id: '',
     pejabat_penetap_nama: '',
@@ -51,7 +51,8 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SK"
           value={fields?.no_sk}
@@ -63,8 +64,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="date"
           placeholder="TGL SK"
           value={fields?.tgl_sk}
           onChange={(e) => {
@@ -75,7 +77,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MASA KERJA TAHUN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="MASA KERJA TAHUN"
           value={fields?.masakerja_tahun}
@@ -87,7 +90,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MASA KERJA BULAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="MASA KERJA BULAN"
           value={fields?.masakerja_bulan}
@@ -101,7 +105,6 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS KENAIKAN {fields?.jenis_kenaikan}</Form.Label>
         <SelectJenisKenaikanGaji
-          type="date"
           placeholder="JENIS KENAIKAN"
           value={fields?.jenis_kenaikan}
           onChange={(e) => {
@@ -113,7 +116,6 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PANGKAT</Form.Label>
         <SelectPangkat
-          type="date"
           placeholder="PANGKAT"
           value={fields?.pangkat_id}
           onChange={(e) => {

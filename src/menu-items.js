@@ -1,3 +1,4 @@
+import { LuBookOpenCheck } from "react-icons/lu";
 const menuItems = {
   items: [
     {
@@ -33,7 +34,7 @@ const menuItems = {
           id: 'verifikasi-usulan',
           title: 'Verifikasi Usulan',
           type: 'item',
-          icon: 'feather icon-server',
+          icon: <LuBookOpenCheck />,
           url: '/verifikasi-usulan'
         }
        

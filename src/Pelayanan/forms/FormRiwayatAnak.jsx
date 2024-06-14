@@ -9,13 +9,13 @@ const FormRiwayatAnak = (props) => {
   const [fields, setFields] = useState({
     name: '',
     birth_place: '',
-    birth_date: '',
+    birth_date: null,
     sex: 'L',
     pekerjaan: '',
     status_keluarga: '',
     status_tunjangan: '',
-    bln_dibayar: '',
-    bln_akhir_dibayar: ''
+    bln_dibayar: null,
+    bln_akhir_dibayar: null
   });
   useEffect(() => {
     if (props?.refData) {

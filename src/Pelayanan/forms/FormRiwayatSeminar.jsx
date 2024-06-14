@@ -20,10 +20,10 @@ export default (props) => {
     tempat: '',
     penyelenggara: '',
     no_piagam: '',
-    tgl_piagam: '',
+    tgl_piagam: null,
     tahun: '',
-    tgl_mulai: '',
-    tgl_selesai: '',
+    tgl_mulai: null,
+    tgl_selesai: null,
     jumlah_jam: '',
     status: '',
     peran: ''

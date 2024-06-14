@@ -21,10 +21,10 @@ export default (props) => {
     penyelenggara: '',
     angkatan: '',
     tahun: '',
-    tgl_mulai: '',
-    tgl_selesai: '',
+    tgl_mulai: null,
+    tgl_selesai: null,
     no_sttpp: '',
-    tgl_sttpp: '',
+    tgl_sttpp: null,
     lama_jam: '',
     jenis_diklat_siasn: ''
   });
