@@ -104,8 +104,7 @@ const NavRight = () => {
 
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item" onClick={()=>{
-                    localStorage.clear()
-                    window.location="/login"
+                    AppApi.logout();
                   }}>
                     <i className="feather icon-log-out" /> Logout
                   </Link>

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Row, Col, Button, Alert } from 'react-bootstrap';
-
+import React, { useRef, useState } from 'react';
+import { Row, Col, Button, Alert, FormControl, InputGroup } from 'react-bootstrap';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { ApiCall } from '../Api/api';
@@ -9,7 +10,12 @@ import { isSubmitting } from 'redux-form';
 import { useNavigate } from 'react-router-dom';
 
 export default ({ className, ...rest }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const refPassword = useRef();
+  const [inputTypePassword, setInputTypePassword] = useState('password');
+  const switchPasswordText = () => {
+    setInputTypePassword(inputTypePassword=="password"?"text":"password")
+  };
   return (
     <React.Fragment>
       <Formik
@@ -18,24 +24,24 @@ export default ({ className, ...rest }) => {
           password: '',
           submit: null
         }}
-        onSubmit={(values,{setSubmitting}) => {
+        onSubmit={(values, { setSubmitting }) => {
           const formData = new FormData();
           formData.append('username', values.username);
           formData.append('password', values.password);
           ApiCall.post('/login-token', formData)
             .then((res) => {
-              if(res?.data){
-                localStorage.setItem("app_data",JSON.stringify({token:res.data.token,user:res.data.user}))
-                window.location="./dashboard"
+              if (res?.data) {
+                localStorage.setItem('app_data', JSON.stringify({ token: res.data.token, user: res.data.user }));
+                window.location = './dashboard';
               }
             })
             .catch((err) => {
-              if(err?.response?.data){
-                alert(err.response.data)
+              if (err?.response?.data) {
+                alert(err.response.data);
               }
             })
             .finally(() => {
-              setSubmitting(false)
+              setSubmitting(false);
             });
         }}
         validationSchema={Yup.object().shape({
@@ -58,15 +64,16 @@ export default ({ className, ...rest }) => {
               {touched.email && errors.email && <small className="text-danger form-text">{errors.email}</small>}
             </div>
             <div className="form-group mb-4">
-              <input
-                className="form-control"
-                label="Password"
-                name="password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                type="password"
-                value={values.password}
-              />
+              <InputGroup>
+                <FormControl
+                  type={inputTypePassword}
+                  name='password'
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.password}
+                />
+                <Button onClick={switchPasswordText}>{inputTypePassword=="password"?<FaEye></FaEye>:<FaEyeSlash></FaEyeSlash>}</Button>
+              </InputGroup>
               {touched.password && errors.password && <small className="text-danger form-text">{errors.password}</small>}
             </div>
 

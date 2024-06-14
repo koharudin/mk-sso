@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Row, Col, Button, Alert } from 'react-bootstrap';
+import React, { useRef } from 'react';
+import { Row, Col, Button, Alert, InputGroup } from 'react-bootstrap';
 
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 const FirebaseLogin = ({ className, ...rest }) => {
+  const refPassword = useRef();
+  const switchPasswordText = () => {};
   return (
     <React.Fragment>
       <Formik
@@ -34,15 +36,20 @@ const FirebaseLogin = ({ className, ...rest }) => {
               {touched.email && errors.email && <small className="text-danger form-text">{errors.email}</small>}
             </div>
             <div className="form-group mb-4">
-              <input
-                className="form-control"
-                label="Password"
-                name="password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                type="password"
-                value={values.password}
-              />
+              <InputGroup>
+                <input
+                  ref={refPassword}
+                  className="form-control"
+                  label="Password"
+                  name="password"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  type="password"
+                  value={values.password}
+                />
+                <FormControl placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                <Button>Switch</Button>
+              </InputGroup>
               {touched.password && errors.password && <small className="text-danger form-text">{errors.password}</small>}
             </div>
 
