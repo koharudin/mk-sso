@@ -85,7 +85,7 @@ export default (props) => {
   return (
     <React.Fragment>
       <Row>
-        <Col>
+        <Col lg="12">
           <Card>
             <Card.Header>
               <Card.Title as="h5">Detail Usulan </Card.Title>

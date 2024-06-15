@@ -15,18 +15,16 @@ import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
 export default (props) => {
   const [fields, setFields] = useState({
     no_sk: '',
-    tgl_sk: '',
-    pelanggaran: '',
-    tmt_sk: '',
+    tgl_sk: undefined,
+    tmt_sk: undefined,
+    satker_lama: '',
+    satker_baru: '',
+    satker_id_lama: '',
+    satker_id_baru: '',
     pejabat_penetap_id: '',
     pejabat_penetap_jabatan: '',
     pejabat_penetap_nip: '',
-    pejabat_penetap_nama: '',
-    tmt_akhir: '',
-    masa_bulan: '',
-    masa_tahun: '',
-    nomor_pp: '',
-    tingkat_hukuman: ''
+    pejabat_penetap_nama: ''
   });
   useEffect(() => {
     if (props?.refData) {
@@ -41,14 +39,23 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'pejabat_penetap_id') {
+      fields[key] = e.id;
+      fields['pejabat_penetap_jabatan'] = e.jabatan;
+      fields['pejabat_penetap_nama'] = e.nama;
+      fields['pejabat_penetap_nip'] = e.nip;
+    } else if (key == 'satker_id_lama') {
+      fields[key] = e.id;
+      fields['satker_lama'] = e.name;
+    } else if (key == 'satker_id_baru') {
+      fields[key] = e.id;
+      fields['satker_baru'] = e.name;
+    } else fields[key] = e;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -57,10 +64,10 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>SATKER LAMA </Form.Label>
         <SelectUnitKerja
-          placeholder="SATUAN KERJA LAMA"
-          value={fields?.satker_lama}
+          placeholder="SATUAN KERJA LAMA" readOnly={props?.disabledAll}
+          value={fields?.satker_id_lama}
           onChange={(e) => {
-            onChangeField(e, 'satker_lama');
+            onChangeField(e, 'satker_id_lama');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
@@ -68,10 +75,10 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>SATKER BARU </Form.Label>
         <SelectUnitKerja
-          placeholder="SATUAN KERJA BARU"
-          value={fields?.satker_baru}
+          placeholder="SATUAN KERJA BARU" readOnly={props?.disabledAll}
+          value={fields?.satker_id_baru}
           onChange={(e) => {
-            onChangeField(e, 'satker_baru');
+            onChangeField(e, 'satker_id_baru');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
@@ -79,7 +86,8 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SK"
           value={fields?.no_sk}
@@ -91,7 +99,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="TGL SK"
           value={fields?.tgl_sk}
@@ -103,7 +112,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="TMT SK"
           value={fields?.tmt_sk}
@@ -116,7 +126,7 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PEJABAT PENETAP</Form.Label>
-        <SelectPejabatPenetap
+        <SelectPejabatPenetap readOnly={props?.disabledAll}
           placeholder="PEJABAT PENETAP"
           value={fields?.pejabat_penetap_id}
           onChange={(e) => {
