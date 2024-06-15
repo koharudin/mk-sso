@@ -32,14 +32,14 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'unit_kerja_id') {
+      fields[key] = e;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   return (

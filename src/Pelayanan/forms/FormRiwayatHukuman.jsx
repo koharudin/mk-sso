@@ -41,14 +41,25 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'pejabat_penetap_id') {
+      fields[key] = e.id;
+      fields['pejabat_penetap_jabatan'] = e.jabatan;
+      fields['pejabat_penetap_nip'] = e.nip;
+      fields['pejabat_penetap_nama'] = e.nama;
+    } else if (key == 'tingkat_hukuman') {
+      fields[key] = e;
+    } else if (key == 'jenis_hukuman') {
+      fields[key] = e;
+    } else if (key == 'pelanggaran') {
+      fields[key] = e;
+    } else if (key == 'nomor_pp') {
+      fields[key] = e;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -58,6 +69,7 @@ export default (props) => {
         <Form.Label>TINGKAT HUKUMAN </Form.Label>
         <SelectTingkatHukuman
           placeholder="TINGKAT HUKUMAN"
+          readOnly={props?.disabledAll}
           value={fields?.tingkat_hukuman}
           onChange={(e) => {
             onChangeField(e, 'tingkat_hukuman');
@@ -69,6 +81,7 @@ export default (props) => {
         <Form.Label>JENIS HUKUMAN </Form.Label>
         <SelectJenisHukuman
           placeholder="JENIS HUKUMAN"
+          readOnly={props?.disabledAll}
           value={fields?.jenis_hukuman}
           onChange={(e) => {
             onChangeField(e, 'jenis_hukuman');
@@ -80,6 +93,7 @@ export default (props) => {
         <Form.Label>PELANGGARAN </Form.Label>
         <SelectPelanggaran
           placeholder="PELANGGARAN"
+          readOnly={props?.disabledAll}
           value={fields?.pelanggaran}
           onChange={(e) => {
             onChangeField(e, 'pelanggaran');
@@ -91,6 +105,7 @@ export default (props) => {
         <Form.Label>NO PERATURAN </Form.Label>
         <SelectPeraturanHukuman
           placeholder="NO PERATURAN"
+          readOnly={props?.disabledAll}
           value={fields?.nomor_pp}
           onChange={(e) => {
             onChangeField(e, 'nomor_pp');
@@ -101,7 +116,8 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SK"
           value={fields?.no_sk}
@@ -113,8 +129,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="date"
           placeholder="TGL SK"
           value={fields?.tgl_sk}
           onChange={(e) => {
@@ -125,8 +142,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT HUKUMAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="date"
           placeholder="TMT HUKUMAN"
           value={fields?.tmt_sk}
           onChange={(e) => {
@@ -137,8 +155,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TMT AKHIR</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="date"
           placeholder="TMT AKHIR"
           value={fields?.tmt_akhir}
           onChange={(e) => {
@@ -149,7 +168,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MASA TAHUN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="MASA TAHUN"
           value={fields?.masa_tahun}
@@ -161,7 +181,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>MASA BULAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="MASA BULAN"
           value={fields?.masa_bulan}
@@ -175,34 +196,11 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PEJABAT PENETAP</Form.Label>
         <SelectPejabatPenetap
+          readOnly={props?.disabledAll}
           placeholder="PEJABAT PENETAP"
           value={fields?.pejabat_penetap_id}
           onChange={(e) => {
             onChangeField(e, 'pejabat_penetap_id');
-          }}
-        />
-        <Form.Text className="text-muted"></Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>PEJABAT PENETAP NAMA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
-          placeholder="PEJABAT PENETAP NAMA"
-          value={fields?.pejabat_penetap_nama}
-          onChange={(e) => {
-            onChangeField(e, 'pejabat_penetap_nama');
-          }}
-        />
-        <Form.Text className="text-muted"></Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail1">
-        <Form.Label>PEJABAT PENETAP JABATAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
-          placeholder="PEJABAT PENETAP JABATAN"
-          value={fields?.pejabat_penetap_jabatan}
-          onChange={(e) => {
-            onChangeField(e, 'pejabat_penetap_jabatan');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>

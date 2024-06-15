@@ -1,29 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import SelectTahun from '../components/SelectTahun';
 
-const FormRiwayatDP3 = () => {
+export default (props) => {
   const [fields, setFields] = useState({
-    kesetiaan: '',
-    prestasi: '',
-    tanggung_jawab: '',
-    ketaatan: '',
-    kejujuran: '',
-    kerjasama: '',
-    prakarsa: '',
-    kepemimpinan: '',
+    kesetiaan: null,
+    prestasi:  null,
+    tanggung_jawab:  null,
+    ketaatan:  null,
+    kejujuran:  null,
+    kerjasama: null,
+    prakarsa:  null,
+    kepemimpinan:  null,
     tahun: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    if (props?.changeListener) {
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e.target?.value;
+    if (key == 'tahun') {
+      fields[key] = e;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
+  useEffect(() => {}, []);
   return (
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <SelectTahun
-          type="text"
+        <SelectTahun readOnly={props?.disabledAll}
           placeholder="TAHUN"
           value={fields?.tahun}
           onChange={(e) => {
@@ -34,8 +53,9 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KESETIAAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="KESETIAAN"
           value={fields?.kesetiaan}
           onChange={(e) => {
@@ -45,9 +65,23 @@ const FormRiwayatDP3 = () => {
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
+        <Form.Label>PRESTASI</Form.Label>
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
+          placeholder="PRESTASI"
+          value={fields?.prestasi}
+          onChange={(e) => {
+            onChangeField(e, 'prestasi');
+          }}
+        />
+        <Form.Text className="text-muted"></Form.Text>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TANGGUNG JAWAB</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="TANGGUNG JAWAB"
           value={fields?.tanggung_jawab}
           onChange={(e) => {
@@ -58,8 +92,9 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KETAATAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="KETAATAN"
           value={fields?.ketaatan}
           onChange={(e) => {
@@ -70,8 +105,9 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KEJUJURAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="KEJUJURAN"
           value={fields?.kejujuran}
           onChange={(e) => {
@@ -82,8 +118,9 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KERJASAMA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="KERJASAMA"
           value={fields?.kerjasama}
           onChange={(e) => {
@@ -94,8 +131,9 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>PRAKARSA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="PRAKARSA"
           value={fields?.prakarsa}
           onChange={(e) => {
@@ -106,8 +144,9 @@ const FormRiwayatDP3 = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KEPEMIMPINAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="KEPEMIMPINAN"
           value={fields?.kepemimpinan}
           onChange={(e) => {
@@ -116,8 +155,6 @@ const FormRiwayatDP3 = () => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-
     </>
   );
 };
-export default FormRiwayatDP3;

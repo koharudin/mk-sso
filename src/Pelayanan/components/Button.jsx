@@ -13,7 +13,7 @@ export default (props) => {
       {useTooltip && (
         <>
           <OverlayTrigger placement="top" overlay={renderTooltip}>
-            <Button {...props}></Button>
+            <Button {...otherProps}></Button>
           </OverlayTrigger>
         </>
       )}

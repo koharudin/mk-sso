@@ -3,6 +3,7 @@ import Select, { components, ControlProps, Props, StylesConfig } from 'react-sel
 import { ApiCall } from '../../Api/api';
 import AsyncSelect from 'react-select/async';
 import { AsyncPaginate } from 'react-select-async-paginate';
+import { Form } from 'react-bootstrap';
 const Control = (children, ...props) => {
   return <components.Control {...props}>{children}</components.Control>;
 };
@@ -11,9 +12,7 @@ const Option = (props) => {
   return (
     <>
       <components.Option {...props}>
-        <b>{props.data?.o?.name}</b>
-        <br></br>
-        {props.data?.o?.keterangan}
+        <b>{props.data?.o.name} - {props.data?.o.kode} [{props.data?.o.id}]</b>
       </components.Option>
     </>
   );
@@ -27,14 +26,16 @@ export default (props) => {
   const [isLoading, setIsLoading] = useState();
   const [selectedOption, setSelectedOption] = useState();
   const [q, setQ] = useState();
+  const [url, setUrl] = useState('/master-pangkat/');
   useEffect(() => {
-    if (props?.value && props?.value?.value && props?.value?.value != '') {
-      ApiCall.get('/master-pangkat/' + props?.value?.value + '/detail')
+    if (props?.value && props?.value != '') {
+      const id = typeof props?.value == 'object' ? props?.value?.value : props?.value;
+      ApiCall.get(url  + id + '/detail')
         .then((res) => {
           if (res?.data) {
             setSelectedOption({
               value: res?.data?.id,
-              label: res?.data?.name
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
             });
           }
         })
@@ -47,12 +48,12 @@ export default (props) => {
     formData.append('page', page);
     formData.append('q', pSearch);
 
-    const res = await ApiCall.post('/master-pangkat', formData);
+    const res = await ApiCall.post(url, formData);
     return {
       options: res?.data?.data?.map((v, i) => {
         return {
           value: v.id,
-          label: v.name,
+          label: v.name + ' - ' + '[' + v.id + ']',
           o: v
         };
       }),
@@ -85,14 +86,20 @@ export default (props) => {
   };
   return (
     <>
-      <AsyncPaginate
-        debounceTimeout={3}
-        components={{ Option }}
-        onChange={onChangeSelection}
-        {...otherProps}
-        value={selectedOption}
-        loadOptions={loadOptions}
-      />
+      {props?.readOnly ? (
+        <>
+          <Form.Control readOnly={props?.readOnly} value={selectedOption?.label}></Form.Control>
+        </>
+      ) : (
+        <AsyncPaginate
+          debounceTimeout={3}
+          components={{ Option }}
+          onChange={onChangeSelection}
+          {...otherProps}
+          value={selectedOption}
+          loadOptions={loadOptions}
+        />
+      )}
     </>
   );
 };

@@ -19,7 +19,7 @@ export default (props) => {
     pejabat_penetap_nip: '',
     masakerja_tahun: '',
     masakerja_bulan: '',
-    jenis_kenaikan: '2',
+    jenis_kenaikan: '',
     pangkat_id: '',
     gaji_pokok: ''
   });
@@ -36,14 +36,14 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'pejabat_penetap_id') {
+      fields[key] = e;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -106,6 +106,7 @@ export default (props) => {
         <Form.Label>JENIS KENAIKAN {fields?.jenis_kenaikan}</Form.Label>
         <SelectJenisKenaikanGaji
           placeholder="JENIS KENAIKAN"
+          readOnly={props?.disabledAll}
           value={fields?.jenis_kenaikan}
           onChange={(e) => {
             onChangeField(e, 'jenis_kenaikan');
@@ -117,6 +118,7 @@ export default (props) => {
         <Form.Label>PANGKAT</Form.Label>
         <SelectPangkat
           placeholder="PANGKAT"
+          readOnly={props?.disabledAll}
           value={fields?.pangkat_id}
           onChange={(e) => {
             onChangeField(e, 'pangkat_id');
@@ -144,6 +146,7 @@ export default (props) => {
         <Form.Label>PEJABAT PENETAP</Form.Label>
         <SelectPejabatPenetap
           placeholder="PEJABAT PENETAP"
+          readOnly={props?.disabledAll}
           value={fields?.pejabat_penetap_id}
           onChange={(e) => {
             onChangeField(e, 'pejabat_penetap_id');

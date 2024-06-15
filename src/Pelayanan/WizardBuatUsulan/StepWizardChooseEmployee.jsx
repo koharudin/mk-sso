@@ -16,7 +16,7 @@ const StepWizardChooseEmployee = (props) => {
       })
       .catch((err) => {})
       .finally(() => {});
-  }, employee);
+  }, []);
   return (
     <>
       <Card>

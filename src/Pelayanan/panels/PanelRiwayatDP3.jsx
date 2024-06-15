@@ -4,7 +4,7 @@ import { Badge, Button, Card, Col, Form, Row, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
-import FormUsulan from '../forms/FormRiwayatAngkaKredit';
+import FormUsulan from '../forms/FormRiwayatDP3';
 import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 

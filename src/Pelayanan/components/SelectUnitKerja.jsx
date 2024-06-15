@@ -3,6 +3,7 @@ import Select, { components, ControlProps, Props, StylesConfig } from 'react-sel
 import { ApiCall } from '../../Api/api';
 import AsyncSelect from 'react-select/async';
 import { AsyncPaginate } from 'react-select-async-paginate';
+import { Form } from 'react-bootstrap';
 
 const Control = (children, ...props) => {
   return <components.Control {...props}>{children}</components.Control>;
@@ -32,10 +33,10 @@ export default (props) => {
   const [q, setQ] = useState();
   const [url, setUrl] = useState('/master-unitkerja/');
 
-
   useEffect(() => {
-    if (props?.value && props?.value?.value && props?.value?.value != '') {
-      ApiCall.get(url + props?.value?.value + '/detail')
+    if (props?.value && props?.value != '') {
+      const id = typeof props?.value == 'object' ? props?.value?.value : props?.value;
+      ApiCall.get(url + id + '/detail')
         .then((res) => {
           if (res?.data) {
             setSelectedOption({
@@ -53,7 +54,7 @@ export default (props) => {
     formData.append('page', page);
     formData.append('q', pSearch);
 
-    const res = await ApiCall.post(get_url, formData);
+    const res = await ApiCall.post(url, formData);
     return {
       options: res?.data?.data?.map((v, i) => {
         return {
@@ -91,12 +92,11 @@ export default (props) => {
   };
   return (
     <>
-      {props?.isDisabled ?? (
+      {props?.readOnly ? (
         <>
-          <Form.Control readOnly={props?.isDisabled} value={selectedOption?.label}></Form.Control>
+          <Form.Control readOnly={props?.readOnly} value={selectedOption?.label}></Form.Control>
         </>
-      )}
-      {!props?.isDisabled ?? (
+      ) : (
         <AsyncPaginate
           debounceTimeout={3}
           components={{ Option }}
