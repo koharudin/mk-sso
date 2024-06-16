@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import FormRiwayat from '../forms/FormRiwayatSaudara';
+import FormRiwayat from '../forms/FormRiwayatUjiKompetensi';
 import { useState } from 'react';
 
 export default () => {

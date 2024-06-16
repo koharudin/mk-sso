@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import SelectJabatan from '../components/SelectJabatan';
-import SelectUnitKerja from '../components/SelectUnitKerja';
 import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 import SelectJenisKenaikanGaji from '../components/SelectJenisKenaikanGaji';

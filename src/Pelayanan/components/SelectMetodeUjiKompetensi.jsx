@@ -4,8 +4,9 @@ export default (props) => {
   return (
     <Form.Control placeholder="..." {...props} as="select">
       <option>Pilih</option>
-      <option value={'L'}>Laki-Laki</option>
-      <option value={'P'}>Perempuan</option>
+      <option value={'SKT'}>SJT</option>
+      <option value={'AC'}>AC</option>
+      <option value={'CACT'}>CACT</option>
     </Form.Control>
   );
 };

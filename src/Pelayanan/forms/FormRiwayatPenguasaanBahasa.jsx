@@ -1,18 +1,6 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import SelectJabatan from '../components/SelectJabatan';
-import SelectUnitKerja from '../components/SelectUnitKerja';
-import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
-import SelectJenisKenaikanGaji from '../components/SelectJenisKenaikanGaji';
-import { NumericFormat } from 'react-number-format';
-import SelectPejabatPenetap from '../components/SelectPejabatPenetap';
-import SelectTingkatHukuman from '../components/SelectTingkatHukuman';
-import SelectJenisHukuman from '../components/SelectJenisHukuman';
-import SelectPelanggaran from '../components/SelectPelanggaran';
-import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
-import SelectPendidikan from '../components/SelectPendidikan';
-import SelectJenisDiklatSIASN from '../components/SelectJenisDiklatSIASN';
 import SelectJenisBahasa from '../components/SelectJenisBahasa';
 import SelectKemampuanBicara from '../components/SelectKemampuanBicara';
 

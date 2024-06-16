@@ -1,11 +1,5 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import SelectSex from '../components/SelectSex';
-import SelectStatusKeluarga from '../components/SelectDapatTunjangan';
-import SelectDapatTunjangan from '../components/SelectStatusKeluarga';
-import SelectJabatan from '../components/SelectJabatan';
-import SelectUnitKerja from '../components/SelectUnitKerja';
-import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
 import SelectJenisDiklat from '../components/SelectJenisDiklat';
 export default (props) => {
