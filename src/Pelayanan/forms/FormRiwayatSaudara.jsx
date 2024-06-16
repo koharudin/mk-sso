@@ -9,7 +9,7 @@ export default (props) => {
     name: '',
     birth_place: '',
     birth_date: null,
-    sex: 'L',
+    jenis_kelamin: '',
     pekerjaan: '',
     alamat: '',
     telepon: ''
@@ -27,9 +27,7 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
@@ -42,7 +40,8 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="Nama"
           value={fields?.name}
@@ -54,7 +53,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TEMPAT LAHIR</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="..."
           value={fields?.birth_place}
@@ -66,7 +66,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TANGGAL LAHIR</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="..."
           value={fields?.birth_date}
@@ -79,16 +80,18 @@ export default (props) => {
       <Form.Group className="mb-3">
         <Form.Label>JENIS KELAMIN</Form.Label>
         <SelectSex
-          value={fields?.sex}
+          name="jenis_kelamin"
+          value={fields?.jenis_kelamin}
           onChange={(e) => {
-            onChangeField(e, 'sex');
+            onChangeField(e, 'jenis_kelamin');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>PEKERJAAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="..."
           value={fields?.pekerjaan}
@@ -100,7 +103,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>ALAMAT</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           as="textarea"
           placeholder="ALAMAT"
           value={fields?.alamat}
@@ -112,7 +116,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TELEPON</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="TELEPON"
           value={fields?.telepon}

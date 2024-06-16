@@ -51,14 +51,16 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'jenis_pekerjaan') {
+      fields[key] = e.id;
+    } else if (key == 'status') {
+      fields[key] = e.id;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -67,6 +69,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS PEKERJAAN</Form.Label>
         <SelectJenisPekerjaan
+          readOnly={props?.disabledAll}
           placeholder="JENIS PEKERJAAN"
           value={fields?.jenis_pekerjaan}
           onChange={(e) => {
@@ -130,8 +133,7 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>STATUS PERNIKAHAN</Form.Label>
-        <SelectStatusPernikahan
-          type="text"
+        <SelectStatusPernikahan readOnly={props?.disabledAll}
           placeholder="STATUS PERNIKAHAN"
           value={fields?.status}
           onChange={(e) => {

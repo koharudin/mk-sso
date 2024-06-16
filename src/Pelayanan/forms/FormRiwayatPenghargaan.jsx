@@ -39,23 +39,30 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'jenis_penghargaan_id') {
+      fields[key] = e?.id;
+    } else if (key == 'pejabat_penetap_id') {
+      fields[key] = e?.id;
+      fields['pejabat_penetap_nip'] = e?.nip;
+      fields['pejabat_penetap_nama'] = e?.nama;
+      fields['pejabat_penetap_jabatan'] = e?.jabatan;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
   return (
     <>
+      {JSON.stringify(fields)}
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS PENGHARGAAN</Form.Label>
         <SelectJenisPenghargaan
           placeholder="JENIS PENGHARGAAN"
+          readOnly={props?.disabledAll}
           value={fields?.jenis_penghargaan_id}
           onChange={(e) => {
             onChangeField(e, 'jenis_penghargaan_id');
@@ -65,7 +72,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NO SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NO SK"
           value={fields?.no_sk}
@@ -77,7 +85,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL SK</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL SK"
           value={fields?.tgl_sk}
@@ -89,7 +98,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="TAHUN"
           value={fields?.tahun}

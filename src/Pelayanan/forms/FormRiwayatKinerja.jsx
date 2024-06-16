@@ -38,14 +38,15 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'satuan_kerja_id') {
+      fields[key] = e.id;
+      fields['satuan_kerja_name'] = e.name;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -53,8 +54,9 @@ export default (props) => {
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TAHUN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="TAHUN"
           value={fields?.tahun}
           onChange={(e) => {
@@ -65,8 +67,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NILAI</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="NILAI"
           value={fields?.nilai}
           onChange={(e) => {
@@ -77,8 +80,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL PENILAIAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="date"
           placeholder="TGL PENILAIAN"
           value={fields?.tgl_penilaian}
           onChange={(e) => {
@@ -91,7 +95,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>SATUAN KERJA</Form.Label>
         <SelectUnitKerja
-          type="text"
+          readOnly={props?.disabledAll}
           placeholder="SATUAN KERJA"
           value={fields?.satuan_kerja_id}
           onChange={(e) => {
@@ -102,7 +106,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JABATAN</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="JABATAN"
           value={fields?.jabatan}
@@ -114,8 +119,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NILAI SKP</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="NILAI SKP"
           value={fields?.nilai_skp}
           onChange={(e) => {
@@ -126,8 +132,9 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NILAI PERILAKU</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
-          type="text"
+        <Form.Control
+          readOnly={props?.disabledAll}
+          type="number"
           placeholder="NILAI PERILAKU"
           value={fields?.nilai_perilaku}
           onChange={(e) => {

@@ -39,14 +39,16 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'jenis_bahasa') {
+      fields[key] = e.id;
+    } else if (key == 'kemampuan_bicara') {
+      fields[key] = e.id;
+    } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -55,6 +57,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS BAHASA</Form.Label>
         <SelectJenisBahasa
+          readOnly={props?.disabledAll}
           placeholder="JENIS BAHASA"
           value={fields?.jenis_bahasa}
           onChange={(e) => {
@@ -65,7 +68,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>NAMA BAHASA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="NAMA BAHASA"
           value={fields?.nama_bahasa}
@@ -78,7 +82,7 @@ export default (props) => {
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>KEMAMPUAN BICARA</Form.Label>
         <SelectKemampuanBicara
-          type="text"
+          readOnly={props?.disabledAll}
           placeholder="KEMAMPUAN BICARA"
           value={fields?.kemampuan_bicara}
           onChange={(e) => {
@@ -89,7 +93,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS SERTIFIKASI</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="JENIS SERTIFIKASI"
           value={fields?.jenis_sertifikasi}
@@ -101,7 +106,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>LEMBAGA SERTIFIKASI</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="LEMBAGA SERTIFIKASI"
           value={fields?.lembaga_sertifikasi}
@@ -113,7 +119,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>SKOR</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="SKOR"
           value={fields?.skor}
@@ -126,7 +133,8 @@ export default (props) => {
 
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>TGL KADALUARSA</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="TGL KADALUARSA"
           value={fields?.tgl_expired}

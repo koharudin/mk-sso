@@ -1,9 +1,9 @@
 import { Card } from 'react-bootstrap';
-import FormRiwayat from '../forms/FormRiwayatHukuman';
+import FormRiwayat from '../forms/FormRiwayatSaudara';
 import { useState } from 'react';
 
 export default () => {
-  const [recordData,setRecordData] = useState({ jenis_kenaikan: 3,pangkat_id:31})
+  const [recordData,setRecordData] = useState({ jenis_kelamin: "P",pangkat_id:31})
   return (
     <div style={{ padding: '10px' }}>
       <Card>

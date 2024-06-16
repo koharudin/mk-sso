@@ -46,7 +46,11 @@ export default (props) => {
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if(key =="pendidikan_id"){
+      fields[key] = e.id;
+      //fields['pendidikan_name']=e.name
+    }
+    else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
@@ -56,6 +60,7 @@ export default (props) => {
         <Form.Label>PENDIDIKAN</Form.Label>
         <SelectPendidikan
           placeholder="PENDIDIKAN"
+          readOnly={props?.disabledAll}
           value={fields?.pendidikan_id}
           onChange={(e) => {
             onChangeField(e, 'pendidikan_id');
@@ -158,7 +163,7 @@ export default (props) => {
         <Form.Label>IPK</Form.Label>
         <Form.Control
           readOnly={props?.disabledAll}
-          type="text"
+          type="number"
           placeholder="IPK"
           value={fields?.ipk}
           onChange={(e) => {

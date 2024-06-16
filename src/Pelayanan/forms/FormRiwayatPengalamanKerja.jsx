@@ -1,18 +1,6 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import SelectJabatan from '../components/SelectJabatan';
-import SelectUnitKerja from '../components/SelectUnitKerja';
-import SelectPangkat from '../components/SelectPangkat';
 import { useEffect } from 'react';
-import SelectJenisKenaikanGaji from '../components/SelectJenisKenaikanGaji';
-import { NumericFormat } from 'react-number-format';
-import SelectPejabatPenetap from '../components/SelectPejabatPenetap';
-import SelectTingkatHukuman from '../components/SelectTingkatHukuman';
-import SelectJenisHukuman from '../components/SelectJenisHukuman';
-import SelectPelanggaran from '../components/SelectPelanggaran';
-import SelectPeraturanHukuman from '../components/SelectPeraturanHukuman';
-import SelectPendidikan from '../components/SelectPendidikan';
-import SelectJenisDiklatSIASN from '../components/SelectJenisDiklatSIASN';
 
 export default (props) => {
   const [fields, setFields] = useState({
@@ -35,9 +23,7 @@ export default (props) => {
   }, [props?.recordData]);
 
   useEffect(() => {
-    
     if (props?.changeListener) {
-      
       props?.changeListener({ ...fields });
     }
   }, [fields]);
@@ -78,7 +64,7 @@ export default (props) => {
         <Form.Label>MASA KERJA TAHUN</Form.Label>
         <Form.Control
           readOnly={props?.disabledAll}
-          type="text"
+          type="number"
           placeholder="MASA KERJA TAHUN"
           value={fields?.masa_kerja_tahun}
           onChange={(e) => {
@@ -91,7 +77,7 @@ export default (props) => {
         <Form.Label>MASA KERJA BULAN</Form.Label>
         <Form.Control
           readOnly={props?.disabledAll}
-          type="text"
+          type="number"
           placeholder="MASA KERJA BULAN"
           value={fields?.masa_kerja_bulan}
           onChange={(e) => {
