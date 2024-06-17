@@ -4,7 +4,7 @@ import { Badge, Button, Card, Col, Form, Row, Table } from 'react-bootstrap';
 import Moment from 'react-moment';
 import GridUsulanRiwayat from '../components/GridUsulanRiwayat';
 import { NumericFormat, PatternFormat, numericFormatter } from 'react-number-format';
-import FormUsulan from '../forms/FormSKCPNS';
+import FormUsulan from '../forms/FormSKPNS';
 import PanelKonfirmasiUsulan from './PanelKonfirmasiUsulan';
 import { FaSave } from 'react-icons/fa';
 import { ApiCall } from '../../Api/api';
@@ -57,9 +57,9 @@ export default (props) => {
   const [action, setAction] = useState(2);
   const [recordId, setRecordId] = useState();
   const recordIdName = 'id';
-  const title = 'SK CPNS';
+  const title = 'SK PNS';
   useEffect(() => {
-    ApiCall.get('riwayat-skcpns')
+    ApiCall.get('riwayat-skpns')
       .then((res) => {
         setRefData(res?.data)
         setRecordData(res?.data)

@@ -1,10 +1,11 @@
 import { Card } from 'react-bootstrap';
-import FormRiwayat from '../forms/FormRiwayatUjiKompetensi';
-import { useState } from 'react';
-import FormSKCPNS from '../forms/FormSKCPNS';
+import { useEffect, useState } from 'react';
+import Panel from '../panels/PanelRiwayatSKPNS';
+import { ApiCall } from '../../Api/api';
 
 export default () => {
-  const [recordData,setRecordData] = useState({ jenis_kelamin: "P",pangkat_id:31})
+  const [recordData, setRecordData] = useState({ jenis_kelamin: 'P', pangkat_id: 31 });
+  
   return (
     <div style={{ padding: '10px' }}>
       <Card>
@@ -14,7 +15,7 @@ export default () => {
         <Card.Body>
           {JSON.stringify(recordData)}
           <hr></hr>
-          <FormSKCPNS recordData={recordData}></FormSKCPNS>
+          <Panel activePanel={'init'} ></Panel>
         </Card.Body>
       </Card>
     </div>
