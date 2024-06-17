@@ -3,6 +3,7 @@ import { Form } from 'react-bootstrap';
 import SelectSex from '../components/SelectSex';
 import SelectStatusKeluarga from '../components/SelectDapatTunjangan';
 import SelectDapatTunjangan from '../components/SelectStatusKeluarga';
+import { useEffect } from 'react';
 
 export default (props) => {
   const [fields, setFields] = useState({
@@ -28,15 +29,33 @@ export default (props) => {
     nik: '',
     no_hp: ''
   });
+  useEffect(() => {
+    if (props?.refData) {
+      setFields({ ...props?.refData });
+    }
+  }, [props?.refData]);
+
+  useEffect(() => {
+    if (props?.recordData) {
+      setFields({ ...props?.recordData });
+    }
+  }, [props?.recordData]);
+
+  useEffect(() => {
+    if (props?.changeListener) {
+      props?.changeListener({ ...fields });
+    }
+  }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e.target?.value;
+    fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   return (
     <>
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>FIRST NAME</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="Nama"
           value={fields?.first_name}
@@ -48,7 +67,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TEMPAT LAHIR</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="text"
           placeholder="..."
           value={fields?.birth_place}
@@ -60,7 +80,8 @@ export default (props) => {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>TANGGAL LAHIR</Form.Label>
-        <Form.Control readOnly={props?.disabledAll}
+        <Form.Control
+          readOnly={props?.disabledAll}
           type="date"
           placeholder="..."
           value={fields?.birth_date}
@@ -80,7 +101,6 @@ export default (props) => {
         />
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
-      
     </>
   );
 };
