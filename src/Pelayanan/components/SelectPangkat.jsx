@@ -27,12 +27,20 @@ export default (props) => {
   const [selectedOption, setSelectedOption] = useState();
   const [q, setQ] = useState();
   const [url, setUrl] = useState('/master-pangkat/');
+  const [objValue, setObjValue] = useState();
+
   useEffect(() => {
     if (props?.value && props?.value != '') {
       const id = typeof props?.value == 'object' ? props?.value?.value : props?.value;
       ApiCall.get(url  + id + '/detail')
         .then((res) => {
           if (res?.data) {
+            setObjValue({
+              ...{
+                id: res?.data?.id,
+                name: res?.data?.name
+              }
+            });
             setSelectedOption({
               value: res?.data?.id,
               label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
@@ -81,7 +89,16 @@ export default (props) => {
   const onChangeSelection = (vals) => {
     setSelectedOption(vals);
     if (onChange) {
-      onChange(vals?.value);
+      setObjValue({
+        ...{
+          id: vals.value,
+          name: vals.o.name
+        }
+      });
+      onChange({
+        id: vals.value,
+        name: vals.o.name
+      });
     }
   };
   return (

@@ -53,7 +53,6 @@ export default (props) => {
   useEffect(() => {}, []);
   return (
     <>
-    {JSON.stringify(fields)}
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JABATAN</Form.Label>
         <SelectJabatan tipe_jabatan={fields?.tipe_jabatan_id}

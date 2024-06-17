@@ -48,7 +48,6 @@ export default (props) => {
   useEffect(() => {}, []);
   return (
     <>
-      {JSON.stringify(fields)}
       <Form.Group className="mb-3" controlId="formBasicEmail1">
         <Form.Label>JENIS PENGHARGAAN</Form.Label>
         <SelectJenisPenghargaan

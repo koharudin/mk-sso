@@ -12,6 +12,7 @@ export default (props) => {
     dt_akhir_penilaian: null,
     jabatan: '',
     unit_kerja_id: '',
+    unit_kerja_text: '',
     pangkat_id: '',
     ak_lama: '',
     ak_baru: '',
@@ -36,8 +37,12 @@ export default (props) => {
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    if (key == 'unit_kerja_id') {
-      fields[key] = e;
+    if (key == 'pangkat_id') {
+      fields[key] = e?.id;
+      fields['pangkat_text'] = e?.name;
+    } else if (key == 'unit_kerja_id') {
+      fields[key] = e?.id;
+      fields['unit_kerja_text'] = e?.name;
     } else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };

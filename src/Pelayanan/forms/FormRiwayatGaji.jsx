@@ -19,6 +19,7 @@ export default (props) => {
     masakerja_bulan: '',
     jenis_kenaikan: '',
     pangkat_id: '',
+    pangkat_text : '',
     gaji_pokok: ''
   });
   useEffect(() => {
@@ -39,7 +40,11 @@ export default (props) => {
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    if (key == 'pejabat_penetap_id') {
+    if (key == 'pangkat_id') {
+      fields[key] = e?.id;
+      fields['pangkat_text'] = e?.name;
+    }
+    else if (key == 'pejabat_penetap_id') {
       fields[key] = e;
     } else fields[key] = e?.target?.value;
     setFields({ ...fields });

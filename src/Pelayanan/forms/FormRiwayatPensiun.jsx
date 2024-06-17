@@ -10,6 +10,7 @@ export default (props) => {
     tgl_pensiun: null,
     tmt_pensiun: null,
     pangkat_id: '',
+    pangkat_text : '',
     masa_kerja_tahun: '',
     masa_kerja_bulan: '',
     unitkerja_id: '',
@@ -35,7 +36,11 @@ export default (props) => {
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    fields[key] = e?.target?.value;
+    if (key == 'pangkat_id') {
+      fields[key] = e?.id;
+      fields['pangkat_text'] = e?.name;
+    }
+    else fields[key] = e?.target?.value;
     setFields({ ...fields });
   };
   useEffect(() => {}, []);
