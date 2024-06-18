@@ -84,7 +84,7 @@ export default (props) => {
           )}
           {activeForm == 'konfirmasiUsulan' && (
             <PanelKonfirmasiUsulan
-              {...props}
+              {...props} useUploadFiles={true}
               setActiveForm={setActiveForm}
               action={action}
               recordData={recordData}

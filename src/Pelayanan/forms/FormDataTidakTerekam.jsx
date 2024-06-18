@@ -10,9 +10,7 @@ export default (props) => {
     tgl: null,
     waktu: '',
     alasan: '',
-    file: '',
-    file2: '',
-    file3: ''
+    dokumen_pendukung: '',
   });
   useEffect(() => {
     if (props?.refData) {
@@ -32,7 +30,7 @@ export default (props) => {
     }
   }, [fields]);
   const onChangeField = (e, key) => {
-    if (key == 'file') {
+    if (key == 'dokumen_pendukung') {
       fields[key] = e?.target?.files;
     } else fields[key] = e?.target?.value;
     setFields({ ...fields });
@@ -80,13 +78,13 @@ export default (props) => {
         <Form.Text className="text-muted"></Form.Text>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>DOKUMEN 1</Form.Label>
+        <Form.Label>DOKUMEN</Form.Label>
         <UploadFile
           readOnly={props?.disabledAll}
-          type="file" name="file"
-          value={fields.file}
+          type="file" name="dokumen_pendukung"
+          value={fields.dokumen_pendukung}
           onChangeField={(e) => {
-            onChangeField(e, 'file');
+            onChangeField(e, 'dokumen_pendukung');
           }}
         />
         <Form.Text className="text-muted"></Form.Text>

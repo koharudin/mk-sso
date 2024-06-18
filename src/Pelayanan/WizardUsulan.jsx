@@ -17,14 +17,19 @@ const Detail = () => {};
 const WizardUsulan = (props) => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const onSubmitUsulan = (layanan_id, action, id, ref_data, new_data, cb) => {
-    const formData = new FormData();
-    formData.append('action', action);
-    formData.append('id', id);
-    formData.append('layanan_id', layanan_id);
-    formData.append('ref_data', JSON.stringify(ref_data));
-    formData.append('new_data', JSON.stringify(new_data));
-    ApiCall.post('/usulan', formData)
+  const onSubmitUsulan = (layanan_id, action, id, ref_data, new_data, useUploadFiles, cb) => {
+    ApiCall.post('/usulan', {
+      action : action,
+      id:id,
+      layanan_id, layanan_id,
+      ref_data : JSON.stringify(ref_data),
+      new_data :  JSON.stringify(new_data),
+      dokumen_pendukung:new_data.dokumen_pendukung
+    }, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then((res) => {
         if (res?.status == 200) {
           setData({ ...data, ...{ uuid: res?.data?.uuid } });

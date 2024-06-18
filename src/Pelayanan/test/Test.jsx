@@ -9,27 +9,37 @@ export default () => {
   const [recordData, setRecordData] = useState({ jenis_kelamin: 'P', pangkat_id: 31 });
   const [readOnly, setReadOnly] = useState();
   const [fields, setFields] = useState({
-    file: ''
+    files: ''
   });
   const onChangeField = (e, key) => {
     fields[key] = e.target.files;
+    debugger
     setFields({ ...fields });
   };
+  const doSimpan = () => {
+    debugger;
+    ApiCall.post('/test-upload', fields,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then((res) => {})
+      .catch((err) => {})
+      .finally(() => {});
+  };
   function download(dataurl, filename) {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = dataurl;
     link.download = filename;
     link.click();
   }
   const doDownload = () => {
-    debugger
+    
     const file = fields['file'][0];
     const reader = new FileReader();
-    reader.addEventListener(
-      "load",
-      () => {
-        download(reader.result,"download file")
-      });
+    reader.addEventListener('load', () => {
+      download(reader.result, 'download file');
+    });
     reader.readAsDataURL(file);
   };
   return (
@@ -41,18 +51,31 @@ export default () => {
         <Card.Body>
           {JSON.stringify(recordData)}
           <hr></hr>
-          <UploadFile onChangeField={onChangeField} name="file" readOnly={readOnly} value={fields.file}></UploadFile>
+          <UploadFile  onChangeField={onChangeField} name="filesx" readOnly={readOnly} ></UploadFile>
+          <UploadFile onChangeField={onChangeField} name="files[1]" readOnly={readOnly} ></UploadFile>
         </Card.Body>
         <Card.Footer>
-          <Button onClick={() => {
-            doDownload()
-          }}>Download</Button>
+          <Button
+            onClick={() => {
+              doDownload();
+            }}
+          >
+            Download
+          </Button>
           <Button
             onClick={() => {
               setReadOnly(!readOnly);
             }}
           >
-            Simpan
+            Konfirmasi
+          </Button>
+          <Button
+            style={{ float: 'right' }}
+            onClick={() => {
+              doSimpan();
+            }}
+          >
+            Simpan ke DB
           </Button>
         </Card.Footer>
       </Card>

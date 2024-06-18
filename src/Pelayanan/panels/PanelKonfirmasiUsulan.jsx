@@ -11,7 +11,7 @@ export default (props) => {
   const navigate = useNavigate();
 
   const onCreateUsulan = async () => {
-    props.onSubmitUsulan(props?.layanan_id, props?.action, props?.recordId, props?.refData, props?.recordData, () => {
+    props.onSubmitUsulan(props?.layanan_id, props?.action, props?.recordId, props?.refData, props?.recordData,props?.useUploadFiles, () => {
       props.propsWizard.lastStep();
     });
   };
