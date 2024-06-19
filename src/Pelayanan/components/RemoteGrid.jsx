@@ -82,6 +82,7 @@ export default (props) => {
   const [data, setData] = useState([]);
   const [current_page, setCurrentPage] = useState();
   const [last_page, setLastPage] = useState();
+  const [emptyData,setEmptyData] = useState(props?.emptyData??<>Data tidak ada</>)
   const onPaging = (page) => {
     setData([]);
     setLoading(true);
@@ -136,6 +137,15 @@ export default (props) => {
                     <BeatLoader color="#36d7b7" />
                   </b>
                 </td>
+              </tr>
+            </tbody>
+          </>
+        )}
+        {data?.length ==0 && !loading && (
+          <>
+            <tbody>
+              <tr>
+                <td style={{textAlign:"center"}} colSpan={props?.cols?.length}>{emptyData}</td>
               </tr>
             </tbody>
           </>

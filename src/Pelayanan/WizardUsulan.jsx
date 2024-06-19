@@ -17,19 +17,25 @@ const Detail = () => {};
 const WizardUsulan = (props) => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const onSubmitUsulan = (layanan_id, action, id, ref_data, new_data, useUploadFiles, cb) => {
-    ApiCall.post('/usulan', {
-      action : action,
-      id:id,
-      layanan_id, layanan_id,
-      ref_data : JSON.stringify(ref_data),
-      new_data :  JSON.stringify(new_data),
-      dokumen_pendukung:new_data.dokumen_pendukung
-    }, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
+  const onSubmitUsulan = (layanan_id, action, id, ref_data, new_data, useUploadFiles, setIsLoading, cb) => {
+    setIsLoading(true);
+    ApiCall.post(
+      '/usulan',
+      {
+        action: action,
+        id: id,
+        layanan_id,
+        layanan_id,
+        ref_data: JSON.stringify(ref_data),
+        new_data: JSON.stringify(new_data),
+        dokumen_pendukung: new_data.dokumen_pendukung
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       }
-    })
+    )
       .then((res) => {
         if (res?.status == 200) {
           setData({ ...data, ...{ uuid: res?.data?.uuid } });
@@ -38,6 +44,9 @@ const WizardUsulan = (props) => {
       })
       .catch((err) => {
         AppInformasiError({ options: { text: 'Tidak dapat memproses usulan ini.' } });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
   const onReload = () => {};

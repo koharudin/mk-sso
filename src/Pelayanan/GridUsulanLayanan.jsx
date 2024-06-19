@@ -28,12 +28,22 @@ const GridUsulanLayanan = () => {
               <Card.Title as="h5">Daftar Usulan </Card.Title>
 
               <Button size="sm" style={{ float: 'right' }} color="primary" onClick={onCreateNew}>
-                <MdAddToPhotos /> Buat Baru
+                <MdAddToPhotos /> Buat Usulan Baru
               </Button>
             </Card.Header>
 
             <Card.Body>
               <RemoteGrid
+                emptyData={() => {
+                  return (
+                    <>
+                      Data tidak ditemukan{' '}
+                      <Button size="sm" color="primary" onClick={onCreateNew}>
+                        <MdAddToPhotos /> Buat Usulan Baru
+                      </Button>
+                    </>
+                  );
+                }}
                 triggerReload={randomReload}
                 title={'Daftar Riwayat Usulan Saya'}
                 grid_url={'/usulan-saya'}
