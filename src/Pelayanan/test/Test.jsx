@@ -5,28 +5,35 @@ import { ApiCall } from '../../Api/api';
 import Button from '../components/Button';
 import UploadFile from '../components/UploadFile';
 import FormCuti from '../forms/FormCuti';
+import ButtonLoading from '../components/ButtonLoading';
 
 export default () => {
   const [recordData, setRecordData] = useState({ jenis_kelamin: 'P', pangkat_id: 31 });
   const [readOnly, setReadOnly] = useState();
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState();
   const [fields, setFields] = useState({
     files: ''
   });
   const onChangeField = (e, key) => {
     fields[key] = e.target.files;
-    debugger
+    debugger;
     setFields({ ...fields });
   };
   const doSimpan = () => {
-    debugger;
-    ApiCall.post('/test-upload', fields,{
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then((res) => {})
-      .catch((err) => {})
-      .finally(() => {});
+    setIsLoadingSubmit(true);
+    setTimeout(()=>{
+      ApiCall.post('/test-upload', fields, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((res) => {})
+        .catch((err) => {})
+        .finally(() => {
+         // setIsLoadingSubmit(false);
+        });
+    },3000)
+    
   };
   function download(dataurl, filename) {
     const link = document.createElement('a');
@@ -35,7 +42,6 @@ export default () => {
     link.click();
   }
   const doDownload = () => {
-    
     const file = fields['file'][0];
     const reader = new FileReader();
     reader.addEventListener('load', () => {
@@ -52,7 +58,7 @@ export default () => {
         <Card.Body>
           {JSON.stringify(recordData)}
           <hr></hr>
-          <FormCuti/>
+          <FormCuti />
         </Card.Body>
         <Card.Footer>
           <Button
@@ -69,14 +75,13 @@ export default () => {
           >
             Konfirmasi
           </Button>
-          <Button
+          <ButtonLoading isLoading={isLoadingSubmit}
             style={{ float: 'right' }}
             onClick={() => {
               doSimpan();
             }}
-          >
-            Simpan ke DB
-          </Button>
+            name="Simpan ke DB"
+          />
         </Card.Footer>
       </Card>
     </div>
