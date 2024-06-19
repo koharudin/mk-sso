@@ -6,14 +6,25 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { ApiCall } from '../../Api/api';
 import { useNavigate } from 'react-router-dom';
 import { AppInformasiError } from '../components/App';
+import ButtonLoading from '../components/ButtonLoading';
 export default (props) => {
   const [Component, setComponent] = useState();
   const navigate = useNavigate();
+  const [isLoadingSubmit, setIsLoadingSubmit] = useState();
 
   const onCreateUsulan = async () => {
-    props.onSubmitUsulan(props?.layanan_id, props?.action, props?.recordId, props?.refData, props?.recordData,props?.useUploadFiles, () => {
-      props.propsWizard.lastStep();
-    });
+    props.onSubmitUsulan(
+      props?.layanan_id,
+      props?.action,
+      props?.recordId,
+      props?.refData,
+      props?.recordData,
+      props?.useUploadFiles,
+      setIsLoadingSubmit,
+      () => {
+        props.propsWizard.lastStep();
+      }
+    );
   };
   return (
     <>
@@ -56,9 +67,16 @@ export default (props) => {
                       >
                         <AiOutlineCloseCircle /> Batal
                       </Button>
-                      <Button onClick={onCreateUsulan} style={{ float: 'right' }} className="btn-rounded text-capitalize" variant={'info'}>
-                        <FaSave /> Ya, Buat Usulan
-                      </Button>
+                      <ButtonLoading
+                        isLoading={isLoadingSubmit}
+                        onClick={onCreateUsulan}
+                        style={{ float: 'right' }}
+                        className="btn-rounded text-capitalize"
+                        variant={'info'}
+                        name={"Ya, Buat Usulan"}
+                      >
+                        <FaSave /> 
+                      </ButtonLoading>
                     </td>
                   </tr>
                 </tfoot>
