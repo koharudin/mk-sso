@@ -31,14 +31,36 @@ export default (props) => {
   const [isLoading, setIsLoading] = useState();
   const [selectedOption, setSelectedOption] = useState();
   const [q, setQ] = useState();
-  const [url, setUrl] = useState('/master-jenis-cuti/');
+  const [url, setUrl] = useState('/master-detail-jenis-cuti/');
   const [objValue, setObjValue] = useState();
 
- 
+  useEffect(() => {
+    if (props?.value && props?.value != '') {
+      const id = typeof props?.value == 'object' ? props?.value?.value : props?.value;
+      ApiCall.get(url + id + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setObjValue({
+              ...{
+                id: res?.data?.id,
+                name: res?.data?.name
+              }
+            });
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
   const onLoad = async (pSearch, pPage) => {
     const formData = new FormData();
     formData.append('page', page);
     formData.append('q', pSearch);
+    formData.append('parent_id', props?.parent_id);
 
     const res = await ApiCall.post(url, formData);
     return {

@@ -4,7 +4,6 @@ import Panel from '../forms/FormDataTidakTerekam';
 import { ApiCall } from '../../Api/api';
 import Button from '../components/Button';
 import UploadFile from '../components/UploadFile';
-import FormCuti from '../forms/FormCuti';
 
 export default () => {
   const [recordData, setRecordData] = useState({ jenis_kelamin: 'P', pangkat_id: 31 });
@@ -52,7 +51,8 @@ export default () => {
         <Card.Body>
           {JSON.stringify(recordData)}
           <hr></hr>
-          <FormCuti/>
+          <UploadFile  onChangeField={onChangeField} name="filesx" readOnly={readOnly} ></UploadFile>
+          <UploadFile onChangeField={onChangeField} name="files[1]" readOnly={readOnly} ></UploadFile>
         </Card.Body>
         <Card.Footer>
           <Button

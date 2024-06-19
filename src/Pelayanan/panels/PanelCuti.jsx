@@ -66,7 +66,6 @@ export default (props) => {
     <>
       {props?.activePanel == 'init' && (
         <>
-          
           {activeForm == 'form' && (
             <>
               <FormInput
@@ -86,6 +85,7 @@ export default (props) => {
             <PanelKonfirmasiUsulan
               {...props}
               setActiveForm={setActiveForm}
+              useUploadFiles={true}
               action={action}
               recordData={recordData}
               refData={refData}

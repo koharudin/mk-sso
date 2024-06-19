@@ -66,7 +66,6 @@ export default (props) => {
     <>
       {props?.activePanel == 'init' && (
         <>
-          
           {activeForm == 'form' && (
             <>
               <FormInput
@@ -84,7 +83,8 @@ export default (props) => {
           )}
           {activeForm == 'konfirmasiUsulan' && (
             <PanelKonfirmasiUsulan
-              {...props} useUploadFiles={true}
+              {...props}
+              useUploadFiles={true}
               setActiveForm={setActiveForm}
               action={action}
               recordData={recordData}
@@ -92,13 +92,13 @@ export default (props) => {
               recordId={recordId}
               propsWizard={props?.propsWizard}
             >
-              <FormUsulan  {...props} disabledAll refData={refData} recordData={recordData} />
+              <FormUsulan {...props} disabledAll refData={refData} recordData={recordData} />
             </PanelKonfirmasiUsulan>
           )}
         </>
       )}
 
-      {props?.activePanel == 'detail' && <FormUsulan  {...props} disabledAll propsWizard={props?.propsWizard} />}
+      {props?.activePanel == 'detail' && <FormUsulan {...props} disabledAll propsWizard={props?.propsWizard} />}
     </>
   );
 };
