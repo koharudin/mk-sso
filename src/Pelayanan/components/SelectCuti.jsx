@@ -16,8 +16,6 @@ const Option = (props) => {
         <b>
           {props.data?.o?.name} - [{props.data?.o?.id}]
         </b>
-        <br></br>
-        {props.data?.o?.keterangan}
       </components.Option>
     </>
   );
@@ -34,7 +32,22 @@ export default (props) => {
   const [url, setUrl] = useState('/master-jenis-cuti/');
   const [objValue, setObjValue] = useState();
 
- 
+  useEffect(() => {
+    if (props?.value && props?.value != '') {
+      const id = typeof props?.value == 'object' ? props?.value?.value : props?.value;
+      ApiCall.get(url  + id + '/detail')
+        .then((res) => {
+          if (res?.data) {
+            setSelectedOption({
+              value: res?.data?.id,
+              label: res?.data?.name + ' - ' + '[' + res?.data?.id + ']'
+            });
+          }
+        })
+        .catch((err) => {})
+        .finally(() => {});
+    }
+  }, [props]);
   const onLoad = async (pSearch, pPage) => {
     const formData = new FormData();
     formData.append('page', page);

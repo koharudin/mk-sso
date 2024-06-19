@@ -16,8 +16,6 @@ const Option = (props) => {
         <b>
           {props.data?.o?.name} - [{props.data?.o?.id}]
         </b>
-        <br></br>
-        {props.data?.o?.keterangan}
       </components.Option>
     </>
   );
@@ -114,7 +112,7 @@ export default (props) => {
           <Form.Control readOnly={props?.readOnly} value={selectedOption?.label}></Form.Control>
         </>
       ) : (
-        <AsyncPaginate
+        <AsyncPaginate key={props?.parent_id}
           debounceTimeout={3}
           components={{ Option }}
           onChange={onChangeSelection}

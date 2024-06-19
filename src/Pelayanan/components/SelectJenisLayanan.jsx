@@ -72,7 +72,6 @@ export default (props) => {
   };
   return (
     <>
-      {selectedOption}
       <Select
         {...otherProps}
         components={{ Option }}
