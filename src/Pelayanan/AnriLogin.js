@@ -53,7 +53,7 @@ export default ({ className, ...rest }) => {
           <form noValidate onSubmit={handleSubmit} className={className} {...rest}>
             <div className="form-group mb-3">
               <FormControl
-                  type={inputTypePassword}
+                  type="text"
                   name='username' placeholder='Username'
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -70,7 +70,7 @@ export default ({ className, ...rest }) => {
                   onChange={handleChange}
                   value={values.password}
                 />
-                <Button onClick={switchPasswordText}>{inputTypePassword=="password"?<FaEye></FaEye>:<FaEyeSlash></FaEyeSlash>}</Button>
+                <Button onClick={switchPasswordText}>{inputTypePassword=="password"?<FaEyeSlash/>:<FaEye/>}</Button>
               </InputGroup>
               {touched.password && errors.password && <small className="text-danger form-text">{errors.password}</small>}
             </div>
