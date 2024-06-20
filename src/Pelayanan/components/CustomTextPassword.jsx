@@ -12,7 +12,7 @@ export default (props) => {
     <InputGroup>
       <FormControl
         type={inputTypePassword}
-        placeholder="Kata Sandix"
+        placeholder="Kata Sandi"
         name="password"
         onBlur={props?.onBlur}
         onChange={props?.onChange}
