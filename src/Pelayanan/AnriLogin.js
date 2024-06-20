@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { Row, Col, Button, Alert, FormControl, InputGroup } from 'react-bootstrap';
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
+
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { ApiCall } from '../Api/api';
 import { isSubmitting } from 'redux-form';
 import { useNavigate } from 'react-router-dom';
+import CustomTextPassword from './components/CustomTextPassword';
 
 export default ({ className, ...rest }) => {
   const navigate = useNavigate();
   const refPassword = useRef();
-  const [inputTypePassword, setInputTypePassword] = useState('password');
-  const switchPasswordText = () => {
-    setInputTypePassword(inputTypePassword=="password"?"text":"password")
-  };
+
   return (
     <React.Fragment>
       <Formik
@@ -53,25 +50,17 @@ export default ({ className, ...rest }) => {
           <form noValidate onSubmit={handleSubmit} className={className} {...rest}>
             <div className="form-group mb-3">
               <FormControl
-                  type="text"
-                  name='username' placeholder='Username'
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.username}
-                />
+                type="text"
+                name="username"
+                placeholder="Username"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.username}
+              />
               {touched.email && errors.email && <small className="text-danger form-text">{errors.email}</small>}
             </div>
             <div className="form-group mb-4">
-              <InputGroup>
-                <FormControl
-                  type={inputTypePassword} placeholder='Kata Sandi'
-                  name='password'
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.password}
-                />
-                <Button onClick={switchPasswordText}>{inputTypePassword=="password"?<FaEyeSlash/>:<FaEye/>}</Button>
-              </InputGroup>
+              <CustomTextPassword placeholder="Kata Sandi" onBlur={handleBlur} onChange={handleChange} value={values.password} />
               {touched.password && errors.password && <small className="text-danger form-text">{errors.password}</small>}
             </div>
 
