@@ -35,9 +35,13 @@ export default ({ className, ...rest }) => {
                     const formData = new FormData();
                     formData.append('check', values.check);
                     let p = searchParams.get('params_authorize');
+                    if(!p){
+                      alert("Tidak ada params authorisasi");
+                      setSubmitting(false)
+                      return
+                    }
                     let j = atob(p);
                     let aj = JSON.parse(j);
-                    formData.append('params_authorize', p);
                     ApiCall.post('/oauth/authorize', { ...aj, ...{ authorized: values.check ? true : false } })
                       .then((res) => {
                         if (res?.data) {

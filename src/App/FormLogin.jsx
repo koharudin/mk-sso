@@ -24,14 +24,25 @@ export default ({ className, ...rest }) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           const formData = new FormData();
-          let params_authorize = searchParams.get("params_authorize");
+          let params_authorize = searchParams.get('params_authorize');
           formData.append('username', values.username);
           formData.append('password', values.password);
-          formData.append('params_authorize', searchParams.get("params_authorize"));
+          if (params_authorize) {
+            formData.append('params_authorize', params_authorize);
+          }
+
           ApiCall.post('/login', formData)
             .then((res) => {
               if (res?.data) {
-                navigate("/authorisasi?params_authorize="+res?.data?.params_authorize)
+                let data = {
+                  user: { username: res?.data?.user?.username, id: res?.data?.user?.id }
+                };
+                localStorage.setItem('app_data', JSON.stringify(data));
+                if (res?.data?.params_authorize ) {
+                  navigate('/authorisasi?params_authorize='+res?.data?.params_authorize);
+                } else {
+                  window.location  = "/dashboard"
+                }
               }
             })
             .catch((err) => {

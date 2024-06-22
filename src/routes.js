@@ -61,6 +61,11 @@ export const authenticatedRoutes = [
 const routes = [
   {
     exact: 'true',
+    path: '/',
+    element: lazy(() => import('./App/Homepage'))
+  },
+  {
+    exact: 'true',
     path: '/login',
     element: lazy(() => import('./App/Login'))
   },
