@@ -6,7 +6,7 @@ import Breadcrumb from '../layouts/AdminLayout/Breadcrumb';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import AuthLogin from './AnriLogin';
+import AuthLogin from './FormLogin';
 
 export default (props) => {
   return (
@@ -23,7 +23,7 @@ export default (props) => {
           <Card className="borderless text-center">
             <Card.Body>
               <div className="mb-4">
-                <i className="feather icon-unlock auth-icon" />
+                <i className="feather icon-unlock auth-icon" /> Single Sign On
               </div>
               <AuthLogin />
               

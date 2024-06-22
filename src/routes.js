@@ -161,6 +161,11 @@ const routes = [
   },
   {
     exact: 'true',
+    path: '/authorisasi',
+    element: lazy(() => import('./Pelayanan/Authorisasi'))
+  },
+  {
+    exact: 'true',
     path: '/test',
     element: lazy(() => import('./Pelayanan/test/Test'))
   },

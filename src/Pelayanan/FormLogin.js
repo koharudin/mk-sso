@@ -6,13 +6,14 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { ApiCall } from '../Api/api';
 import { isSubmitting } from 'redux-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import CustomTextPassword from './components/CustomTextPassword';
 
 export default ({ className, ...rest }) => {
   const navigate = useNavigate();
+  const params = useParams();
   const refPassword = useRef();
-
+  const [searchParams, setSearchParams] = useSearchParams();
   return (
     <React.Fragment>
       <Formik
@@ -23,13 +24,14 @@ export default ({ className, ...rest }) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           const formData = new FormData();
+          let params_authorize = searchParams.get("params_authorize");
           formData.append('username', values.username);
           formData.append('password', values.password);
-          ApiCall.post('/login-token', formData)
+          formData.append('params_authorize', searchParams.get("params_authorize"));
+          ApiCall.post('/login', formData)
             .then((res) => {
               if (res?.data) {
-                localStorage.setItem('app_data', JSON.stringify({ token: res.data.token, user: res.data.user }));
-                window.location = './dashboard';
+                navigate("/authorisasi?params_authorize="+res?.data?.params_authorize)
               }
             })
             .catch((err) => {
@@ -57,7 +59,7 @@ export default ({ className, ...rest }) => {
                 onChange={handleChange}
                 value={values.username}
               />
-              {touched.email && errors.email && <small className="text-danger form-text">{errors.email}</small>}
+              {touched.username && errors.username && <small className="text-danger form-text">{errors.username}</small>}
             </div>
             <div className="form-group mb-4">
               <CustomTextPassword placeholder="Kata Sandi" onBlur={handleBlur} onChange={handleChange} value={values.password} />
@@ -69,13 +71,6 @@ export default ({ className, ...rest }) => {
                 <Alert variant="danger">{errors.submit}</Alert>
               </Col>
             )}
-
-            <div className="custom-control custom-checkbox  text-start mb-4 mt-2">
-              <input type="checkbox" className="custom-control-input" id="customCheck1" />
-              <label className="custom-control-label" htmlFor="customCheck1">
-                Save credentials.
-              </label>
-            </div>
 
             <Row>
               <Col mt={2}>
