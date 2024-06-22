@@ -17,7 +17,7 @@ const detailInvoice = async (id) => {
 
 const isLogin = () => {
   const app_data = JSON.parse(localStorage.getItem("app_data"))
-  return app_data?.token ? true : false
+  return app_data?.user?.id ? true : false
 }
 const userLogin = () => {
   const app_data = JSON.parse(localStorage.getItem("app_data"))
