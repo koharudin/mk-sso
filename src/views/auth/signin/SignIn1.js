@@ -49,7 +49,7 @@ const Signin1 = () => {
                 Password:
                 <CopyToClipboard text="123456">
                   <Button variant="outline-primary" as={Link} to="#" className="badge mx-2" size="sm">
-                    <i className="fa fa-lock" /> 123456
+                    <i className="fa fa-lock" /> 123456x
                   </Button>
                 </CopyToClipboard>
               </Alert>
